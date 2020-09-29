@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BRG_App</string>
+    <string name="rens">RENS</string>
+    <string name="indstillinger">INDSTILLINGER</string>
+    <string name="historik">HISTORIK</string>
+    <string name="broeg">BRØG</string>
 </resources>
