@@ -26,6 +26,10 @@ public class BroegActivity1 extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.nav_HomeBtn:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
                     case R.id.nav_BroegBtn:
                         return true;
                     case R.id.nav_HistorikBtn:

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/nav_HomeBtn"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:iconTint="@color/colorPrimary"
+        android:title="@string/home" />
+    <item
         android:id="@+id/nav_BroegBtn"
         android:icon="@drawable/broeg_logo_1"
         android:iconTint="@color/colorPrimary"
