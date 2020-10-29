@@ -19,11 +19,15 @@ public class MainActivity extends AppCompatActivity {
         // Navigation
         // ##########################################################
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+        // Set nav highlighted button
+        bottomNav.setSelectedItemId(R.id.nav_HomeBtn);
         // Perform ItemSelectedListener
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.nav_HomeBtn:
+                        return true;
                     case R.id.nav_BroegBtn:
                         startActivity(new Intent(getApplicationContext(), BroegActivity1.class));
                         overridePendingTransition(0, 0);
