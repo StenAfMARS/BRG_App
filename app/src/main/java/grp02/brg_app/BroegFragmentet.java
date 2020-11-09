@@ -176,7 +176,8 @@ public class BroegFragmentet extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
             getFragmentManager().beginTransaction()
-                    .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                  //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                    .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
                     .replace(R.id.broegFragmentetIActivity, new HvorMegetVandFragment())
                     .addToBackStack(null)
                     .commit();
