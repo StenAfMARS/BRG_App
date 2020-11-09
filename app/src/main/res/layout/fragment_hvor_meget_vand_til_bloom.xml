@@ -8,11 +8,12 @@
 
 
     <ProgressBar
-        android:id="@+id/progressBar4"
+        android:id="@+id/progressBar3"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="266dp"
         android:layout_height="40dp"
         android:layout_marginTop="104dp"
+        android:progressTint="#A98E7C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,19 +53,19 @@
         app:scroll_visible_item_count="7" />
 
     <Button
-        android:id="@+id/buttonNext4"
+        android:id="@+id/buttonNext3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NÆSTE"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar4"
-        app:layout_constraintEnd_toEndOf="@+id/progressBar4" />
+        app:layout_constraintBottom_toTopOf="@+id/progressBar3"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar3" />
 
     <Button
-        android:id="@+id/buttonTilbage4"
+        android:id="@+id/buttonTilbage3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TILBAGE"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar4"
-        app:layout_constraintStart_toStartOf="@+id/progressBar4" />
+        app:layout_constraintBottom_toTopOf="@+id/progressBar3"
+        app:layout_constraintStart_toStartOf="@+id/progressBar3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

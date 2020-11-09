@@ -1,4 +1,4 @@
-package grp02.brg_app;
+package grp02.brg_app.FragmenterBrygDetaljer;
 
 import android.os.Bundle;
 
@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.webianks.library.scroll_choice.ScrollChoice;
@@ -15,25 +16,31 @@ import com.webianks.library.scroll_choice.ScrollChoice;
 import java.util.ArrayList;
 import java.util.List;
 
+import grp02.brg_app.R;
+
 public class HvorMegetVandFragment extends Fragment implements View.OnClickListener {
 
 
     List<String> gramVand = new ArrayList<>();
     TextView hvorMangeMlVand;
     ScrollChoice scrollChoice;
-    Button buttonNext2, buttonTilbage2;
+    Button buttonNext1, buttonTilbage1;
+    ProgressBar progressBar;
+    int progressBarStatus = 20;
 
     @Override
     public View onCreateView(LayoutInflater i,ViewGroup container,Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.fragment_hvor_meget_vand,container, false);
 
-        buttonNext2 = rod.findViewById(R.id.buttonNext2);
-        buttonNext2.setText("NÆSTE ->");
-        buttonNext2.setOnClickListener(this);
+        progressBar = rod.findViewById(R.id.progressBar1);
+        progressBar.setProgress(progressBarStatus);
+        buttonNext1 = rod.findViewById(R.id.buttonNext1);
+        buttonNext1.setText("NÆSTE ->");
+        buttonNext1.setOnClickListener(this);
 
-        buttonTilbage2 = rod.findViewById(R.id.buttonTilbage2);
-        buttonTilbage2.setText("<- TILBAGE");
-        buttonTilbage2.setOnClickListener(this);
+        buttonTilbage1 = rod.findViewById(R.id.buttonTilbage1);
+        buttonTilbage1.setText("<- TILBAGE");
+        buttonTilbage1.setOnClickListener(this);
 
         hvorMangeMlVand = rod.findViewById(R.id.textViewVand);
         hvorMangeMlVand.setText("HVOR MEGET VAND PR. GRAM KAFFE VIL DU BRUGE?");
@@ -90,14 +97,16 @@ public class HvorMegetVandFragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if (v == buttonNext2){
+        if (v == buttonNext1){
+            progressBarStatus +=20;
+            progressBar.setProgress(progressBarStatus);
         getFragmentManager().beginTransaction()
                 //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                 .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
                 .replace(R.id.broegFragmentetIActivity, new VandFordelingsFragment())
                 .addToBackStack(null)
                 .commit();}
-        else if (v == buttonTilbage2){
+        else if (v == buttonTilbage1){
             getFragmentManager().beginTransaction()
                   //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)

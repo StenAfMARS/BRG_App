@@ -1,4 +1,4 @@
-package grp02.brg_app;
+package grp02.brg_app.FragmenterBrygDetaljer;
 
 import android.os.Bundle;
 
@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.webianks.library.scroll_choice.ScrollChoice;
@@ -15,24 +16,31 @@ import com.webianks.library.scroll_choice.ScrollChoice;
 import java.util.ArrayList;
 import java.util.List;
 
+import grp02.brg_app.R;
+
 public class BloomvandDistribueringFragment extends Fragment implements View.OnClickListener {
 
     List<String> antalSekunder1 = new ArrayList<>();
     TextView textViewDistribuering;
     ScrollChoice scrollChoice;
-    Button buttonNext3, buttonTilbage3;
+    Button buttonNext4, buttonTilbage4;
+    ProgressBar progressBar;
+    int progressBarStatus = 80;
 
     @Override
     public View onCreateView(LayoutInflater i,ViewGroup container,Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.fragment_bloomvand_distribuering,container, false);
 
-        buttonNext3 = rod.findViewById(R.id.buttonNext3);
-        buttonNext3.setText("BRØG");
-        buttonNext3.setOnClickListener(this);
+        progressBar = rod.findViewById(R.id.progressBar4);
+        progressBar.setProgress(progressBarStatus);
 
-        buttonTilbage3 = rod.findViewById(R.id.buttonTilbage3);
-        buttonTilbage3.setText("<- TILBAGE");
-        buttonTilbage3.setOnClickListener(this);
+        buttonNext4 = rod.findViewById(R.id.buttonNext4);
+        buttonNext4.setText("BRØG");
+        buttonNext4.setOnClickListener(this);
+
+        buttonTilbage4 = rod.findViewById(R.id.buttonTilbage4);
+        buttonTilbage4.setText("<- TILBAGE");
+        buttonTilbage4.setOnClickListener(this);
 
         textViewDistribuering = rod.findViewById(R.id.textViewDistribuering);
         textViewDistribuering.setText("HVOR HURTIGT SKAL BLOOMVANDET DISTRIBRUERES?");
@@ -89,14 +97,16 @@ public class BloomvandDistribueringFragment extends Fragment implements View.OnC
 
     @Override
     public void onClick(View v) {
-        if (v == buttonNext3){
+        if (v == buttonNext4){
+            progressBarStatus += 20;
+            progressBar.setProgress(progressBarStatus);
             getFragmentManager().beginTransaction()
                     //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
                     .replace(R.id.broegFragmentetIActivity, new BroegFragmentet())
                     .addToBackStack(null)
                     .commit();}
-        else if (v == buttonTilbage3){
+        else if (v == buttonTilbage4){
             getFragmentManager().beginTransaction()
                     //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)

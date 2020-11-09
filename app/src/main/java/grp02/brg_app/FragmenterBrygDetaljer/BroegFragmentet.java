@@ -1,4 +1,4 @@
-package grp02.brg_app;
+package grp02.brg_app.FragmenterBrygDetaljer;
 
 import android.os.Bundle;
 
@@ -16,6 +16,8 @@ import com.webianks.library.scroll_choice.ScrollChoice;
 import java.util.ArrayList;
 import java.util.List;
 
+import grp02.brg_app.R;
+
 public class BroegFragmentet extends Fragment implements View.OnClickListener {
 
 
@@ -24,6 +26,7 @@ public class BroegFragmentet extends Fragment implements View.OnClickListener {
     ScrollChoice scrollChoice;
     Button buttonNext;
     ProgressBar progressBar;
+    int progressBarStatus;
 
     @Override
     public View onCreateView(LayoutInflater i,ViewGroup container,Bundle savedInstanceState) {
@@ -49,7 +52,6 @@ public class BroegFragmentet extends Fragment implements View.OnClickListener {
                 //Implementere at gemme værdien i et objekt for den kaffe man er i gang med at lave.
             }
         });
-
 
         return rod;
     }
@@ -180,6 +182,8 @@ public class BroegFragmentet extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+            progressBarStatus +=20;
+            progressBar.setProgress(progressBarStatus);
             getFragmentManager().beginTransaction()
                   //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)

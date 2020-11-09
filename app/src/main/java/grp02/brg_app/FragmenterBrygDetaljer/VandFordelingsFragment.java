@@ -1,4 +1,4 @@
-package grp02.brg_app;
+package grp02.brg_app.FragmenterBrygDetaljer;
 
 import android.os.Bundle;
 
@@ -8,12 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.webianks.library.scroll_choice.ScrollChoice;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import grp02.brg_app.FragmenterBrygDetaljer.HvorMegetVandFragment;
+import grp02.brg_app.FragmenterBrygDetaljer.HvorMegetVandTilBloomFragment;
+import grp02.brg_app.R;
 
 public class VandFordelingsFragment extends Fragment implements View.OnClickListener {
 
@@ -22,10 +27,15 @@ public class VandFordelingsFragment extends Fragment implements View.OnClickList
     TextView hvorMangeSekunder;
     ScrollChoice scrollChoice;
     Button buttonNext2, buttonTilbage2;
+    ProgressBar progressBar;
+    int progressBarStatus = 40;
 
     @Override
     public View onCreateView(LayoutInflater i,ViewGroup container,Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.fragment_vand_fordelings_tid,container, false);
+
+        progressBar = rod.findViewById(R.id.progressBar2);
+        progressBar.setProgress(progressBarStatus);
 
         buttonNext2 = rod.findViewById(R.id.buttonNext2);
         buttonNext2.setText("NÆSTE ->");
@@ -91,6 +101,8 @@ public class VandFordelingsFragment extends Fragment implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == buttonNext2){
+            progressBarStatus += 20;
+            progressBar.setProgress(progressBarStatus);
             getFragmentManager().beginTransaction()
                     //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
