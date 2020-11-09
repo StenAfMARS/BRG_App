@@ -43,7 +43,7 @@ public class BloomvandDistribueringFragment extends Fragment implements View.OnC
         buttonTilbage4.setOnClickListener(this);
 
         textViewDistribuering = rod.findViewById(R.id.textViewDistribuering);
-        textViewDistribuering.setText("HVOR HURTIGT SKAL BLOOMVANDET DISTRIBRUERES?");
+        textViewDistribuering.setText("HVOR HURTIGT SKAL BLOOMVANDET DISTRIBUERES?");
 
         scrollChoice = rod.findViewById(R.id.scroll_choice_Distribuering);
         loadDeForskelligeMængder();
