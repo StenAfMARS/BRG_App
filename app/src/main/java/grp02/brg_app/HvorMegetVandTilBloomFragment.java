@@ -15,17 +15,17 @@ import com.webianks.library.scroll_choice.ScrollChoice;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VandFordelingsFragment extends Fragment implements View.OnClickListener {
+public class HvorMegetVandTilBloomFragment extends Fragment implements View.OnClickListener {
 
 
-    List<String> antalSekunder = new ArrayList<>();
-    TextView hvorMangeSekunder;
+    List<String> gramVand = new ArrayList<>();
+    TextView hvorMangeMlVand;
     ScrollChoice scrollChoice;
     Button buttonNext2, buttonTilbage2;
 
     @Override
     public View onCreateView(LayoutInflater i,ViewGroup container,Bundle savedInstanceState) {
-        View rod = i.inflate(R.layout.fragment_vand_fordelings_tid,container, false);
+        View rod = i.inflate(R.layout.fragment_hvor_meget_vand,container, false);
 
         buttonNext2 = rod.findViewById(R.id.buttonNext2);
         buttonNext2.setText("NÆSTE ->");
@@ -35,13 +35,13 @@ public class VandFordelingsFragment extends Fragment implements View.OnClickList
         buttonTilbage2.setText("<- TILBAGE");
         buttonTilbage2.setOnClickListener(this);
 
-        hvorMangeSekunder = rod.findViewById(R.id.textViewSekunder);
-        hvorMangeSekunder.setText("HVOR HURTIGT SKAL VANDET FORDELES?");
+        hvorMangeMlVand = rod.findViewById(R.id.textViewVand);
+        hvorMangeMlVand.setText("HVOR MEGET VAND SKAL DU BRUGE TIL BLOOM?");
 
-        scrollChoice = rod.findViewById(R.id.scroll_choice_sekunder);
+        scrollChoice = rod.findViewById(R.id.scroll_choice_vand);
         loadDeForskelligeMængder();
 
-        scrollChoice.addItems(antalSekunder,15); //default index, så den er på "60"
+        scrollChoice.addItems(gramVand,15); //default index, så den er på "60"
         scrollChoice.setOnItemSelectedListener(new ScrollChoice.OnItemSelectedListener() {
             @Override
             public void onItemSelected(ScrollChoice scrollChoice, int position, String name) {
@@ -53,37 +53,37 @@ public class VandFordelingsFragment extends Fragment implements View.OnClickList
         return rod;
     }
     private void loadDeForskelligeMængder(){
-        antalSekunder.add("30 sek");
-        antalSekunder.add("31 sek");
-        antalSekunder.add("32 sek");
-        antalSekunder.add("33 sek");
-        antalSekunder.add("34 sek");
-        antalSekunder.add("35 sek");
-        antalSekunder.add("36 sek");
-        antalSekunder.add("37 sek");
-        antalSekunder.add("38 sek");
-        antalSekunder.add("39 sek");
-        antalSekunder.add("40 sek");
-        antalSekunder.add("41 sek");
-        antalSekunder.add("42 sek");
-        antalSekunder.add("43 sek");
-        antalSekunder.add("44 sek");
-        antalSekunder.add("45 sek");
-        antalSekunder.add("46 sek");
-        antalSekunder.add("47 sek");
-        antalSekunder.add("48 sek");
-        antalSekunder.add("49 sek");
-        antalSekunder.add("50 sek");
-        antalSekunder.add("51 sek");
-        antalSekunder.add("52 sek");
-        antalSekunder.add("53 sek");
-        antalSekunder.add("54 sek");
-        antalSekunder.add("55 sek");
-        antalSekunder.add("56 sek");
-        antalSekunder.add("57 sek");
-        antalSekunder.add("58 sek");
-        antalSekunder.add("59 sek");
-        antalSekunder.add("60 sek");
+        gramVand.add("30 ml");
+        gramVand.add("31 ml");
+        gramVand.add("32 ml");
+        gramVand.add("33 ml");
+        gramVand.add("34 ml");
+        gramVand.add("35 ml");
+        gramVand.add("36 ml");
+        gramVand.add("37 ml");
+        gramVand.add("38 ml");
+        gramVand.add("39 ml");
+        gramVand.add("40 ml");
+        gramVand.add("41 ml");
+        gramVand.add("42 ml");
+        gramVand.add("43 ml");
+        gramVand.add("44 ml");
+        gramVand.add("45 ml");
+        gramVand.add("46 ml");
+        gramVand.add("47 ml");
+        gramVand.add("48 ml");
+        gramVand.add("49 ml");
+        gramVand.add("50 ml");
+        gramVand.add("51 ml");
+        gramVand.add("52 ml");
+        gramVand.add("53 ml");
+        gramVand.add("54 ml");
+        gramVand.add("55 ml");
+        gramVand.add("56 ml");
+        gramVand.add("57 ml");
+        gramVand.add("58 ml");
+        gramVand.add("59 ml");
+        gramVand.add("60 ml");
 
     }
 
@@ -94,16 +94,17 @@ public class VandFordelingsFragment extends Fragment implements View.OnClickList
             getFragmentManager().beginTransaction()
                     //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                    .replace(R.id.broegFragmentetIActivity, new HvorMegetVandTilBloomFragment())
+                    .replace(R.id.broegFragmentetIActivity, new BloomvandDistribueringFragment())
                     .addToBackStack(null)
                     .commit();}
         else if (v == buttonTilbage2){
             getFragmentManager().beginTransaction()
                     //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
-                    .replace(R.id.broegFragmentetIActivity, new HvorMegetVandFragment())
+                    .replace(R.id.broegFragmentetIActivity, new VandFordelingsFragment())
                     .addToBackStack(null)
                     .commit();
         }
     }
 }
+
