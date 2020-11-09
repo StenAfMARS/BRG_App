@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.webianks.library.scroll_choice.ScrollChoice;
@@ -22,10 +23,14 @@ public class BroegFragmentet extends Fragment implements View.OnClickListener {
     TextView hvorMangeKramKaffe;
     ScrollChoice scrollChoice;
     Button buttonNext;
+    ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater i,ViewGroup container,Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.fragment_hvor_meget_kaffe,container, false);
+
+        progressBar = rod.findViewById(R.id.progressBar);
+
 
         buttonNext = rod.findViewById(R.id.buttonNext);
         buttonNext.setText("NÆSTE ->");

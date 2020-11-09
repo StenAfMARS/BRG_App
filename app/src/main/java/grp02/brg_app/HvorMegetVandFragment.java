@@ -19,7 +19,7 @@ public class HvorMegetVandFragment extends Fragment implements View.OnClickListe
 
 
     List<String> gramVand = new ArrayList<>();
-    TextView hvorMangeKramKaffe;
+    TextView hvorMangeMlVand;
     ScrollChoice scrollChoice;
     Button buttonNext2, buttonTilbage2;
 
@@ -35,8 +35,8 @@ public class HvorMegetVandFragment extends Fragment implements View.OnClickListe
         buttonTilbage2.setText("<- TILBAGE");
         buttonTilbage2.setOnClickListener(this);
 
-        hvorMangeKramKaffe = rod.findViewById(R.id.textViewVand);
-        hvorMangeKramKaffe.setText("HVOR MEGET VAND PR. GRAM KAFFE VIL DU BRUGE?");
+        hvorMangeMlVand = rod.findViewById(R.id.textViewVand);
+        hvorMangeMlVand.setText("HVOR MEGET VAND PR. GRAM KAFFE VIL DU BRUGE?");
 
         scrollChoice = rod.findViewById(R.id.scroll_choice_vand);
         loadDeForskelligeMængder();
@@ -94,7 +94,7 @@ public class HvorMegetVandFragment extends Fragment implements View.OnClickListe
         getFragmentManager().beginTransaction()
                 //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                 .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                .replace(R.id.broegFragmentetIActivity, new HvorMegetVandFragment())
+                .replace(R.id.broegFragmentetIActivity, new VandFordelingsFragment())
                 .addToBackStack(null)
                 .commit();}
         else if (v == buttonTilbage2){
