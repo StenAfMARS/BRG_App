@@ -21,4 +21,15 @@
         app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/bottom_nav" />
 
+    <FrameLayout
+        android:id="@+id/broegFragmentetIActivity"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </FrameLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
