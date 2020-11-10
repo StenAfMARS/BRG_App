@@ -26,6 +26,10 @@ public class IndstillingerActivity1 extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.nav_HomeBtn:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
                     case R.id.nav_BroegBtn:
                         startActivity(new Intent(getApplicationContext(), BroegActivity1.class));
                         overridePendingTransition(0, 0);
