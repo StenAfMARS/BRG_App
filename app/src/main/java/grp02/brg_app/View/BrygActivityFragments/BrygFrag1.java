@@ -1,4 +1,4 @@
-package grp02.brg_app.BrygActivityFragments;
+package grp02.brg_app.View.BrygActivityFragments;
 
 import android.os.Bundle;
 

@@ -1,6 +1,5 @@
-package grp02.brg_app;
+package grp02.brg_app.Model;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 /*this file is only used first time the app is ever launch*/
 public class SqlInstall{
     /*call following functions first time*/
