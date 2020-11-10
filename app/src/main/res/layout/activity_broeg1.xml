@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
-    tools:context=".BroegActivity1">
+    tools:context=".View.BroegActivity1">
 
     <View
         android:layout_width="match_parent"

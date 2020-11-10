@@ -1,30 +1,28 @@
-package grp02.brg_app;
+package grp02.brg_app.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class BroegActivity1 extends AppCompatActivity {
+import grp02.brg_app.R;
+
+public class IndstillingerActivity1 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_broeg1);
+        setContentView(R.layout.activity_indstillinger1);
 
         // Navigation
         // ##########################################################
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
         // Set nav highlighted button
-        bottomNav.setSelectedItemId(R.id.nav_BroegBtn);
+        bottomNav.setSelectedItemId(R.id.nav_IndstillingerBtn);
         // Perform ItemSelectedListener
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -35,6 +33,8 @@ public class BroegActivity1 extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_BroegBtn:
+                        startActivity(new Intent(getApplicationContext(), BroegActivity1.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_HistorikBtn:
                         startActivity(new Intent(getApplicationContext(), HistorikActivity1.class));
@@ -45,8 +45,6 @@ public class BroegActivity1 extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_IndstillingerBtn:
-                        startActivity(new Intent(getApplicationContext(), IndstillingerActivity1.class));
-                        overridePendingTransition(0, 0);
                         return true;
                 }
                 return false;
