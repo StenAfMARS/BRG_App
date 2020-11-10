@@ -91,6 +91,7 @@ public class BloomvandDistribueringFragment extends Fragment implements View.OnC
         antalSekunder1.add("58 sek");
         antalSekunder1.add("59 sek");
         antalSekunder1.add("60 sek");
+        antalSekunder1.add("61 sek");
 
     }
 
