@@ -1,12 +1,7 @@
 <resources>
     <string name="app_name">BRG_App</string>
-    <string name="rens">RENS</string>
-    <string name="indstillinger">INDSTILLINGER</string>
-    <string name="historik">HISTORIK</string>
-    <string name="broeg">BRØG</string>
-    <string name="home">HOME</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="broegFragment">Hello blank fragment</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="frag1QuestionText">HVOR MANGE GRAM KAFFE VIL DU BRUGE?</string>
-    <string name="editAmountOfCoffeeValue">0 g</string>
 </resources>
