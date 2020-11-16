@@ -1,4 +1,4 @@
-package grp02.brg_app.FragmenterBrygDetaljer;
+package grp02.brg_app.View.FragmenterBrygDetaljer;
 
 import android.os.Bundle;
 
@@ -16,8 +16,6 @@ import com.webianks.library.scroll_choice.ScrollChoice;
 import java.util.ArrayList;
 import java.util.List;
 
-import grp02.brg_app.FragmenterBrygDetaljer.HvorMegetVandFragment;
-import grp02.brg_app.FragmenterBrygDetaljer.HvorMegetVandTilBloomFragment;
 import grp02.brg_app.R;
 
 public class VandFordelingsFragment extends Fragment implements View.OnClickListener {

@@ -1,4 +1,4 @@
-package grp02.brg_app.FragmenterBrygDetaljer;
+package grp02.brg_app.View.FragmenterBrygDetaljer;
 
 import android.os.Bundle;
 

@@ -1,4 +1,4 @@
-package grp02.brg_app;
+package grp02.brg_app.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +10,8 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import grp02.brg_app.FragmenterBrygDetaljer.BroegFragmentet;
+import grp02.brg_app.View.FragmenterBrygDetaljer.BroegFragmentet;
+import grp02.brg_app.R;
 
 public class BroegActivity1 extends AppCompatActivity {
 

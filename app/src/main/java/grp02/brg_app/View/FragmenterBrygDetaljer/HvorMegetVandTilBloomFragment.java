@@ -1,4 +1,4 @@
-package grp02.brg_app.FragmenterBrygDetaljer;
+package grp02.brg_app.View.FragmenterBrygDetaljer;
 
 import android.os.Bundle;
 
@@ -18,34 +18,35 @@ import java.util.List;
 
 import grp02.brg_app.R;
 
-public class HvorMegetVandFragment extends Fragment implements View.OnClickListener {
+public class HvorMegetVandTilBloomFragment extends Fragment implements View.OnClickListener {
 
 
     List<String> gramVand = new ArrayList<>();
     TextView hvorMangeMlVand;
     ScrollChoice scrollChoice;
-    Button buttonNext1, buttonTilbage1;
+    Button buttonNext3, buttonTilbage3;
     ProgressBar progressBar;
-    int progressBarStatus = 20;
+    int progressBarStatus = 60;
 
     @Override
     public View onCreateView(LayoutInflater i,ViewGroup container,Bundle savedInstanceState) {
-        View rod = i.inflate(R.layout.fragment_hvor_meget_vand,container, false);
+        View rod = i.inflate(R.layout.fragment_hvor_meget_vand_til_bloom,container, false);
 
-        progressBar = rod.findViewById(R.id.progressBar1);
+        progressBar = rod.findViewById(R.id.progressBar3);
         progressBar.setProgress(progressBarStatus);
-        buttonNext1 = rod.findViewById(R.id.buttonNext1);
-        buttonNext1.setText("NÆSTE ->");
-        buttonNext1.setOnClickListener(this);
 
-        buttonTilbage1 = rod.findViewById(R.id.buttonTilbage1);
-        buttonTilbage1.setText("<- TILBAGE");
-        buttonTilbage1.setOnClickListener(this);
+        buttonNext3 = rod.findViewById(R.id.buttonNext3);
+        buttonNext3.setText("NÆSTE ->");
+        buttonNext3.setOnClickListener(this);
 
-        hvorMangeMlVand = rod.findViewById(R.id.textViewVand);
-        hvorMangeMlVand.setText("HVOR MEGET VAND PR. GRAM KAFFE VIL DU BRUGE?");
+        buttonTilbage3 = rod.findViewById(R.id.buttonTilbage3);
+        buttonTilbage3.setText("<- TILBAGE");
+        buttonTilbage3.setOnClickListener(this);
 
-        scrollChoice = rod.findViewById(R.id.scroll_choice_vand);
+        hvorMangeMlVand = rod.findViewById(R.id.textViewBloomTid);
+        hvorMangeMlVand.setText("HVOR MEGET VAND SKAL DU BRUGE TIL BLOOM?");
+
+        scrollChoice = rod.findViewById(R.id.scroll_choice_BloomTid);
         loadDeForskelligeMængder();
 
         scrollChoice.addItems(gramVand,15); //default index, så den er på "60"
@@ -97,22 +98,23 @@ public class HvorMegetVandFragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if (v == buttonNext1){
-            progressBarStatus +=20;
+        if (v == buttonNext3){
+            progressBarStatus += 20;
             progressBar.setProgress(progressBarStatus);
-        getFragmentManager().beginTransaction()
-                //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-                .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                .replace(R.id.broegFragmentetIActivity, new VandFordelingsFragment())
-                .addToBackStack(null)
-                .commit();}
-        else if (v == buttonTilbage1){
             getFragmentManager().beginTransaction()
-                  //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                    //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                    .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
+                    .replace(R.id.broegFragmentetIActivity, new BloomvandDistribueringFragment())
+                    .addToBackStack(null)
+                    .commit();}
+        else if (v == buttonTilbage3){
+            getFragmentManager().beginTransaction()
+                    //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
-                    .replace(R.id.broegFragmentetIActivity, new BroegFragmentet())
+                    .replace(R.id.broegFragmentetIActivity, new VandFordelingsFragment())
                     .addToBackStack(null)
                     .commit();
         }
     }
 }
+
