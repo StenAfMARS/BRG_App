@@ -31,7 +31,12 @@ public class storageController extends SQLiteOpenHelper {
     public void addRowReciepies(DTO_recipe dto_recipe){
         SQLiteDatabase db  =  this.getWritableDatabase();
         ContentValues cv  = new ContentValues();
-        cv.put("RecipeName",dto_recipe.get);
+        cv.put("RecipeName",dto_recipe.getRecipeName());
+        cv.put("GrindSize",dto_recipe.getGrindSize().toString());
+        cv.put("CoffeeWater",dto_recipe.getCoffeeToWater());
+        cv.put("BrewingTemperature",dto_recipe.getBrewingTemperature());
+        cv.put("BloomWater",dto_recipe.getBloomWater());
+        cv.put("BloomTime",dto_recipe.getBloomTime());
     }
     public void addRow(String tableName, int recipieID){
         SQLiteDatabase db  =  this.getWritableDatabase();
