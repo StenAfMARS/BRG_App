@@ -1,14 +1,16 @@
 package grp02.brg_app.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import grp02.brg_app.View.FragmenterBrygDetaljer.BroegFragmentet;
 import grp02.brg_app.R;
 
 public class BroegActivity1 extends AppCompatActivity {
@@ -18,6 +20,13 @@ public class BroegActivity1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_broeg1);
 
+
+        if (savedInstanceState == null) {
+            Fragment fragment = new BroegFragmentet();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.broegFragmentetIActivity, fragment)  // tom container i layout
+                    .commit();
+        }
         // Navigation
         // ##########################################################
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
