@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import grp02.brg_app.R;
 
 public class RensActivity1 extends AppCompatActivity {
