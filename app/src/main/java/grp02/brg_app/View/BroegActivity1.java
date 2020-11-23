@@ -12,6 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import grp02.brg_app.View.FragmenterBrygDetaljer.BroegFragmentet;
 import grp02.brg_app.R;
+import grp02.brg_app.View.FragmenterBrygDetaljer.StartBroeg;
 
 public class BroegActivity1 extends AppCompatActivity {
 
@@ -22,7 +23,7 @@ public class BroegActivity1 extends AppCompatActivity {
 
 
         if (savedInstanceState == null) {
-            Fragment fragment = new BroegFragmentet();
+            Fragment fragment = new StartBroeg();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.broegFragmentetIActivity, fragment)  // tom container i layout
                     .commit();

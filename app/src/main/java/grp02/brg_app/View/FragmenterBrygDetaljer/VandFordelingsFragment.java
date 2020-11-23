@@ -22,15 +22,35 @@ public class VandFordelingsFragment extends Fragment implements View.OnClickList
 
 
     List<String> antalSekunder = new ArrayList<>();
+    String navn;
+    double gramKaffeObjekt;
+    int mlVandObjekt, antalSekunderObjekt;
     TextView hvorMangeSekunder;
     ScrollChoice scrollChoice;
     Button buttonNext2, buttonTilbage2;
     ProgressBar progressBar;
     int progressBarStatus = 40;
+    Bundle bundle = new Bundle();
 
     @Override
     public View onCreateView(LayoutInflater i,ViewGroup container,Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.fragment_vand_fordelings_tid,container, false);
+
+        //bliver ikke brugt endnu, men vil blive benyttet hvis man vil have vist hvad man valgt af værdi fra forrige fragment
+        Bundle bundleArg = getArguments();
+        if (bundleArg != null){
+            navn = bundleArg.getString("navnpåBrygObjekt");
+            gramKaffeObjekt = bundleArg.getDouble("gramKaffeObjekt");
+            mlVandObjekt = bundleArg.getInt("mlVandObjekt");
+        }
+        bundle.putString("navnpåBrygObjekt", navn);
+        bundle.putDouble("gramKaffeObjekt", gramKaffeObjekt);
+        bundle.putInt("mlVandObjekt", mlVandObjekt);
+
+        System.out.println("Fået fra bundle, navn: " + navn);
+        System.out.println("Fået fra bundle, kaffe: " + gramKaffeObjekt);
+        System.out.println("Fået fra bundle, ml vand: " + mlVandObjekt);
+
 
         progressBar = rod.findViewById(R.id.progressBar2);
         progressBar.setProgress(progressBarStatus);
@@ -49,11 +69,16 @@ public class VandFordelingsFragment extends Fragment implements View.OnClickList
         scrollChoice = rod.findViewById(R.id.scroll_choice_sekunder);
         loadDeForskelligeMængder();
 
+        antalSekunderObjekt = 45;
+        bundle.putInt("antalSekunderObjekt", antalSekunderObjekt);
+
         scrollChoice.addItems(antalSekunder,15); //default index, så den er på "60"
         scrollChoice.setOnItemSelectedListener(new ScrollChoice.OnItemSelectedListener() {
             @Override
             public void onItemSelected(ScrollChoice scrollChoice, int position, String name) {
-                //Implementere at gemme værdien i et objekt for den kaffe man er i gang med at lave.
+                antalSekunderObjekt = Integer.parseInt(name.substring(0, name.length()-4));
+                bundle.putInt("antalSekunderObjekt", antalSekunderObjekt);
+                System.out.println("Antal Sekunder: "+antalSekunderObjekt);
             }
         });
 
@@ -101,17 +126,24 @@ public class VandFordelingsFragment extends Fragment implements View.OnClickList
         if (v == buttonNext2){
             progressBarStatus += 20;
             progressBar.setProgress(progressBarStatus);
+
+            //Sende dataen til næste fragment, så man kan se hvad værdi man har valgt
+            HvorMegetVandTilBloomFragment hvorMegetVandTilBloomFragment = new HvorMegetVandTilBloomFragment();
+            hvorMegetVandTilBloomFragment.setArguments(bundle);
+
             getFragmentManager().beginTransaction()
                     //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                    .replace(R.id.broegFragmentetIActivity, new HvorMegetVandTilBloomFragment())
+                    .replace(R.id.broegFragmentetIActivity, hvorMegetVandTilBloomFragment)
                     .addToBackStack(null)
                     .commit();}
         else if (v == buttonTilbage2){
+            HvorMegetVandFragment hvorMegetVandFragment = new HvorMegetVandFragment();
+            hvorMegetVandFragment.setArguments(bundle);
             getFragmentManager().beginTransaction()
                     //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
-                    .replace(R.id.broegFragmentetIActivity, new HvorMegetVandFragment())
+                    .replace(R.id.broegFragmentetIActivity, hvorMegetVandFragment)
                     .addToBackStack(null)
                     .commit();
         }
