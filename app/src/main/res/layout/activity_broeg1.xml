@@ -34,27 +34,15 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/hero" />
 
-    </FrameLayout>
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="433dp"
-        android:layout_height="210dp"
-        android:src="@drawable/background"
-        app:layout_constraintBottom_toTopOf="@+id/broegFragmentetIActivity"
+    <FrameLayout
+        android:id="@+id/broegFragmentetIActivity"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:src="@drawable/broeg_logo2_scaled"
-        app:layout_constraintBottom_toTopOf="@+id/broegFragmentetIActivity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.74" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
