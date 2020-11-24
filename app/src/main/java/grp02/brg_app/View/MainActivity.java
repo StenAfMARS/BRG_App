@@ -11,11 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
-
-import grp02.brg_app.Model.BrygObjekt;
 import grp02.brg_app.R;
-import grp02.brg_app.View.FragmenterBrygDetaljer.BroegActivityTilFragment;
 
 public class MainActivity extends AppCompatActivity {
 

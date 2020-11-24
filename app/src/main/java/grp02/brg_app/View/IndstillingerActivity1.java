@@ -9,7 +9,6 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import grp02.brg_app.R;
-import grp02.brg_app.View.FragmenterBrygDetaljer.BroegActivityTilFragment;
 
 public class IndstillingerActivity1 extends AppCompatActivity {
 

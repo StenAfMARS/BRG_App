@@ -13,7 +13,6 @@
         <activity android:name=".View.IndstillingerActivity1" />
         <activity android:name=".View.RensActivity1" />
         <activity android:name=".View.HistorikActivity1" />
-        <activity android:name=".View.FragmenterBrygDetaljer.BroegActivityTilFragment" />
         <activity android:name=".View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

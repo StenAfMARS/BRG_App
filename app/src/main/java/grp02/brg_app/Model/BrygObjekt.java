@@ -1,7 +1,5 @@
 package grp02.brg_app.Model;
 
-import java.util.ArrayList;
-
 public class BrygObjekt {
     public String navn;
     public double gramKaffe;

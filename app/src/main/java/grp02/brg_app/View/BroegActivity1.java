@@ -7,86 +7,69 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import grp02.brg_app.Model.BrygObjekt;
 import grp02.brg_app.R;
-import grp02.brg_app.View.FragmenterBrygDetaljer.BroegActivityTilFragment;
+import grp02.brg_app.View.FragmenterBrygDetaljer.StartBroeg;
 
 
-
-public class BroegActivity1 extends AppCompatActivity implements View.OnClickListener {
-
-    Button createBroeg;
-
-
+public class BroegActivity1 extends AppCompatActivity {
 
     //Skal ikke være her
     public ArrayList<BrygObjekt> list = new ArrayList<>();
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_broeg);
+        setContentView(R.layout.activity_broeg1);
+
+        if (savedInstanceState == null) {
+            Fragment fragment = new StartBroeg();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.broegFragmentetIActivity, fragment)  // tom container i layout
+                    .commit();
 
 
-        createBroeg = findViewById(R.id.createBroeg);
-        createBroeg.setText("Lav en by BRØG");
-        createBroeg.setOnClickListener(this);
-
-
-    // Navigation
-        // ##########################################################
-        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
-        // Set nav highlighted button
-        bottomNav.setSelectedItemId(R.id.nav_BroegBtn);
-        // Perform ItemSelectedListener
-        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.nav_HomeBtn:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.nav_BroegBtn:
-                        return true;
-                    case R.id.nav_HistorikBtn:
-                        startActivity(new Intent(getApplicationContext(), HistorikActivity1.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.nav_RensBtn:
-                        startActivity(new Intent(getApplicationContext(), RensActivity1.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.nav_IndstillingerBtn:
-                        startActivity(new Intent(getApplicationContext(), IndstillingerActivity1.class));
-                        overridePendingTransition(0, 0);
-                        return true;
+            // Navigation
+            // ##########################################################
+            BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+            // Set nav highlighted button
+            bottomNav.setSelectedItemId(R.id.nav_BroegBtn);
+            // Perform ItemSelectedListener
+            bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.nav_HomeBtn:
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+                        case R.id.nav_BroegBtn:
+                            return true;
+                        case R.id.nav_HistorikBtn:
+                            startActivity(new Intent(getApplicationContext(), HistorikActivity1.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+                        case R.id.nav_RensBtn:
+                            startActivity(new Intent(getApplicationContext(), RensActivity1.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+                        case R.id.nav_IndstillingerBtn:
+                            startActivity(new Intent(getApplicationContext(), IndstillingerActivity1.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+                    }
+                    return false;
                 }
-                return false;
-            }
-        });
-        // ##########################################################
+            });
+            // ##########################################################
 
-    }
-
-    @Override
-    public void onClick(View v) {
-            Intent intent = new Intent(this, BroegActivityTilFragment.class);
-            startActivity(intent);
+        }
     }
 }

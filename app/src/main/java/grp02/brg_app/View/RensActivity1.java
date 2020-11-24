@@ -9,7 +9,6 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import grp02.brg_app.R;
-import grp02.brg_app.View.FragmenterBrygDetaljer.BroegActivityTilFragment;
 
 public class RensActivity1 extends AppCompatActivity {
 
@@ -35,6 +34,7 @@ public class RensActivity1 extends AppCompatActivity {
                     case R.id.nav_BroegBtn:
                         startActivity(new Intent(getApplicationContext(), BroegActivity1.class));
                         overridePendingTransition(0, 0);
+                        return true;
                     case R.id.nav_HistorikBtn:
                         startActivity(new Intent(getApplicationContext(), HistorikActivity1.class));
                         overridePendingTransition(0, 0);
