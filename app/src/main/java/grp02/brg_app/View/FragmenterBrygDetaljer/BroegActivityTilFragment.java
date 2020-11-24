@@ -1,48 +1,47 @@
-package grp02.brg_app.View;
-
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.view.MenuItem;
-
+package grp02.brg_app.View.FragmenterBrygDetaljer;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.fragment.app.Fragment;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
-
-import grp02.brg_app.Model.BrygObjekt;
 import grp02.brg_app.R;
-import grp02.brg_app.View.FragmenterBrygDetaljer.BroegActivityTilFragment;
+import grp02.brg_app.View.FragmenterBrygDetaljer.StartBroeg;
+import grp02.brg_app.View.HistorikActivity1;
+import grp02.brg_app.View.IndstillingerActivity1;
+import grp02.brg_app.View.MainActivity;
+import grp02.brg_app.View.RensActivity1;
 
-public class MainActivity extends AppCompatActivity {
-
-    public static SharedPreferences sharedPref;
+public class BroegActivityTilFragment extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_broeg1);
 
-        sharedPref = getPreferences(Context.MODE_PRIVATE);
 
+        if (savedInstanceState == null) {
+            Fragment fragment = new StartBroeg();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.broegFragmentetIActivity, fragment)  // tom container i layout
+                    .commit();
+        }
         // Navigation
         // ##########################################################
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
         // Set nav highlighted button
-        bottomNav.setSelectedItemId(R.id.nav_HomeBtn);
+        bottomNav.setSelectedItemId(R.id.nav_BroegBtn);
         // Perform ItemSelectedListener
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_HomeBtn:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_BroegBtn:
-                        startActivity(new Intent(getApplicationContext(), BroegActivity1.class));
-                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_HistorikBtn:
                         startActivity(new Intent(getApplicationContext(), HistorikActivity1.class));
@@ -61,6 +60,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // ##########################################################
-
     }
 }

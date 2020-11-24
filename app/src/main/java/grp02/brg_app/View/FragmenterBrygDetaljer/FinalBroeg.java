@@ -1,5 +1,6 @@
 package grp02.brg_app.View.FragmenterBrygDetaljer;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -18,10 +19,11 @@ import java.util.List;
 
 import grp02.brg_app.Model.BrygObjekt;
 import grp02.brg_app.R;
+import grp02.brg_app.View.BroegActivity1;
+import grp02.brg_app.View.MainActivity;
 
 public class FinalBroeg extends Fragment implements View.OnClickListener {
 
-    ArrayList<BrygObjekt> list = new ArrayList<>();
     String navn;
     double gramKaffe;
     int mlVand, antalSekunder, antalSekunderTilBloomVandDistribuering, mlVandTilBloom;
@@ -94,15 +96,18 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == buttonNext1) {
+            BroegActivity1 broegActivity1 = new BroegActivity1();
 
-            list.add(new BrygObjekt(navn, gramKaffe, mlVand, antalSekunder, mlVandTilBloom, antalSekunderTilBloomVandDistribuering));
-            StartBroeg startBroeg = new StartBroeg();
-            getFragmentManager().beginTransaction()
-                    //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-                    .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                    .replace(R.id.broegFragmentetIActivity, startBroeg)
-                    .addToBackStack(null)
-                    .commit();
+            broegActivity1.list.add(new BrygObjekt(navn, gramKaffe, mlVand, antalSekunder, mlVandTilBloom, antalSekunderTilBloomVandDistribuering));
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            intent.putExtra("navn", navn);
+            intent.putExtra("gramKaffe", gramKaffe);
+            intent.putExtra("mlVand", mlVand);
+            intent.putExtra("antalSekunder", antalSekunder);
+            intent.putExtra("mlVandTilBloom", mlVandTilBloom);
+            intent.putExtra("antalSekunderTilBloomVandDistribuering", antalSekunderTilBloomVandDistribuering);
+            startActivity(intent);
+
         } else if (v == buttonTilbage1) {
             BloomvandDistribueringFragment bloomvandDistribueringFragment = new BloomvandDistribueringFragment();
             bloomvandDistribueringFragment.setArguments(bundle);

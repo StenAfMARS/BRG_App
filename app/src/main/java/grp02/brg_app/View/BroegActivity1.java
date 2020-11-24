@@ -1,5 +1,4 @@
 package grp02.brg_app.View;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -7,28 +6,49 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import grp02.brg_app.View.FragmenterBrygDetaljer.BroegFragmentet;
-import grp02.brg_app.R;
-import grp02.brg_app.View.FragmenterBrygDetaljer.StartBroeg;
+import java.util.ArrayList;
+import java.util.Collections;
 
-public class BroegActivity1 extends AppCompatActivity {
+import grp02.brg_app.Model.BrygObjekt;
+import grp02.brg_app.R;
+import grp02.brg_app.View.FragmenterBrygDetaljer.BroegActivityTilFragment;
+
+
+
+public class BroegActivity1 extends AppCompatActivity implements View.OnClickListener {
+
+    Button createBroeg;
+
+
+
+    //Skal ikke være her
+    public ArrayList<BrygObjekt> list = new ArrayList<>();
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_broeg1);
+        setContentView(R.layout.activity_broeg);
 
 
-        if (savedInstanceState == null) {
-            Fragment fragment = new StartBroeg();
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.broegFragmentetIActivity, fragment)  // tom container i layout
-                    .commit();
-        }
-        // Navigation
+        createBroeg = findViewById(R.id.createBroeg);
+        createBroeg.setText("Lav en by BRØG");
+        createBroeg.setOnClickListener(this);
+
+
+    // Navigation
         // ##########################################################
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
         // Set nav highlighted button
@@ -61,5 +81,12 @@ public class BroegActivity1 extends AppCompatActivity {
             }
         });
         // ##########################################################
+
+    }
+
+    @Override
+    public void onClick(View v) {
+            Intent intent = new Intent(this, BroegActivityTilFragment.class);
+            startActivity(intent);
     }
 }
