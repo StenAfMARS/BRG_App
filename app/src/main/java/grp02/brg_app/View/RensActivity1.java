@@ -34,6 +34,7 @@ public class RensActivity1 extends AppCompatActivity {
                     case R.id.nav_BroegBtn:
                         startActivity(new Intent(getApplicationContext(), BroegActivity1.class));
                         overridePendingTransition(0, 0);
+                        return true;
                     case R.id.nav_HistorikBtn:
                         startActivity(new Intent(getApplicationContext(), HistorikActivity1.class));
                         overridePendingTransition(0, 0);
