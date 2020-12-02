@@ -58,5 +58,13 @@
         android:text="NÆSTE ->"
         app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="@+id/progressBar" />
+    <Button
+        android:id="@+id/buttonTilbage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TILBAGE"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        app:layout_constraintStart_toStartOf="@+id/progressBar" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

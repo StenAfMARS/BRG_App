@@ -16,28 +16,45 @@ import com.webianks.library.scroll_choice.ScrollChoice;
 import java.util.ArrayList;
 import java.util.List;
 
+import grp02.brg_app.Model.BrygObjekt;
 import grp02.brg_app.R;
 
 public class BroegFragmentet extends Fragment implements View.OnClickListener {
 
 
     List<String> gramKaffe = new ArrayList<>();
+    String navn;
+    double gramKaffeObjekt;
     TextView hvorMangeKramKaffe;
     ScrollChoice scrollChoice;
-    Button buttonNext;
+    Button buttonNext, buttonTilbage;
     ProgressBar progressBar;
     int progressBarStatus;
+    Bundle bundle = new Bundle();
 
     @Override
     public View onCreateView(LayoutInflater i,ViewGroup container,Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.fragment_hvor_meget_kaffe,container, false);
 
-        progressBar = rod.findViewById(R.id.progressBar);
+        Bundle bundleArg = getArguments();
+        if (bundleArg != null) {
+            navn = bundleArg.getString("navnpåBrygObjekt");
+        }
+        bundle.putString("navnpåBrygObjekt", navn);
 
+        System.out.println("Start fragment");
+        System.out.println("Fået fra bundle, navn: " + navn);
+
+
+        progressBar = rod.findViewById(R.id.progressBar);
 
         buttonNext = rod.findViewById(R.id.buttonNext);
         buttonNext.setText("NÆSTE ->");
         buttonNext.setOnClickListener(this);
+
+        buttonTilbage = rod.findViewById(R.id.buttonTilbage);
+        buttonTilbage.setText("<- TILBAGE");
+        buttonTilbage.setOnClickListener(this);
 
         hvorMangeKramKaffe = rod.findViewById(R.id.textView);
         hvorMangeKramKaffe.setText("HVOR MANGE GRAM KAFFE VIL DU HAVE?");
@@ -45,14 +62,19 @@ public class BroegFragmentet extends Fragment implements View.OnClickListener {
         scrollChoice = rod.findViewById(R.id.scroll_choice);
         loadDeForskelligeMængder();
 
+
+
         scrollChoice.addItems(gramKaffe,50); //default index, så den er på "60"
+        gramKaffeObjekt = 60;
+        bundle.putDouble("gramKaffeObjekt", gramKaffeObjekt);
         scrollChoice.setOnItemSelectedListener(new ScrollChoice.OnItemSelectedListener() {
             @Override
             public void onItemSelected(ScrollChoice scrollChoice, int position, String name) {
-                //Implementere at gemme værdien i et objekt for den kaffe man er i gang med at lave.
+                gramKaffeObjekt = Double.parseDouble(name.substring(0, name.length()-2));
+               bundle.putDouble("gramKaffeObjekt", gramKaffeObjekt);
+                System.out.println("Gram Kaffe: "+gramKaffeObjekt);
             }
         });
-
         return rod;
     }
     private void loadDeForskelligeMængder(){
@@ -182,13 +204,26 @@ public class BroegFragmentet extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        if (v == buttonNext){
             progressBarStatus +=20;
             progressBar.setProgress(progressBarStatus);
+            HvorMegetVandFragment hvorMegetVandFragment = new HvorMegetVandFragment();
+            hvorMegetVandFragment.setArguments(bundle);
             getFragmentManager().beginTransaction()
                   //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                    .replace(R.id.broegFragmentetIActivity, new HvorMegetVandFragment())
+                    .replace(R.id.broegFragmentetIActivity, hvorMegetVandFragment)
                     .addToBackStack(null)
                     .commit();
+        } else if (v == buttonTilbage){
+            StartBroeg startBroeg = new StartBroeg();
+            startBroeg.setArguments(bundle);
+            getFragmentManager().beginTransaction()
+                    //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                    .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
+                    .replace(R.id.broegFragmentetIActivity, startBroeg)
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 }
