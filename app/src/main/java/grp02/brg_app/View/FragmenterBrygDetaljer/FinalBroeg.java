@@ -20,6 +20,7 @@ import java.util.List;
 import grp02.brg_app.Model.BrygObjekt;
 import grp02.brg_app.R;
 import grp02.brg_app.View.BroegActivity1;
+import grp02.brg_app.View.HistorikActivity1;
 import grp02.brg_app.View.MainActivity;
 
 public class FinalBroeg extends Fragment implements View.OnClickListener {
@@ -75,15 +76,12 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
         mlVandTilBloom4.setText(mlVandTilBloom + " ml. vand til bloom");
         antalSekunderTilBloomVandDistribuering5.setText(antalSekunderTilBloomVandDistribuering + " sekunder til bloom vandsdistribuering");
 
-        progressBar = rod.findViewById(R.id.progressBarFinal);
-        progressBar.setProgress(progressBarStatus);
-
         buttonNext1 = rod.findViewById(R.id.buttonNextFinal);
-        buttonNext1.setText("NÆSTE ->");
+        buttonNext1.setText("HJEM");
         buttonNext1.setOnClickListener(this);
 
         buttonTilbage1 = rod.findViewById(R.id.buttonTilbageFinal);
-        buttonTilbage1.setText("<- TILBAGE");
+        buttonTilbage1.setText("HISTORIK");
         buttonTilbage1.setOnClickListener(this);
 
         textView = rod.findViewById(R.id.textViewFinal);
@@ -109,14 +107,11 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
             startActivity(intent);
 
         } else if (v == buttonTilbage1) {
-            BloomvandDistribueringFragment bloomvandDistribueringFragment = new BloomvandDistribueringFragment();
-            bloomvandDistribueringFragment.setArguments(bundle);
-            getFragmentManager().beginTransaction()
-                    //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-                    .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
-                    .replace(R.id.broegFragmentetIActivity, bloomvandDistribueringFragment)
-                    .addToBackStack(null)
-                    .commit();
+            BroegActivity1 broegActivity1 = new BroegActivity1();
+
+            broegActivity1.list.add(new BrygObjekt(navn, gramKaffe, mlVand, antalSekunder, mlVandTilBloom, antalSekunderTilBloomVandDistribuering));
+            Intent intent = new Intent(getActivity(), HistorikActivity1.class);
+            startActivity(intent);
         }
     }
 }

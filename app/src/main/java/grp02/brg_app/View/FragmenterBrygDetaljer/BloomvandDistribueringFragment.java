@@ -67,7 +67,7 @@ public class BloomvandDistribueringFragment extends Fragment implements View.OnC
         buttonNext4.setOnClickListener(this);
 
         buttonTilbage4 = rod.findViewById(R.id.buttonTilbage4);
-        buttonTilbage4.setText("<- TILBAGE");
+        buttonTilbage4.setText("TILBAGE");
         buttonTilbage4.setOnClickListener(this);
 
         textViewDistribuering = rod.findViewById(R.id.textViewDistribuering);

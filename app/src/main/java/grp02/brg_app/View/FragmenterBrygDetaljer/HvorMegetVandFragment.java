@@ -54,11 +54,11 @@ public class HvorMegetVandFragment extends Fragment implements View.OnClickListe
         progressBar = rod.findViewById(R.id.progressBar1);
         progressBar.setProgress(progressBarStatus);
         buttonNext1 = rod.findViewById(R.id.buttonNext1);
-        buttonNext1.setText("NÆSTE ->");
+        buttonNext1.setText("NÆSTE");
         buttonNext1.setOnClickListener(this);
 
         buttonTilbage1 = rod.findViewById(R.id.buttonTilbage1);
-        buttonTilbage1.setText("<- TILBAGE");
+        buttonTilbage1.setText("TILBAGE");
         buttonTilbage1.setOnClickListener(this);
 
         hvorMangeMlVand = rod.findViewById(R.id.textViewVand);

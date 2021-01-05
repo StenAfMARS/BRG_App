@@ -29,7 +29,7 @@ public class StartBroeg extends Fragment implements View.OnClickListener {
         View rod = i.inflate(R.layout.fragment_start, container, false);
 
         buttonNextStart = rod.findViewById(R.id.buttonNextStart);
-        buttonNextStart.setText("NÆSTE ->");
+        buttonNextStart.setText("NÆSTE");
         buttonNextStart.setOnClickListener(this);
 
         textView = rod.findViewById(R.id.textViewStart);
