@@ -38,14 +38,18 @@
         android:id="@+id/buttonNextFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NÆSTE ->"
+        android:text="@string/n_ste"
+        android:background="@drawable/default_btn"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/progressBarFinal"
         app:layout_constraintEnd_toEndOf="@+id/progressBarFinal" />
     <Button
         android:id="@+id/buttonTilbageFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TILBAGE"
+        android:background="@drawable/default_btn"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/tilbage"
         app:layout_constraintBottom_toTopOf="@+id/progressBarFinal"
         app:layout_constraintStart_toStartOf="@+id/progressBarFinal" />
 
