@@ -58,7 +58,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:background="@drawable/default_btn"
-        android:text="NÆSTE"
+        android:text="@string/n_ste"
+        android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/progressBar2"
         app:layout_constraintEnd_toEndOf="@+id/progressBar2" />
@@ -69,7 +70,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:background="@drawable/default_btn"
-        android:text="TILBAGE"
+        android:text="@string/tilbage"
+        android:drawableStart="@drawable/ic_baseline_arrow_back_ios_24"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/progressBar2"
         app:layout_constraintStart_toStartOf="@+id/progressBar2" />

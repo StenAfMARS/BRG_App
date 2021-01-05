@@ -59,6 +59,7 @@
         android:layout_marginBottom="28dp"
         android:background="@drawable/default_btn"
         android:text="@string/n_ste"
+        android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/progressBar4"
         app:layout_constraintEnd_toEndOf="@+id/progressBar4" />
@@ -70,6 +71,7 @@
         android:layout_marginBottom="28dp"
         android:background="@drawable/default_btn"
         android:text="@string/tilbage"
+        android:drawableStart="@drawable/ic_baseline_arrow_back_ios_24"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/progressBar4"
         app:layout_constraintStart_toStartOf="@+id/progressBar4" />

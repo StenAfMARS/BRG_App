@@ -59,11 +59,11 @@ public class HvorMegetVandTilBloomFragment extends Fragment implements View.OnCl
         progressBar.setProgress(progressBarStatus);
 
         buttonNext3 = rod.findViewById(R.id.buttonNext3);
-        buttonNext3.setText("NÆSTE ->");
+        buttonNext3.setText("NÆSTE");
         buttonNext3.setOnClickListener(this);
 
         buttonTilbage3 = rod.findViewById(R.id.buttonTilbage3);
-        buttonTilbage3.setText("<- TILBAGE");
+        buttonTilbage3.setText("TILBAGE");
         buttonTilbage3.setOnClickListener(this);
 
         hvorMangeMlVand = rod.findViewById(R.id.textViewBloomTid);

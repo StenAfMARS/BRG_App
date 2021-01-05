@@ -49,11 +49,11 @@ public class BroegFragmentet extends Fragment implements View.OnClickListener {
         progressBar = rod.findViewById(R.id.progressBar);
 
         buttonNext = rod.findViewById(R.id.buttonNext);
-        buttonNext.setText("NÆSTE ->");
+        buttonNext.setText("NÆSTE");
         buttonNext.setOnClickListener(this);
 
         buttonTilbage = rod.findViewById(R.id.buttonTilbage);
-        buttonTilbage.setText("<- TILBAGE");
+        buttonTilbage.setText("TILBAGE");
         buttonTilbage.setOnClickListener(this);
 
         hvorMangeKramKaffe = rod.findViewById(R.id.textView);

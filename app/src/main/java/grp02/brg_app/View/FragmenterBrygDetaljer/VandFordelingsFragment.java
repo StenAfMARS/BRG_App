@@ -56,11 +56,11 @@ public class VandFordelingsFragment extends Fragment implements View.OnClickList
         progressBar.setProgress(progressBarStatus);
 
         buttonNext2 = rod.findViewById(R.id.buttonNext2);
-        buttonNext2.setText("NÆSTE ->");
+        buttonNext2.setText("NÆSTE");
         buttonNext2.setOnClickListener(this);
 
         buttonTilbage2 = rod.findViewById(R.id.buttonTilbage2);
-        buttonTilbage2.setText("<- TILBAGE");
+        buttonTilbage2.setText("TILBAGE");
         buttonTilbage2.setOnClickListener(this);
 
         hvorMangeSekunder = rod.findViewById(R.id.textViewSekunder);
