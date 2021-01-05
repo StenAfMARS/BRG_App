@@ -57,6 +57,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NÆSTE"
+        android:background="@drawable/default_btn"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/progressBar2"
         app:layout_constraintEnd_toEndOf="@+id/progressBar2" />
 
@@ -65,6 +67,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TILBAGE"
+        android:background="@drawable/default_btn"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/progressBar2"
         app:layout_constraintStart_toStartOf="@+id/progressBar2" />
 

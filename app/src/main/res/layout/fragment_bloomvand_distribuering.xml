@@ -56,7 +56,9 @@
         android:id="@+id/buttonNext4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NÆSTE"
+        android:background="@drawable/default_btn"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/n_ste"
         app:layout_constraintBottom_toTopOf="@+id/progressBar4"
         app:layout_constraintEnd_toEndOf="@+id/progressBar4" />
 
@@ -64,7 +66,9 @@
         android:id="@+id/buttonTilbage4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TILBAGE"
+        android:background="@drawable/default_btn"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/tilbage"
         app:layout_constraintBottom_toTopOf="@+id/progressBar4"
         app:layout_constraintStart_toStartOf="@+id/progressBar4" />
 
