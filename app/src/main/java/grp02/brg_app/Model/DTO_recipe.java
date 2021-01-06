@@ -3,12 +3,20 @@ package grp02.brg_app.Model;
 public class DTO_recipe {
     private int recipeID;
     private String recipeName;
-
     private GrindSize grindSize;
     private float coffeeToWater;
     private int brewingTemperature;
     private int bloomWater;
     private int bloomTime;
+    private int waterAmount;
+
+    public int getWaterAmount() {
+        return waterAmount;
+    }
+
+    public void setWaterAmount(int waterAmount) {
+        this.waterAmount = waterAmount;
+    }
 
     public int getRecipeID() {
         return recipeID;
