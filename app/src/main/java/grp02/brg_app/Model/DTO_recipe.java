@@ -1,14 +1,14 @@
 package grp02.brg_app.Model;
 
 public class DTO_recipe {
-    int recipeID;
-    String recipeName;
+    private int recipeID;
+    private String recipeName;
 
-    GrindSize grindSize;
-    float coffeeToWater;
-    int brewingTemperature;
-    int bloomWater;
-    int bloomTime;
+    private GrindSize grindSize;
+    private float coffeeToWater;
+    private int brewingTemperature;
+    private int bloomWater;
+    private int bloomTime;
 
     public int getRecipeID() {
         return recipeID;
