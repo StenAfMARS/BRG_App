@@ -10,46 +10,17 @@
         android:id="@+id/textViewFinal"
         android:layout_width="276dp"
         android:layout_height="77dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
         android:background="#E0E0E0"
         android:gravity="center"
-        android:text="Dette er din endelige brøg"
+        android:text="@string/dette_er_din_endelige_br_g"
         android:textColor="#77482C"
         android:textColorLink="#77482C"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/buttonNextFinal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/default_btn"
-        android:drawableEnd="@drawable/ic_baseline_home_24"
-        android:drawableTint="@color/colorPrimary"
-        android:text="@string/hjem"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.758"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/antalSekunderTilBloomVandDistribuering5" />
-
-    <Button
-        android:id="@+id/buttonTilbageFinal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/default_btn"
-        android:drawableStart="@drawable/icon_action_cached_24px"
-        android:text="@string/historik"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.248"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/antalSekunderTilBloomVandDistribuering5" />
 
     <TextView
         android:id="@+id/gramKaffe1"
@@ -57,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="gramKaffe"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/navn" />
@@ -67,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="antalSekunder"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="antalSekunderTilBloomVandDistribuering"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="mlVandTilBloom"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,6 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="mlVand"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gramKaffe1" />
@@ -111,8 +87,35 @@
         android:layout_marginTop="15dp"
         android:fontFamily="@font/roboto_black"
         android:text="Navn"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewFinal" />
+
+    <Button
+        android:id="@+id/FB_brewActionBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/default_btn"
+        android:text="BRYG"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.291"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/antalSekunderTilBloomVandDistribuering5" />
+
+    <Button
+        android:id="@+id/FB_saveBrewBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/default_btn"
+        android:text="GEM"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.739"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/antalSekunderTilBloomVandDistribuering5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

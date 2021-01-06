@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import grp02.brg_app.Control.RecipeFactory;
 import grp02.brg_app.Model.BrygObjekt;
 import grp02.brg_app.R;
 
@@ -35,11 +36,6 @@ public class StartBroeg extends Fragment implements View.OnClickListener {
         textView = rod.findViewById(R.id.textViewStart);
         textView.setText("Hvad skal din brøg hedde");
 
-        Bundle bundleArg = getArguments();
-        if (bundleArg != null) {
-            navn = bundleArg.getString("navnpåBrygObjekt");
-        }
-
         editText = rod.findViewById(R.id.navnPaaBroeggen);
         editText.setHint("Navn på din brøg");
         System.out.println("Start fragment");
@@ -57,10 +53,8 @@ public class StartBroeg extends Fragment implements View.OnClickListener {
             editText.setError("Husk at indtaste et navn");
             } else {
                 navn = editText.getText().toString();
+                RecipeFactory.getInstance().setRecipeName(navn);
                 BroegFragmentet broegFragmentet = new BroegFragmentet();
-                Bundle bundle = new Bundle();
-                bundle.putString("navnpåBrygObjekt", navn);
-                broegFragmentet.setArguments(bundle);
                 getFragmentManager().beginTransaction()
                         //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                         .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
