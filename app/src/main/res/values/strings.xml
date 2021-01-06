@@ -12,4 +12,6 @@
     <string name="n_ste">NÆSTE</string>
     <string name="tilbage">TILBAGE</string>
     <string name="hjem">HJEM</string>
+    <string name="header">Header</string>
+    <string name="s_t_favorit">SÆT FAVORIT</string>
 </resources>
