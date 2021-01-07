@@ -6,48 +6,21 @@
     android:layout_height="match_parent"
     android:background="#E0E0E0">
 
-    <ProgressBar
-        android:id="@+id/progressBarFinal"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="266dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="74dp"
-        android:progressTint="#A98E7C"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/antalSekunderTilBloomVandDistribuering5" />
-
     <TextView
         android:id="@+id/textViewFinal"
         android:layout_width="276dp"
         android:layout_height="77dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
         android:background="#E0E0E0"
         android:gravity="center"
-        android:text="Dette er din endelige brøg"
+        android:text="@string/dette_er_din_endelige_br_g"
         android:textColor="#77482C"
         android:textColorLink="#77482C"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/buttonNextFinal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NÆSTE ->"
-        app:layout_constraintBottom_toTopOf="@+id/progressBarFinal"
-        app:layout_constraintEnd_toEndOf="@+id/progressBarFinal" />
-    <Button
-        android:id="@+id/buttonTilbageFinal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TILBAGE"
-        app:layout_constraintBottom_toTopOf="@+id/progressBarFinal"
-        app:layout_constraintStart_toStartOf="@+id/progressBarFinal" />
 
     <TextView
         android:id="@+id/gramKaffe1"
@@ -55,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="gramKaffe"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/navn" />
@@ -65,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="antalSekunder"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="antalSekunderTilBloomVandDistribuering"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="mlVandTilBloom"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,6 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="mlVand"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gramKaffe1" />
@@ -109,8 +87,35 @@
         android:layout_marginTop="15dp"
         android:fontFamily="@font/roboto_black"
         android:text="Navn"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewFinal" />
+
+    <Button
+        android:id="@+id/FB_brewActionBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/default_btn"
+        android:text="BRYG"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.291"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/antalSekunderTilBloomVandDistribuering5" />
+
+    <Button
+        android:id="@+id/FB_saveBrewBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/default_btn"
+        android:text="GEM"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.739"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/antalSekunderTilBloomVandDistribuering5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
