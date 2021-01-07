@@ -2,13 +2,19 @@ package grp02.brg_app.Control;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import grp02.brg_app.Model.BrygObjekt;
 import grp02.brg_app.Model.DTO_recipe;
 import grp02.brg_app.Model.SqlInstall;
 
@@ -38,6 +44,7 @@ public class storageController extends SQLiteOpenHelper {
         cv.put("BloomWater",dto_recipe.getBloomWater());
         cv.put("BloomTime",dto_recipe.getBloomTime());
     }
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void addRow(String tableName, int recipieID){
         SQLiteDatabase db  =  this.getWritableDatabase();
         ContentValues cv  = new ContentValues();
@@ -54,4 +61,37 @@ public class storageController extends SQLiteOpenHelper {
                 break;
         }
     }
+    public void deleteRow(String tableName, String tableRow,int ID){
+        SQLiteDatabase db  =  this.getWritableDatabase();
+        db.delete(tableName, tableRow + "=" + ID, null);
+    }
+    // code comes from https://www.javatpoint.com/android-sqlite-tutorial
+    public List<BrygObjekt> getAllRecepies() {
+        List<BrygObjekt> BrygObjektList = new ArrayList<BrygObjekt>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM Recipes";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                BrygObjekt brygObjekt = new BrygObjekt();
+                brygObjekt.setID(Integer.parseInt(cursor.getString(0)));
+                brygObjekt.setNavn(cursor.getString(1));
+                brygObjekt.s(cursor.getString(1));
+                brygObjekt.setNavn(cursor.getString(1));
+                brygObjekt.setNavn(cursor.getString(1));
+
+                brygObjekt.set(cursor.getString(2));
+                // Adding contact to list
+                BrygObjektList.add(brygObjekt);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return BrygObjektList;
+    }
+
 }
