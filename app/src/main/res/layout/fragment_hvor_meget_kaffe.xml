@@ -36,18 +36,37 @@
 
     <com.webianks.library.scroll_choice.ScrollChoice
         android:id="@+id/scroll_choice"
-        android:layout_width="190dp"
-        android:layout_height="150dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.232"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:scroll_atmospheric="true"
         app:scroll_background_color="#E0E0E0"
         app:scroll_indicator="true"
         app:scroll_item_align="center"
-        app:scroll_item_text_size="16dp"
         app:scroll_item_text_color="#77482C"
+        app:scroll_item_text_size="16dp"
+        app:scroll_selected_item_text_color="#8A6F62"
+        app:scroll_visible_item_count="7" />
+
+    <com.webianks.library.scroll_choice.ScrollChoice
+        android:id="@+id/scroll_choice2"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.774"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:scroll_atmospheric="true"
+        app:scroll_background_color="#E0E0E0"
+        app:scroll_indicator="true"
+        app:scroll_item_align="center"
+        app:scroll_item_text_color="#77482C"
+        app:scroll_item_text_size="16dp"
         app:scroll_selected_item_text_color="#8A6F62"
         app:scroll_visible_item_count="7" />
 

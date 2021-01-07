@@ -14,8 +14,10 @@ import android.widget.TextView;
 import com.webianks.library.scroll_choice.ScrollChoice;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import grp02.brg_app.Control.LogicController;
 import grp02.brg_app.Control.RecipeFactory;
 import grp02.brg_app.Model.BrygObjekt;
 import grp02.brg_app.R;
@@ -24,9 +26,11 @@ public class BroegFragmentet extends Fragment implements View.OnClickListener {
 
 
     List<String> gramKaffe = new ArrayList<>();
-    double gramKaffeObjekt;
+    List<String> milliGramKaffe = new ArrayList<>();
+    String gramKaffeObjekt;
+    String milliGramKaffeObjekt;
     TextView hvorMangeKramKaffe;
-    ScrollChoice scrollChoice;
+    ScrollChoice scrollChoice, scrollChoice2;
     Button buttonNext, buttonTilbage;
     ProgressBar progressBar;
     int progressBarStatus;
@@ -34,7 +38,6 @@ public class BroegFragmentet extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater i,ViewGroup container,Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.fragment_hvor_meget_kaffe,container, false);
-
 
         progressBar = rod.findViewById(R.id.progressBar);
 
@@ -50,38 +53,37 @@ public class BroegFragmentet extends Fragment implements View.OnClickListener {
         hvorMangeKramKaffe.setText("HVOR MANGE GRAM KAFFE VIL DU HAVE?");
 
         scrollChoice = rod.findViewById(R.id.scroll_choice);
-        loadDeForskelligeMængder();
+        scrollChoice2 = rod.findViewById(R.id.scroll_choice2);
+        gramKaffe = LogicController.getInstance().loadMængderIGram();
+        milliGramKaffe = LogicController.getInstance().loadMængderIMilliGram();
 
 
-
-        scrollChoice.addItems(gramKaffe,50); //default index, så den er på "60"
-        gramKaffeObjekt = 60;
+        scrollChoice.addItems(gramKaffe, 10); //default index, så den er på "60"
+        gramKaffeObjekt = "60";
         scrollChoice.setOnItemSelectedListener(new ScrollChoice.OnItemSelectedListener() {
             @Override
             public void onItemSelected(ScrollChoice scrollChoice, int position, String name) {
-                gramKaffeObjekt = Double.parseDouble(name.substring(0, name.length()-2));
-                System.out.println("Gram Kaffe: "+gramKaffeObjekt);
+                gramKaffeObjekt = name;
             }
         });
 
-        RecipeFactory.getInstance().setCoffeeToWater((float) gramKaffeObjekt);
+        scrollChoice2.addItems(milliGramKaffe, 0);
+        milliGramKaffeObjekt = "0";
+        scrollChoice2.setOnItemSelectedListener(new ScrollChoice.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(ScrollChoice scrollChoice, int position, String name) {
+                milliGramKaffeObjekt = name;
+            }
+        });
 
+
+        RecipeFactory.getInstance().setCoffeeToWater(LogicController.getInstance().convertStringsToFloats(gramKaffeObjekt, milliGramKaffeObjekt));
         return rod;
     }
 
-    private void loadDeForskelligeMængder(){
-
-        for(int i = 50; i <= 75; i++) {
-            for(int j = 0; j < 10; j++) {
-                gramKaffe.add(i + "." + j + " G");
-            }
-        }
-
-    }
-
-
     @Override
     public void onClick(View v) {
+        System.out.println("Gram Kaffe: " + gramKaffeObjekt + "," + milliGramKaffeObjekt + " g");
         if (v == buttonNext){
             progressBarStatus +=20;
             progressBar.setProgress(progressBarStatus);
@@ -92,6 +94,9 @@ public class BroegFragmentet extends Fragment implements View.OnClickListener {
                     .replace(R.id.broegFragmentetIActivity, hvorMegetVandFragment)
                     .addToBackStack(null)
                     .commit();
+
+
+            System.out.println("This is RecipeFactory Value: " + RecipeFactory.getInstance().getCoffeeToWater());
         } else if (v == buttonTilbage){
             StartBroeg startBroeg = new StartBroeg();
             getFragmentManager().beginTransaction()

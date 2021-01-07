@@ -50,6 +50,10 @@ public class RecipeFactory {
         dto_recipe.setCoffeeToWater(coffeeToWater);
     }
 
+    public float getCoffeeToWater() {
+        return dto_recipe.getCoffeeToWater();
+    }
+
     public void setBrewingTemperature(int brewingTemperature) {
         dto_recipe.setBrewingTemperature(brewingTemperature);
     }
