@@ -98,7 +98,6 @@ public class storageController extends SQLiteOpenHelper {
         // return contact list
         return recipeList;
     }
-
     public List<DTO_recipe> getHistory() {
         List<DTO_recipe> recipeList = new ArrayList<DTO_recipe>();
         // Select All Query
@@ -125,7 +124,7 @@ public class storageController extends SQLiteOpenHelper {
         // return contact list
         return recipeList;
     }
-    
+
     public List<DTO_recipe> getAllFavorites() {
         List<DTO_recipe> recipeList = new ArrayList<DTO_recipe>();
         // Select All Query
