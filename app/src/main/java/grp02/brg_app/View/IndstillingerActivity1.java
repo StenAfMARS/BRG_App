@@ -4,19 +4,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import grp02.brg_app.R;
 
-public class IndstillingerActivity1 extends AppCompatActivity {
+public class IndstillingerActivity1 extends AppCompatActivity implements View.OnClickListener {
 
+    Button bt_BTN;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_indstillinger1);
-
+        bt_BTN = findViewById(R.id.BTN_Bluetooth);
         // Navigation
         // ##########################################################
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
@@ -50,5 +56,17 @@ public class IndstillingerActivity1 extends AppCompatActivity {
             }
         });
         // ##########################################################
+
+    }
+    public void initBTN(View view){
+        bt_BTN.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == bt_BTN){
+            bt_BTN.setBackgroundResource(R.drawable.ic_baseline_bluetooth_audio_24);
+            bt_BTN.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+        }
     }
 }
