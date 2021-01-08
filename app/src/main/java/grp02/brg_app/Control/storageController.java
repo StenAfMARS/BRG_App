@@ -80,11 +80,11 @@ public class storageController extends SQLiteOpenHelper {
                 BrygObjekt brygObjekt = new BrygObjekt();
                 brygObjekt.setID(Integer.parseInt(cursor.getString(0)));
                 brygObjekt.setNavn(cursor.getString(1));
-                brygObjekt.setNavn(cursor.getString(1));
+                brygObjekt.s(cursor.getString(1));
                 brygObjekt.setNavn(cursor.getString(1));
                 brygObjekt.setNavn(cursor.getString(1));
 
-                brygObjekt.setHvorMegetVandSkalDuBrugeTilBLoom(cursor.getString(2));
+                brygObjekt.set(cursor.getString(2));
                 // Adding contact to list
                 BrygObjektList.add(brygObjekt);
             } while (cursor.moveToNext());
