@@ -41,7 +41,7 @@ public class HistoryAdapter extends BaseAdapter {
 
         if (convertView == null) {
             final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-            convertView = layoutInflater.inflate(R.layout.historik_card, null);
+            convertView = layoutInflater.inflate(R.layout.historik_card, parent);
         }
 
         // 3
@@ -50,7 +50,7 @@ public class HistoryAdapter extends BaseAdapter {
 
         // 4
         title.setText(recipe.getRecipeName());
-        title.setText("");
+        date.setText("");
 
         return convertView;
     }

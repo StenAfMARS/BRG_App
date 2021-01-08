@@ -6,9 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import grp02.brg_app.Control.IDatabaseConnector;
+import grp02.brg_app.Control.JsonDatabase;
+import grp02.brg_app.Model.DTO_recipe;
 import grp02.brg_app.R;
 
 public class HistorikActivity1 extends AppCompatActivity {
@@ -51,5 +55,17 @@ public class HistorikActivity1 extends AppCompatActivity {
             }
         });
         // ##########################################################
+
+        InitHistoryList(new JsonDatabase(this));
+    }
+
+    private void InitHistoryList(IDatabaseConnector db){
+        ListView listView = findViewById(R.id.historyCardList);
+
+        db.saveRecipe(new DTO_recipe());
+        db.saveRecipe(new DTO_recipe());
+
+        HistoryAdapter adapter = new HistoryAdapter(this, db.getRecipes());
+        listView.setAdapter(adapter);
     }
 }
