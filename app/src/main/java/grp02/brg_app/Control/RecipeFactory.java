@@ -14,6 +14,19 @@ public class RecipeFactory {
     private int bloomWater; // Mængde af bloom water
     private int bloomTime; // Distribuerings tid
     private int waterAmount; // Mængde af vand
+    private int recipeID;
+
+    public DTO_recipe getDto_recipe() {
+        return dto_recipe;
+    }
+
+    public int getRecipeID() {
+        return dto_recipe.getRecipeID();
+    }
+
+    public void setRecipeID(int recipeID) {
+        dto_recipe.setRecipeID(recipeID);
+    }
 
     public void setWaterAmount(int waterAmount) {
         dto_recipe.setWaterAmount(waterAmount);
