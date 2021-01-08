@@ -12,7 +12,6 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import grp02.brg_app.Model.DTO_recipe;
-import grp02.brg_app.View.MainActivity;
 
 public class JsonDatabase implements IDatabaseConnector {
     private Gson gson = new Gson();
