@@ -45,7 +45,7 @@ public class storageController extends SQLiteOpenHelper {
         cv.put("BrewingTemperature",dto_recipe.getBrewingTemperature());
         cv.put("BloomWater",dto_recipe.getBloomWater());
         cv.put("BloomTime",dto_recipe.getBloomTime());
-        db.
+        db.insert("Recipes",null,cv);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -98,8 +98,8 @@ public class storageController extends SQLiteOpenHelper {
         // return contact list
         return recipeList;
     }
-    public List<BrygObjekt> getHistory() {
-        List<BrygObjekt> BrygObjektList = new ArrayList<BrygObjekt>();
+    public List<DTO_recipe> getHistory() {
+        List<DTO_recipe> recipeList = new ArrayList<DTO_recipe>();
         // Select All Query
         String selectQuery = "SELECT  * FROM Recipes INNER JOIN History ON History.fk_RecipeID = Recipes.RecipeID;";
 
@@ -109,24 +109,23 @@ public class storageController extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                BrygObjekt brygObjekt = new BrygObjekt();
-                brygObjekt.setID(Integer.parseInt(cursor.getString(0)));
-                brygObjekt.setNavn(cursor.getString(1));
-                brygObjekt.setNavn(cursor.getString(1));
-                brygObjekt.setNavn(cursor.getString(1));
-                brygObjekt.setNavn(cursor.getString(1));
-
-                brygObjekt.setHvorMegetVandSkalDuBrugeTilBLoom(cursor.getString(2));
+                RecipeFactory.getInstance().setRecipeID(Integer.parseInt(cursor.getString(0)));
+                RecipeFactory.getInstance().setGrindSize(LogicController.getInstance().stringToGrindSizeObject(cursor.getString(2)));
+                RecipeFactory.getInstance().setRecipeName(cursor.getString(1));
+                RecipeFactory.getInstance().setCoffeeToWater(cursor.getFloat(3));
+                RecipeFactory.getInstance().setBrewingTemperature(cursor.getInt(4));
+                RecipeFactory.getInstance().setBloomWater(cursor.getInt(5));
+                RecipeFactory.getInstance().setBloomTime(cursor.getInt(6));
                 // Adding contact to list
-                BrygObjektList.add(brygObjekt);
+                recipeList.add(RecipeFactory.getInstance().getDto_recipe());
             } while (cursor.moveToNext());
         }
 
         // return contact list
-        return BrygObjektList;
+        return recipeList;
     }
-    public List<BrygObjekt> getAllFavorites() {
-        List<BrygObjekt> BrygObjektList = new ArrayList<BrygObjekt>();
+    public List<DTO_recipe> getAllFavorites() {
+        List<DTO_recipe> recipeList = new ArrayList<DTO_recipe>();
         // Select All Query
         String selectQuery = "SELECT  * FROM Recipes INNER JOIN Preferences ON Preferences.fk_RecipeID = Recipes.RecipeID;";
 
@@ -136,20 +135,19 @@ public class storageController extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                BrygObjekt brygObjekt = new BrygObjekt();
-                brygObjekt.setID(Integer.parseInt(cursor.getString(0)));
-                brygObjekt.setNavn(cursor.getString(1));
-                brygObjekt.setNavn(cursor.getString(1));
-                brygObjekt.setNavn(cursor.getString(1));
-                brygObjekt.setNavn(cursor.getString(1));
-
-                brygObjekt.setHvorMegetVandSkalDuBrugeTilBLoom(cursor.getString(2));
+                RecipeFactory.getInstance().setRecipeID(Integer.parseInt(cursor.getString(0)));
+                RecipeFactory.getInstance().setGrindSize(LogicController.getInstance().stringToGrindSizeObject(cursor.getString(2)));
+                RecipeFactory.getInstance().setRecipeName(cursor.getString(1));
+                RecipeFactory.getInstance().setCoffeeToWater(cursor.getFloat(3));
+                RecipeFactory.getInstance().setBrewingTemperature(cursor.getInt(4));
+                RecipeFactory.getInstance().setBloomWater(cursor.getInt(5));
+                RecipeFactory.getInstance().setBloomTime(cursor.getInt(6));
                 // Adding contact to list
-                BrygObjektList.add(brygObjekt);
+                recipeList.add(RecipeFactory.getInstance().getDto_recipe());
             } while (cursor.moveToNext());
         }
 
         // return contact list
-        return BrygObjektList;
+        return recipeList;
     }
 }
