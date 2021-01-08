@@ -43,6 +43,7 @@ public class storageController extends SQLiteOpenHelper {
         cv.put("BrewingTemperature",dto_recipe.getBrewingTemperature());
         cv.put("BloomWater",dto_recipe.getBloomWater());
         cv.put("BloomTime",dto_recipe.getBloomTime());
+        db.
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void addRow(String tableName, int recipieID){
@@ -93,7 +94,33 @@ public class storageController extends SQLiteOpenHelper {
         // return contact list
         return BrygObjektList;
     }
+    public List<BrygObjekt> getHistory() {
+        List<BrygObjekt> BrygObjektList = new ArrayList<BrygObjekt>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM Recipes INNER JOIN History ON History.fk_RecipeID = Recipes.RecipeID;";
 
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                BrygObjekt brygObjekt = new BrygObjekt();
+                brygObjekt.setID(Integer.parseInt(cursor.getString(0)));
+                brygObjekt.setNavn(cursor.getString(1));
+                brygObjekt.setNavn(cursor.getString(1));
+                brygObjekt.setNavn(cursor.getString(1));
+                brygObjekt.setNavn(cursor.getString(1));
+
+                brygObjekt.setHvorMegetVandSkalDuBrugeTilBLoom(cursor.getString(2));
+                // Adding contact to list
+                BrygObjektList.add(brygObjekt);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return BrygObjektList;
+    }
     public List<BrygObjekt> getAllFavorites() {
         List<BrygObjekt> BrygObjektList = new ArrayList<BrygObjekt>();
         // Select All Query
