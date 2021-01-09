@@ -16,6 +16,7 @@ import com.webianks.library.scroll_choice.ScrollChoice;
 import java.util.ArrayList;
 import java.util.List;
 
+import grp02.brg_app.Control.RecipeFactory;
 import grp02.brg_app.R;
 
 public class HvorMegetVandFragment extends Fragment implements View.OnClickListener {
@@ -54,11 +55,11 @@ public class HvorMegetVandFragment extends Fragment implements View.OnClickListe
         progressBar = rod.findViewById(R.id.progressBar1);
         progressBar.setProgress(progressBarStatus);
         buttonNext1 = rod.findViewById(R.id.buttonNext1);
-        buttonNext1.setText("NÆSTE ->");
+        buttonNext1.setText("NÆSTE");
         buttonNext1.setOnClickListener(this);
 
         buttonTilbage1 = rod.findViewById(R.id.buttonTilbage1);
-        buttonTilbage1.setText("<- TILBAGE");
+        buttonTilbage1.setText("TILBAGE");
         buttonTilbage1.setOnClickListener(this);
 
         hvorMangeMlVand = rod.findViewById(R.id.textViewVand);
@@ -80,41 +81,14 @@ public class HvorMegetVandFragment extends Fragment implements View.OnClickListe
             }
         });
 
-
+        RecipeFactory.getInstance().setWaterAmount(mlVandObjekt);
         return rod;
     }
     private void loadDeForskelligeMængder(){
-        mlVand.add("30 ml");
-        mlVand.add("31 ml");
-        mlVand.add("32 ml");
-        mlVand.add("33 ml");
-        mlVand.add("34 ml");
-        mlVand.add("35 ml");
-        mlVand.add("36 ml");
-        mlVand.add("37 ml");
-        mlVand.add("38 ml");
-        mlVand.add("39 ml");
-        mlVand.add("40 ml");
-        mlVand.add("41 ml");
-        mlVand.add("42 ml");
-        mlVand.add("43 ml");
-        mlVand.add("44 ml");
-        mlVand.add("45 ml");
-        mlVand.add("46 ml");
-        mlVand.add("47 ml");
-        mlVand.add("48 ml");
-        mlVand.add("49 ml");
-        mlVand.add("50 ml");
-        mlVand.add("51 ml");
-        mlVand.add("52 ml");
-        mlVand.add("53 ml");
-        mlVand.add("54 ml");
-        mlVand.add("55 ml");
-        mlVand.add("56 ml");
-        mlVand.add("57 ml");
-        mlVand.add("58 ml");
-        mlVand.add("59 ml");
-        mlVand.add("60 ml");
+
+        for(int i = 30; i <= 60; i++) {
+            mlVand.add(i + " ml");
+        }
 
     }
 
