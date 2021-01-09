@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.icu.text.SymbolTable;
 import android.os.Build;
 
 import androidx.annotation.Nullable;
@@ -21,23 +22,41 @@ import grp02.brg_app.Model.SqlInstall;
 
 public class storageController extends SQLiteOpenHelper {
 
-    public storageController(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory) {
-        super(context, "broeg.db", factory,1);
+    static final int VERSION = 1;
+    static final String DATABASE = "database.db";
+
+    public storageController(Context context) {
+        super(context, DATABASE, null,VERSION);
     }
+
+    private SQLiteDatabase db  =  this.getWritableDatabase();
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        SqlInstall sqlInstall = new SqlInstall();
-        sqlInstall.storageConstructors(db);
+        db.execSQL("CREATE TABLE Recipes (RecipeID INTEGER PRIMARY KEY AUTOINCREMENT, RecipeName TEXT NOT NULL, GrindSize TEXT NOT NULL, CoffeeWater INTEGER NOT NULL, BrewingTemperature INTEGER NOT NULL, BloomWater INTEGER NOT NULL, BloomTime INTEGER NOT NULL)");
+        db.execSQL("CREATE TABLE History (fk_RecipeID INTEGER PRIMARY, timeOfBrew TEXT NOT NULL)");
+        db.execSQL("CREATE TABLE Preferences ( fk_RecipeID INTEGER PRIMARY)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+    public void addPrecreatedRecipes()
+    {
+        ContentValues  cv = new ContentValues();
+        cv.put("RecipeName","teset");
+        cv.put("GrindSize","fine");
+        cv.put("CoffeeWater",1);
+        cv.put("BrewingTemperature",1);
+        cv.put("BloomWater",1);
+        cv.put("BloomTime",1);
+        System.out.println("test 2");
+        db.insert("Recipes","",cv);
+        System.out.println("test 3");
+    }
 
     public void addRowRecipes(DTO_recipe dto_recipe){
-        SQLiteDatabase db  =  this.getWritableDatabase();
         ContentValues cv  = new ContentValues();
         cv.put("RecipeName",dto_recipe.getRecipeName());
         cv.put("GrindSize",dto_recipe.getGrindSize().toString());
@@ -50,7 +69,6 @@ public class storageController extends SQLiteOpenHelper {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void addRow(String tableName, int recipieID){
-        SQLiteDatabase db  =  this.getWritableDatabase();
         ContentValues cv  = new ContentValues();
         switch (tableName){
             case"History":
@@ -67,7 +85,6 @@ public class storageController extends SQLiteOpenHelper {
     }
 
     public void deleteRow(String tableName, String tableRow,int ID){
-        SQLiteDatabase db  =  this.getWritableDatabase();
         db.delete(tableName, tableRow + "=" + ID, null);
     }
 
@@ -77,7 +94,6 @@ public class storageController extends SQLiteOpenHelper {
         // Select All Query
         String selectQuery = "SELECT  * FROM Recipes";
 
-        SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -103,7 +119,6 @@ public class storageController extends SQLiteOpenHelper {
         // Select All Query
         String selectQuery = "SELECT  * FROM Recipes INNER JOIN History ON History.fk_RecipeID = Recipes.RecipeID;";
 
-        SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -129,8 +144,6 @@ public class storageController extends SQLiteOpenHelper {
         List<DTO_recipe> recipeList = new ArrayList<DTO_recipe>();
         // Select All Query
         String selectQuery = "SELECT  * FROM Recipes INNER JOIN Preferences ON Preferences.fk_RecipeID = Recipes.RecipeID;";
-
-        SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list

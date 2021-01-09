@@ -11,8 +11,8 @@ public class SqlInstall{
     public void storageConstructors(SQLiteDatabase db){
         createQueryStrings();
         db.execSQL(getTableQueries(1));
-        db.execSQL(getTableQueries(2));
-        db.execSQL(getTableQueries(3));
+        //db.execSQL(getTableQueries(2));
+        //  db.execSQL(getTableQueries(3));
     }
 
     public String getTableQueries(int queryId) {
@@ -25,5 +25,9 @@ public class SqlInstall{
         createQueries.put(2, "CREATE TABLE History (fk_RecipeID INTEGER PRIMARY, timeOfBrew TEXT NOT NULL)");
 
         createQueries.put(3, "CREATE TABLE Preferences ( fk_RecipeID INTEGER PRIMARY)");
+    }
+    private void addPrecreatedRecipes()
+    {
+
     }
 }
