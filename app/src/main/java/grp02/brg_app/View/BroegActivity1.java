@@ -3,7 +3,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,12 +16,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
+import grp02.brg_app.Control.storageController;
 import grp02.brg_app.Model.BrygObjekt;
 import grp02.brg_app.R;
 import grp02.brg_app.View.FragmenterBrygDetaljer.StartBroeg;
 
 
-public class BroegActivity1 extends AppCompatActivity {
+public class BroegActivity1 extends AppCompatActivity{
 
     //Skal ikke være her
     public ArrayList<BrygObjekt> list = new ArrayList<>();
@@ -72,4 +76,6 @@ public class BroegActivity1 extends AppCompatActivity {
 
         }
     }
+
+
 }
