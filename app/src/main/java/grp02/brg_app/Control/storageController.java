@@ -68,19 +68,21 @@ public class storageController extends SQLiteOpenHelper {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void addRow(String tableName, int recipieID){
+    public void addRow(String tableName, int recipieID,boolean fromNewRecipe){
         ContentValues cv  = new ContentValues();
         switch (tableName){
             case"History":
-                String selectQuery = "SELECT * FROM Recipes WHERE   ID = (SELECT MAX(RecipeID)  FROM Recipes);";
+                if(fromNewRecipe == true) {
+                    String selectQuery = "SELECT * FROM Recipes WHERE   ID = (SELECT MAX(RecipeID)  FROM Recipes);";
 
-                Cursor cursor = db.rawQuery(selectQuery, null);
+                    Cursor cursor = db.rawQuery(selectQuery, null);
 
-                // looping through all rows and adding to list
-                if (cursor.moveToFirst()) {
-                    do {
-                        recipieID = Integer.parseInt(cursor.getString(0));
-                    } while (cursor.moveToNext());
+                    // looping through all rows and adding to list
+                    if (cursor.moveToFirst()) {
+                        do {
+                            recipieID = Integer.parseInt(cursor.getString(0));
+                        } while (cursor.moveToNext());
+                    }
                 }
                 LocalDateTime now = LocalDateTime.now();
                 cv.put("fk_RecipeID",recipieID);
