@@ -34,8 +34,8 @@ public class storageController extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE Recipes (RecipeID INTEGER PRIMARY KEY AUTOINCREMENT, RecipeName TEXT NOT NULL, GrindSize TEXT NOT NULL, CoffeeWater INTEGER NOT NULL, BrewingTemperature INTEGER NOT NULL, BloomWater INTEGER NOT NULL, BloomTime INTEGER NOT NULL)");
-        db.execSQL("CREATE TABLE History (fk_RecipeID INTEGER PRIMARY, timeOfBrew TEXT NOT NULL)");
-        db.execSQL("CREATE TABLE Preferences ( fk_RecipeID INTEGER PRIMARY)");
+        db.execSQL("CREATE TABLE History (fk_RecipeID INTEGER PRIMARY KEY, timeOfBrew TEXT NOT NULL)");
+        db.execSQL("CREATE TABLE Preferences ( fk_RecipeID INTEGER PRIMARY KEY)");
     }
 
     @Override
@@ -72,6 +72,16 @@ public class storageController extends SQLiteOpenHelper {
         ContentValues cv  = new ContentValues();
         switch (tableName){
             case"History":
+                String selectQuery = "SELECT * FROM Recipes WHERE   ID = (SELECT MAX(RecipeID)  FROM Recipes);";
+
+                Cursor cursor = db.rawQuery(selectQuery, null);
+
+                // looping through all rows and adding to list
+                if (cursor.moveToFirst()) {
+                    do {
+                        recipieID = Integer.parseInt(cursor.getString(0));
+                    } while (cursor.moveToNext());
+                }
                 LocalDateTime now = LocalDateTime.now();
                 cv.put("fk_RecipeID",recipieID);
                 cv.put("timeOfBrew",now.toString());
