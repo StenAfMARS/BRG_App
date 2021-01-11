@@ -25,7 +25,6 @@
         android:layout_marginTop="12dp"
         android:background="#E0E0E0"
         android:gravity="center"
-        android:text="HVAD GRIND SIZE ER DIN KAFFE?"
         android:textColor="#77482C"
         android:textColorLink="#77482C"
         android:textSize="20dp"

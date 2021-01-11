@@ -28,7 +28,7 @@ public class WaterCoffeeRatio extends Fragment implements View.OnClickListener {
     ScrollChoice scrollChoice;
     Button buttonNext1, buttonTilbage1;
     ProgressBar progressBar;
-    int progressBarStatus = 20;
+    int progressBarStatus = 32;
     Bundle bundle = new Bundle();
 
 
@@ -53,7 +53,6 @@ public class WaterCoffeeRatio extends Fragment implements View.OnClickListener {
         loadDeForskelligeMængder();
 
         mlVand = 45;
-        bundle.putInt("mlVandObjekt", mlVand);
 
         scrollChoice.addItems(mlVandScroll,15); //default index, så den er på "60"
         scrollChoice.setOnItemSelectedListener(new ScrollChoice.OnItemSelectedListener() {
@@ -79,7 +78,7 @@ public class WaterCoffeeRatio extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == buttonNext1){
-            progressBarStatus +=20;
+            progressBarStatus +=16;
             progressBar.setProgress(progressBarStatus);
             RecipeFactoryController.getInstance().setWaterAmount(mlVand);
             BrewingTemperature brewingTemperature = new BrewingTemperature();
