@@ -65,7 +65,7 @@ public class storageController extends SQLiteOpenHelper {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void addRow(String tableName, int recipieID){
+    public void addRow(String tableName, int recipieID,boolean fromNewRecipe){
         ContentValues cv  = new ContentValues();
         switch (tableName){
             case"History":
