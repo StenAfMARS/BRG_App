@@ -19,14 +19,11 @@ import java.util.List;
 import grp02.brg_app.Control.RecipeFactory;
 import grp02.brg_app.R;
 
-public class VandFordelingsFragment extends Fragment implements View.OnClickListener {
+public class BrewingTemperature extends Fragment implements View.OnClickListener {
 
-
-    List<String> antalSekunder = new ArrayList<>();
-    String navn;
-    double gramKaffeObjekt;
-    int mlVandObjekt, antalSekunderObjekt;
-    TextView hvorMangeSekunder;
+    List<String> tempScroll = new ArrayList<>();
+    int temp;
+    TextView temperatur;
     ScrollChoice scrollChoice;
     Button buttonNext2, buttonTilbage2;
     ProgressBar progressBar;
@@ -47,57 +44,52 @@ public class VandFordelingsFragment extends Fragment implements View.OnClickList
         buttonTilbage2.setText("TILBAGE");
         buttonTilbage2.setOnClickListener(this);
 
-        hvorMangeSekunder = rod.findViewById(R.id.textViewSekunder);
-        hvorMangeSekunder.setText("HVOR HURTIGT SKAL VANDET FORDELES?");
+        temperatur = rod.findViewById(R.id.textViewSekunder);
+        temperatur.setText("HVAD SKAL TEMPERATUREN VÆRE?");
 
         scrollChoice = rod.findViewById(R.id.scroll_choice_sekunder);
         loadDeForskelligeMængder();
 
-        antalSekunderObjekt = 45;
+        temp = 90;
 
-        scrollChoice.addItems(antalSekunder,15); //default index, så den er på "60"
+        scrollChoice.addItems(tempScroll,10); //default index, så den er på "60"
         scrollChoice.setOnItemSelectedListener(new ScrollChoice.OnItemSelectedListener() {
             @Override
             public void onItemSelected(ScrollChoice scrollChoice, int position, String name) {
-                antalSekunderObjekt = Integer.parseInt(name.substring(0, name.length()-4));
-                System.out.println("Antal Sekunder: "+antalSekunderObjekt);
+                temp = Integer.parseInt(name.substring(0, name.length()-9));
+                System.out.println("Temperatur: "+ temp);
             }
         });
-
-        RecipeFactory.getInstance().setBloomTime(antalSekunderObjekt);
 
         return rod;
     }
     private void loadDeForskelligeMængder(){
 
-        for(int i = 30; i <= 60; i++) {
-            antalSekunder.add(i + " sek");
+        for(int i = 80; i <= 99; i++) {
+            tempScroll.add(i + " grader C");
         }
 
     }
-
 
     @Override
     public void onClick(View v) {
         if (v == buttonNext2){
             progressBarStatus += 20;
             progressBar.setProgress(progressBarStatus);
-
-            //Sende dataen til næste fragment, så man kan se hvad værdi man har valgt
-            HvorMegetVandTilBloomFragment hvorMegetVandTilBloomFragment = new HvorMegetVandTilBloomFragment();
-
+            RecipeFactory.getInstance().setBrewingTemperature(temp);
+            BloomWater bloomWater = new BloomWater();
             getFragmentManager().beginTransaction()
                     //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                    .replace(R.id.broegFragmentetIActivity, hvorMegetVandTilBloomFragment)
+                    .replace(R.id.broegFragmentetIActivity, bloomWater)
                     .addToBackStack(null)
                     .commit();}
         else if (v == buttonTilbage2){
-            HvorMegetVandFragment hvorMegetVandFragment = new HvorMegetVandFragment();
+            WaterCoffeeRatio waterCoffeeRatio = new WaterCoffeeRatio();
             getFragmentManager().beginTransaction()
                     //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
-                    .replace(R.id.broegFragmentetIActivity, hvorMegetVandFragment)
+                    .replace(R.id.broegFragmentetIActivity, waterCoffeeRatio)
                     .addToBackStack(null)
                     .commit();
         }

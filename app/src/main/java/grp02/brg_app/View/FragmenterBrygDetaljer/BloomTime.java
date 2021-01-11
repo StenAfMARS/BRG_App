@@ -17,16 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import grp02.brg_app.Control.RecipeFactory;
-import grp02.brg_app.Model.BrygObjekt;
 import grp02.brg_app.R;
 
-public class BloomvandDistribueringFragment extends Fragment implements View.OnClickListener {
+public class BloomTime extends Fragment implements View.OnClickListener {
 
-    List<String> antalSekunderTilBloomVandDistribuering = new ArrayList<>();
+    List<String> bloomDistTimeScroll = new ArrayList<>();
 
-    String navn;
-    double gramKaffeObjekt;
-    int mlVandObjekt, antalSekunderObjekt, antalSekunderTilBloomVandDistribueringObjekt, mlVandTilBloomObjekt;
+    int bloomDistTime;
 
     TextView textViewDistribuering;
     ScrollChoice scrollChoice;
@@ -55,26 +52,25 @@ public class BloomvandDistribueringFragment extends Fragment implements View.OnC
         scrollChoice = rod.findViewById(R.id.scroll_choice_Distribuering);
         loadDeForskelligeMængder();
 
-        antalSekunderTilBloomVandDistribueringObjekt = 45;
+        bloomDistTime = 45;
 
-        scrollChoice.addItems(antalSekunderTilBloomVandDistribuering,15); //default index, så den er på "60"
+        scrollChoice.addItems(bloomDistTimeScroll,15); //default index, så den er på "60"
         scrollChoice.setOnItemSelectedListener(new ScrollChoice.OnItemSelectedListener() {
             @Override
             public void onItemSelected(ScrollChoice scrollChoice, int position, String name) {
                 //Implementere at gemme værdien i et objekt for den kaffe man er i gang med at lave.
-                antalSekunderTilBloomVandDistribueringObjekt = Integer.parseInt(name.substring(0, name.length()-4));
-                System.out.println("Antal sekunder til bloomvandsdistribuering: "+antalSekunderTilBloomVandDistribueringObjekt);
+                bloomDistTime = Integer.parseInt(name.substring(0, name.length()-4));
+                System.out.println("Antal sekunder til bloomvandsdistribuering: "+ bloomDistTime);
             }
         });
 
-        RecipeFactory.getInstance().setBloomTime(antalSekunderTilBloomVandDistribueringObjekt);
 
         return rod;
     }
     private void loadDeForskelligeMængder(){
 
         for(int i = 30; i <= 60; i++) {
-            antalSekunderTilBloomVandDistribuering.add(i + " sek");
+            bloomDistTimeScroll.add(i + " sek");
         }
 
     }
@@ -85,9 +81,8 @@ public class BloomvandDistribueringFragment extends Fragment implements View.OnC
         if (v == buttonNext4){
             progressBarStatus += 20;
             progressBar.setProgress(progressBarStatus);
-
+            RecipeFactory.getInstance().setBloomTime(bloomDistTime);
             FinalBroeg finalBroeg = new FinalBroeg();
-
             getFragmentManager().beginTransaction()
                     //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
@@ -97,11 +92,11 @@ public class BloomvandDistribueringFragment extends Fragment implements View.OnC
 
         }
         else if (v == buttonTilbage4){
-            HvorMegetVandTilBloomFragment hvorMegetVandTilBloomFragment = new HvorMegetVandTilBloomFragment();
+            BloomWater bloomWater = new BloomWater();
             getFragmentManager().beginTransaction()
                     //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
-                    .replace(R.id.broegFragmentetIActivity, hvorMegetVandTilBloomFragment)
+                    .replace(R.id.broegFragmentetIActivity, bloomWater)
                     .addToBackStack(null)
                     .commit();
         }

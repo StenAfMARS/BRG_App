@@ -27,54 +27,66 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="gramKaffe"
+        android:text="Ground Coffee"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/navn" />
 
     <TextView
-        android:id="@+id/antalSekunder3"
+        android:id="@+id/waterCoffeeRatio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="antalSekunder"
+        android:layout_marginTop="8dp"
+        android:text="Water Coffee Ratio"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mlVand2" />
+        app:layout_constraintTop_toBottomOf="@+id/grindSize2" />
 
     <TextView
-        android:id="@+id/antalSekunderTilBloomVandDistribuering5"
+        android:id="@+id/bloomTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="antalSekunderTilBloomVandDistribuering"
+        android:layout_marginTop="8dp"
+        android:text="Bloom Time"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mlVandTilBloom4" />
+        app:layout_constraintTop_toBottomOf="@+id/bloomWater" />
 
     <TextView
-        android:id="@+id/mlVandTilBloom4"
+        android:id="@+id/bloomWater"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="mlVandTilBloom"
+        android:text="Bloom Water"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/brewingTemperature" />
+
+    <TextView
+        android:id="@+id/brewingTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Brewing Temperature"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/antalSekunder3" />
+        app:layout_constraintTop_toBottomOf="@+id/waterCoffeeRatio" />
 
     <TextView
-        android:id="@+id/mlVand2"
+        android:id="@+id/grindSize2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="mlVand"
+        android:text="Grind Size"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,8 +96,8 @@
         android:id="@+id/navn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/roboto_black"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_bold"
         android:text="Navn"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,7 +115,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.291"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/antalSekunderTilBloomVandDistribuering5" />
+        app:layout_constraintTop_toBottomOf="@+id/bloomTime" />
 
     <Button
         android:id="@+id/FB_saveBrewBtn"
@@ -116,6 +128,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.739"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/antalSekunderTilBloomVandDistribuering5" />
+        app:layout_constraintTop_toBottomOf="@+id/bloomTime" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

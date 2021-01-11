@@ -7,7 +7,7 @@
     android:background="#E0E0E0">
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBarGrind"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="266dp"
         android:layout_height="25dp"
@@ -16,16 +16,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scroll_choice" />
+        app:layout_constraintTop_toBottomOf="@+id/scroll_choice_grind" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewGrind"
         android:layout_width="276dp"
         android:layout_height="77dp"
         android:layout_marginTop="12dp"
         android:background="#E0E0E0"
         android:gravity="center"
-        android:text=" HVOR MANGE GRAM KAFFE VIL DU BRUGE?"
+        android:text="HVAD GRIND SIZE ER DIN KAFFE?"
         android:textColor="#77482C"
         android:textColorLink="#77482C"
         android:textSize="20dp"
@@ -35,32 +35,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.webianks.library.scroll_choice.ScrollChoice
-        android:id="@+id/scroll_choice"
-        android:layout_width="70dp"
+        android:id="@+id/scroll_choice_grind"
+        android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.369"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:scroll_atmospheric="true"
-        app:scroll_background_color="#E0E0E0"
-        app:scroll_indicator="true"
-        app:scroll_item_align="center"
-        app:scroll_item_text_color="#77482C"
-        app:scroll_item_text_size="16dp"
-        app:scroll_selected_item_text_color="#8A6F62"
-        app:scroll_visible_item_count="7" />
-
-    <com.webianks.library.scroll_choice.ScrollChoice
-        android:id="@+id/scroll_choice2"
-        android:layout_width="70dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.63"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textViewGrind"
         app:scroll_atmospheric="true"
         app:scroll_background_color="#E0E0E0"
         app:scroll_indicator="true"
@@ -71,38 +53,25 @@
         app:scroll_visible_item_count="7" />
 
     <Button
-        android:id="@+id/buttonNext"
+        android:id="@+id/buttonNextGrind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/n_ste"
         android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
         android:background="@drawable/default_btn"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
-        app:layout_constraintEnd_toEndOf="@+id/progressBar" />
+        app:layout_constraintBottom_toTopOf="@+id/progressBarGrind"
+        app:layout_constraintEnd_toEndOf="@+id/progressBarGrind" />
     <Button
-        android:id="@+id/buttonTilbage"
+        android:id="@+id/buttonTilbageGrind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tilbage"
         android:drawableStart="@drawable/ic_baseline_arrow_back_ios_24"
         android:background="@drawable/default_btn"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
-        app:layout_constraintStart_toStartOf="@+id/progressBar" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="8dp"
-        android:text=","
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/scroll_choice2"
-        app:layout_constraintStart_toEndOf="@+id/scroll_choice"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintBottom_toTopOf="@+id/progressBarGrind"
+        app:layout_constraintStart_toStartOf="@+id/progressBarGrind" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

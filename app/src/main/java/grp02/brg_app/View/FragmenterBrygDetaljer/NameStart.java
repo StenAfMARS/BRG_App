@@ -9,16 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 import grp02.brg_app.Control.RecipeFactory;
-import grp02.brg_app.Model.BrygObjekt;
 import grp02.brg_app.R;
 
-public class StartBroeg extends Fragment implements View.OnClickListener {
+public class NameStart extends Fragment implements View.OnClickListener {
 
     TextView textView;
     EditText editText;
@@ -28,6 +24,8 @@ public class StartBroeg extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.fragment_start, container, false);
+
+
 
         buttonNextStart = rod.findViewById(R.id.buttonNextStart);
         buttonNextStart.setText("NÆSTE");
@@ -39,7 +37,7 @@ public class StartBroeg extends Fragment implements View.OnClickListener {
         editText = rod.findViewById(R.id.navnPaaBroeggen);
         editText.setHint("Navn på din brøg");
         System.out.println("Start fragment");
-        System.out.println("Navnet: " + navn);
+
 
         return rod;
     }
@@ -53,12 +51,13 @@ public class StartBroeg extends Fragment implements View.OnClickListener {
             editText.setError("Husk at indtaste et navn");
             } else {
                 navn = editText.getText().toString();
+                System.out.println("Navnet: " + navn);
                 RecipeFactory.getInstance().setRecipeName(navn);
-                BroegFragmentet broegFragmentet = new BroegFragmentet();
+                GroundCoffee groundCoffee = new GroundCoffee();
                 getFragmentManager().beginTransaction()
                         //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                         .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                        .replace(R.id.broegFragmentetIActivity, broegFragmentet)
+                        .replace(R.id.broegFragmentetIActivity, groundCoffee)
                         .addToBackStack(null)
                         .commit();
             }
