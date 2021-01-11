@@ -4,6 +4,7 @@ public class DTO_recipe {
     private int recipeID;
     private String recipeName;
     private GrindSize grindSize;
+    private int groundCoffee;
     private float coffeeToWater;
     private int brewingTemperature;
     private int bloomWater;
@@ -72,5 +73,13 @@ public class DTO_recipe {
 
     public void setBloomTime(int bloomTime) {
         this.bloomTime = bloomTime;
+    }
+
+    public int getGroundCoffee(){
+        return groundCoffee;
+    }
+
+    public void setGroundCoffee(int groundCoffee){
+        this.groundCoffee = groundCoffee;
     }
 }

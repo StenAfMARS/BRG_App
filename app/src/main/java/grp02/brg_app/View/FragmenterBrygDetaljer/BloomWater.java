@@ -19,13 +19,11 @@ import java.util.List;
 import grp02.brg_app.Control.RecipeFactory;
 import grp02.brg_app.R;
 
-public class HvorMegetVandTilBloomFragment extends Fragment implements View.OnClickListener {
+public class BloomWater extends Fragment implements View.OnClickListener {
 
 
     List<String> mlVandTilBloom = new ArrayList<>();
-    String navn;
-    double gramKaffeObjekt;
-    int mlVandObjekt, antalSekunderObjekt, mlVandTilBloomObjekt;
+    int mlVandTilBloomObjekt;
 
     TextView hvorMangeMlVand;
     ScrollChoice scrollChoice;
@@ -66,8 +64,6 @@ public class HvorMegetVandTilBloomFragment extends Fragment implements View.OnCl
             }
         });
 
-        RecipeFactory.getInstance().setBloomWater(mlVandTilBloomObjekt);
-
         return rod;
     }
 
@@ -86,9 +82,8 @@ public class HvorMegetVandTilBloomFragment extends Fragment implements View.OnCl
             progressBarStatus += 20;
             progressBar.setProgress(progressBarStatus);
 
-            //Sende dataen til næste fragment, så man kan se hvad værdi man har valgt
-            BloomvandDistribueringFragment bloomvandDistribueringFragment = new BloomvandDistribueringFragment();
-
+            RecipeFactory.getInstance().setBloomWater(mlVandTilBloomObjekt);
+            BloomTime bloomvandDistribueringFragment = new BloomTime();
             getFragmentManager().beginTransaction()
                     //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
@@ -96,11 +91,11 @@ public class HvorMegetVandTilBloomFragment extends Fragment implements View.OnCl
                     .addToBackStack(null)
                     .commit();}
         else if (v == buttonTilbage3){
-            VandFordelingsFragment vandFordelingsFragment = new VandFordelingsFragment();
+            BrewingTemperature brewingTemperature = new BrewingTemperature();
             getFragmentManager().beginTransaction()
                     //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
-                    .replace(R.id.broegFragmentetIActivity, vandFordelingsFragment)
+                    .replace(R.id.broegFragmentetIActivity, brewingTemperature)
                     .addToBackStack(null)
                     .commit();
         }

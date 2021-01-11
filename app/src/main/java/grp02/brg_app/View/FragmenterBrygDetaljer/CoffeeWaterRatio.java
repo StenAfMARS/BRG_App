@@ -19,14 +19,11 @@ import java.util.List;
 import grp02.brg_app.Control.RecipeFactory;
 import grp02.brg_app.R;
 
-public class HvorMegetVandFragment extends Fragment implements View.OnClickListener {
+public class CoffeeWaterRatio extends Fragment implements View.OnClickListener {
 
 
-    List<String> mlVand = new ArrayList<>();
-   // For at vise hvad man har tastet ind på tidligere fragment:
-    String navn;
-    double gramKaffeObjekt;
-    int mlVandObjekt;
+    List<String> mlVandScroll = new ArrayList<>();
+    int mlVand;
     TextView hvorMangeMlVand;
     ScrollChoice scrollChoice;
     Button buttonNext1, buttonTilbage1;
@@ -38,19 +35,6 @@ public class HvorMegetVandFragment extends Fragment implements View.OnClickListe
     @Override
     public View onCreateView(LayoutInflater i,ViewGroup container,Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.fragment_hvor_meget_vand,container, false);
-        //bliver ikke brugt endnu, men vil blive benyttet hvis man vil have vist hvad man valgt af værdi fra forrige fragment
-        Bundle bundleArg = getArguments();
-        if (bundleArg != null) {
-            navn = bundleArg.getString("navnpåBrygObjekt");
-            gramKaffeObjekt = bundleArg.getDouble("gramKaffeObjekt");
-        }
-        bundle.putString("navnpåBrygObjekt", navn);
-        bundle.putDouble("gramKaffeObjekt", gramKaffeObjekt);
-
-
-        System.out.println("Fået fra bundle, navn: " + navn);
-        System.out.println("Fået fra bundle, gram kaffe: " + gramKaffeObjekt);
-
 
         progressBar = rod.findViewById(R.id.progressBar1);
         progressBar.setProgress(progressBarStatus);
@@ -68,26 +52,25 @@ public class HvorMegetVandFragment extends Fragment implements View.OnClickListe
         scrollChoice = rod.findViewById(R.id.scroll_choice_vand);
         loadDeForskelligeMængder();
 
-        mlVandObjekt = 45;
-        bundle.putInt("mlVandObjekt", mlVandObjekt);
+        mlVand = 45;
+        bundle.putInt("mlVandObjekt", mlVand);
 
-        scrollChoice.addItems(mlVand,15); //default index, så den er på "60"
+        scrollChoice.addItems(mlVandScroll,15); //default index, så den er på "60"
         scrollChoice.setOnItemSelectedListener(new ScrollChoice.OnItemSelectedListener() {
             @Override
             public void onItemSelected(ScrollChoice scrollChoice, int position, String name) {
-                mlVandObjekt = Integer.parseInt(name.substring(0, name.length()-3));
-               bundle.putInt("mlVandObjekt", mlVandObjekt);
-                System.out.println("Ml vand: "+mlVandObjekt);
+                mlVand = Integer.parseInt(name.substring(0, name.length()-3));
+               bundle.putInt("mlVandObjekt", mlVand);
+                System.out.println("Ml vand: "+ mlVand);
             }
         });
 
-        RecipeFactory.getInstance().setWaterAmount(mlVandObjekt);
         return rod;
     }
     private void loadDeForskelligeMængder(){
 
         for(int i = 30; i <= 60; i++) {
-            mlVand.add(i + " ml");
+            mlVandScroll.add(i + " ml");
         }
 
     }
@@ -98,22 +81,20 @@ public class HvorMegetVandFragment extends Fragment implements View.OnClickListe
         if (v == buttonNext1){
             progressBarStatus +=20;
             progressBar.setProgress(progressBarStatus);
-            VandFordelingsFragment vandFordelingsFragment = new VandFordelingsFragment();
-            vandFordelingsFragment.setArguments(bundle);
-
+            RecipeFactory.getInstance().setWaterAmount(mlVand);
+            BrewingTemperature brewingTemperature = new BrewingTemperature();
         getFragmentManager().beginTransaction()
                 //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                 .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                .replace(R.id.broegFragmentetIActivity, vandFordelingsFragment)
+                .replace(R.id.broegFragmentetIActivity, brewingTemperature)
                 .addToBackStack(null)
                 .commit();}
         else if (v == buttonTilbage1){
-            BroegFragmentet broegFragmentet = new BroegFragmentet();
-            broegFragmentet.setArguments(bundle);
+            GrindSize grindSize = new GrindSize();
             getFragmentManager().beginTransaction()
                   //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
-                    .replace(R.id.broegFragmentetIActivity, broegFragmentet)
+                    .replace(R.id.broegFragmentetIActivity, grindSize)
                     .addToBackStack(null)
                     .commit();
         }
