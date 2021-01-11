@@ -49,20 +49,16 @@ public class RecipeFactory {
         dto_recipe.setRecipeName(recipeName);
     }
 
-    public void setGroundCoffee(String recipeName) {
-        dto_recipe.setRecipeName(recipeName);
-    }
-
-    public void setGrindSize(GrindSize grindSize) {
+    public void setGrindSize(String grindSize) {
         dto_recipe.setGrindSize(grindSize);
     }
 
-    public void setCoffeeToWater(float coffeeToWater) {
-        dto_recipe.setCoffeeToWater(coffeeToWater);
+    public void setWaterToCoffee(float waterToCoffee) {
+        dto_recipe.setWaterToCoffee(waterToCoffee);
     }
 
     public float getCoffeeToWater() {
-        return dto_recipe.getCoffeeToWater();
+        return dto_recipe.getWaterToCoffee();
     }
 
     public void setBrewingTemperature(int brewingTemperature) {
@@ -77,8 +73,8 @@ public class RecipeFactory {
         dto_recipe.setBloomTime(bloomTime);
     }
 
-    public void setGroundCoffe(int groundCoffe) {
-        dto_recipe.setGroundCoffee(groundCoffe);
+    public void setGroundCoffee(float groundCoffee) {
+        dto_recipe.setGroundCoffee(groundCoffee);
     }
 
 }

@@ -85,11 +85,11 @@ public class BrewingTemperature extends Fragment implements View.OnClickListener
                     .addToBackStack(null)
                     .commit();}
         else if (v == buttonTilbage2){
-            CoffeeWaterRatio coffeeWaterRatio = new CoffeeWaterRatio();
+            WaterCoffeeRatio waterCoffeeRatio = new WaterCoffeeRatio();
             getFragmentManager().beginTransaction()
                     //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
-                    .replace(R.id.broegFragmentetIActivity, coffeeWaterRatio)
+                    .replace(R.id.broegFragmentetIActivity, waterCoffeeRatio)
                     .addToBackStack(null)
                     .commit();
         }

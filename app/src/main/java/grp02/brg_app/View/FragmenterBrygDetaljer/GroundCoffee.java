@@ -82,7 +82,7 @@ public class GroundCoffee extends Fragment implements View.OnClickListener {
         if (v == buttonNext){
             progressBarStatus +=20;
             progressBar.setProgress(progressBarStatus);
-            RecipeFactory.getInstance().setCoffeeToWater(LogicController.getInstance().convertStringsToFloats(gramKaffe, milliGramKaffe));
+            RecipeFactory.getInstance().setGroundCoffee(LogicController.getInstance().convertStringsToFloats(gramKaffe, milliGramKaffe));
             System.out.println("This is RecipeFactory Value: " + RecipeFactory.getInstance().getCoffeeToWater());
             GrindSize grindSize = new GrindSize();
             getFragmentManager().beginTransaction()

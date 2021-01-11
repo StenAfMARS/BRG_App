@@ -20,7 +20,7 @@ public class SqlInstall{
     }
 
     private void createQueryStrings() {
-        createQueries.put(1, "CREATE TABLE Recipes (RecipeID INTEGER PRIMARY KEY AUTOINCREMENT, RecipeName TEXT NOT NULL, GrindSize TEXT NOT NULL, CoffeeWater INTEGER NOT NULL, BrewingTemperature INTEGER NOT NULL, BloomWater INTEGER NOT NULL, BloomTime INTEGER NOT NULL)");
+        createQueries.put(1, "CREATE TABLE Recipes (RecipeID INTEGER PRIMARY KEY AUTOINCREMENT, RecipeName TEXT NOT NULL, GroundCoffee INTEGER NOT NULL, GrindSize TEXT NOT NULL, WaterToCoffee INTEGER NOT NULL, BrewingTemperature INTEGER NOT NULL, BloomWater INTEGER NOT NULL, BloomTime INTEGER NOT NULL)");
 
         createQueries.put(2, "CREATE TABLE History (fk_RecipeID INTEGER PRIMARY, timeOfBrew TEXT NOT NULL)");
 

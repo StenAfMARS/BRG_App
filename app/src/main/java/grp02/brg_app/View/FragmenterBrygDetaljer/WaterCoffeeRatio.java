@@ -19,7 +19,7 @@ import java.util.List;
 import grp02.brg_app.Control.RecipeFactory;
 import grp02.brg_app.R;
 
-public class CoffeeWaterRatio extends Fragment implements View.OnClickListener {
+public class WaterCoffeeRatio extends Fragment implements View.OnClickListener {
 
 
     List<String> mlVandScroll = new ArrayList<>();

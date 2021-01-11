@@ -3,13 +3,13 @@ package grp02.brg_app.Model;
 public class DTO_recipe {
     private int recipeID;
     private String recipeName;
-    private GrindSize grindSize;
-    private int groundCoffee;
-    private float coffeeToWater;
+    private float groundCoffee;
+    private float waterToCoffee;
     private int brewingTemperature;
     private int bloomWater;
     private int bloomTime;
     private int waterAmount;
+    private String grindSize;
 
     public int getWaterAmount() {
         return waterAmount;
@@ -35,20 +35,12 @@ public class DTO_recipe {
         this.recipeName = recipeName;
     }
 
-    public GrindSize getGrindSize() {
-        return grindSize;
+    public float getWaterToCoffee() {
+        return waterToCoffee;
     }
 
-    public void setGrindSize(GrindSize grindSize) {
-        this.grindSize = grindSize;
-    }
-
-    public float getCoffeeToWater() {
-        return coffeeToWater;
-    }
-
-    public void setCoffeeToWater(float coffeeToWater) {
-        this.coffeeToWater = coffeeToWater;
+    public void setWaterToCoffee(float waterToCoffee) {
+        this.waterToCoffee = waterToCoffee;
     }
 
     public int getBrewingTemperature() {
@@ -75,11 +67,19 @@ public class DTO_recipe {
         this.bloomTime = bloomTime;
     }
 
-    public int getGroundCoffee(){
+    public float getGroundCoffee(){
         return groundCoffee;
     }
 
-    public void setGroundCoffee(int groundCoffee){
+    public void setGroundCoffee(float groundCoffee){
         this.groundCoffee = groundCoffee;
+    }
+
+    public String getGrindSize() {
+        return grindSize;
+    }
+
+    public void setGrindSize(String grindSize) {
+        this.grindSize = grindSize;
     }
 }

@@ -9,18 +9,11 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
-
-import grp02.brg_app.Model.BrygObjekt;
 import grp02.brg_app.R;
 import grp02.brg_app.View.FragmenterBrygDetaljer.NameStart;
 
 
 public class BroegActivity1 extends AppCompatActivity{
-
-    //Skal ikke være her
-    public ArrayList<BrygObjekt> list = new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -72,13 +72,13 @@ public class GrindSize extends Fragment implements View.OnClickListener {
         if (v == buttonNext){
             progressBarStatus +=20;
             progressBar.setProgress(progressBarStatus);
-            RecipeFactory.getInstance().setGrindSize(LogicController.getInstance().stringToGrindSizeObject(grindSize));
+            RecipeFactory.getInstance().setGrindSize(grindSize);
             System.out.println("This is RecipeFactory Value: " + RecipeFactory.getInstance().getCoffeeToWater());
-            CoffeeWaterRatio coffeeWaterRatio = new CoffeeWaterRatio();
+            WaterCoffeeRatio waterCoffeeRatio = new WaterCoffeeRatio();
             getFragmentManager().beginTransaction()
                   //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                    .replace(R.id.broegFragmentetIActivity, coffeeWaterRatio)
+                    .replace(R.id.broegFragmentetIActivity, waterCoffeeRatio)
                     .addToBackStack(null)
                     .commit();
         } else if (v == buttonTilbage){
