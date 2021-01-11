@@ -1,14 +1,12 @@
 package grp02.brg_app.Control;
 
 import grp02.brg_app.Model.DTO_recipe;
-import grp02.brg_app.Model.GrindSize;
 
 public class RecipeFactory {
     // Singleton class
     private static RecipeFactory Instance;
     private DTO_recipe dto_recipe;
     private String recipeName; // Navn på recipe
-    private GrindSize grindSize;
 
     public DTO_recipe getDto_recipe() {
         return dto_recipe;
@@ -35,10 +33,6 @@ public class RecipeFactory {
         }
 
         return Instance;
-    }
-
-    public void calcGramKaffe(float kaffeGram) {
-
     }
 
     public void clearRecipe() {

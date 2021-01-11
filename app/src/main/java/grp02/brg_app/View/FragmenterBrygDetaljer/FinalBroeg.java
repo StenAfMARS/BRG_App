@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.service.controls.Control;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,8 @@ import android.widget.TextView;
 import grp02.brg_app.Control.RecipeFactory;
 import grp02.brg_app.Control.storageController;
 import grp02.brg_app.R;
-import grp02.brg_app.View.BroegActivity1;
-import grp02.brg_app.View.MainActivity;
+import grp02.brg_app.View.OnSaveBryg;
+import grp02.brg_app.View.OnPressedBryg;
 
 public class FinalBroeg extends Fragment implements View.OnClickListener {
 
@@ -54,23 +53,21 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
         return rod;
     }
 
-
     @Override
     public void onClick(View v) {
         if (v == btnBrewAction) {
-            BroegActivity1 broegActivity1 = new BroegActivity1();
-
             grp02.brg_app.Control.storageController storageController = new storageController(getContext());
             storageController.addRowRecipes(RecipeFactory.getInstance().getDto_recipe());
 
             RecipeFactory.getInstance().clearRecipe();
 
+            getFragmentManager().beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
+                    .replace(R.id.broegFragmentetIActivity, new OnPressedBryg())
+                    .addToBackStack(null)
+                    .commit();
 
         } else if (v == btnSaveBrew) {
-            BroegActivity1 broegActivity1 = new BroegActivity1();
-          //  broegActivity1.list.add(new BrygObjekt(navn, gramKaffe, mlVand, antalSekunder, mlVandTilBloom, antalSekunderTilBloomVandDistribuering));
-
-
             grp02.brg_app.Control.storageController storageController = new storageController(getContext());
             storageController.addRowRecipes(RecipeFactory.getInstance().getDto_recipe());
 
@@ -94,6 +91,13 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
             System.out.println(RecipeFactory.getInstance().getDto_recipe().getBloomTime());
             System.out.println("______________________________________________________________________________________________________");
             //Matching completely.
+
+            getFragmentManager().beginTransaction()
+                    //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                    .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
+                    .replace(R.id.broegFragmentetIActivity, new OnSaveBryg())
+                    .addToBackStack(null)
+                    .commit();
         }
     }
 }
