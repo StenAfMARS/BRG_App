@@ -1,9 +1,6 @@
 package grp02.brg_app.Control;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-
-import grp02.brg_app.Model.GrindSize;
 
 public class LogicController {
 
@@ -18,10 +15,6 @@ public class LogicController {
         }
 
         return Instance;
-    }
-
-    public GrindSize stringToGrindSizeObject(String str) {
-        return GrindSize.valueOf(str);
     }
 
     public float convertStringsToFloats(String str1, String str2) {
