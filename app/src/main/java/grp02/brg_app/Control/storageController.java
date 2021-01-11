@@ -28,7 +28,7 @@ public class storageController extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE Recipes (RecipeID INTEGER PRIMARY KEY AUTOINCREMENT, RecipeName TEXT NOT NULL, GrindSize TEXT NOT NULL, CoffeeWater INTEGER NOT NULL, BrewingTemperature INTEGER NOT NULL, BloomWater INTEGER NOT NULL, BloomTime INTEGER NOT NULL)");
+        db.execSQL("CREATE TABLE Recipes (RecipeID INTEGER PRIMARY KEY AUTOINCREMENT, RecipeName TEXT NOT NULL, GroundCoffee INTEGER NOT NULL, GrindSize TEXT NOT NULL, WaterToCoffee INTEGER NOT NULL, BrewingTemperature INTEGER NOT NULL, BloomWater INTEGER NOT NULL, BloomTime INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE History (fk_RecipeID INTEGER PRIMARY KEY, timeOfBrew TEXT NOT NULL)");
         db.execSQL("CREATE TABLE Preferences ( fk_RecipeID INTEGER PRIMARY KEY)");
     }
@@ -40,9 +40,10 @@ public class storageController extends SQLiteOpenHelper {
     public void addPrecreatedRecipes()
     {
         ContentValues  cv = new ContentValues();
-        cv.put("RecipeName","teset");
+        cv.put("RecipeName","test");
+        cv.put("GroundCoffee", 1);
         cv.put("GrindSize","fine");
-        cv.put("CoffeeWater",1);
+        cv.put("WaterToCoffee",1);
         cv.put("BrewingTemperature",1);
         cv.put("BloomWater",1);
         cv.put("BloomTime",1);
@@ -54,8 +55,9 @@ public class storageController extends SQLiteOpenHelper {
     public void addRowRecipes(DTO_recipe dto_recipe){
         ContentValues cv  = new ContentValues();
         cv.put("RecipeName",dto_recipe.getRecipeName());
-        cv.put("GrindSize",dto_recipe.getGrindSize().toString());
-        cv.put("CoffeeWater",dto_recipe.getCoffeeToWater());
+        cv.put("GroundCoffee",dto_recipe.getGroundCoffee());
+        cv.put("GrindSize",dto_recipe.getGrindSize());
+        cv.put("WaterToCoffee",dto_recipe.getWaterToCoffee());
         cv.put("BrewingTemperature",dto_recipe.getBrewingTemperature());
         cv.put("BloomWater",dto_recipe.getBloomWater());
         cv.put("BloomTime",dto_recipe.getBloomTime());
@@ -63,7 +65,7 @@ public class storageController extends SQLiteOpenHelper {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void addRow(String tableName, int recipieID,boolean fromNewRecipe){
+    public void addRow(String tableName, int recipieID){
         ContentValues cv  = new ContentValues();
         switch (tableName){
             case"History":
@@ -104,14 +106,15 @@ public class storageController extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             do {
+
                 RecipeFactory.getInstance().setRecipeID(Integer.parseInt(cursor.getString(0)));
-                RecipeFactory.getInstance().setGrindSize(LogicController.getInstance().stringToGrindSizeObject(cursor.getString(2)));
+                RecipeFactory.getInstance().setGrindSize(cursor.getString(2));
                 RecipeFactory.getInstance().setRecipeName(cursor.getString(1));
-                RecipeFactory.getInstance().setCoffeeToWater(cursor.getFloat(3));
+                RecipeFactory.getInstance().setWaterToCoffee(cursor.getFloat(3));
                 RecipeFactory.getInstance().setBrewingTemperature(cursor.getInt(4));
                 RecipeFactory.getInstance().setBloomWater(cursor.getInt(5));
                 RecipeFactory.getInstance().setBloomTime(cursor.getInt(6));
-
+                RecipeFactory.getInstance().setGroundCoffee(cursor.getInt(7));
                 recipeList.add(RecipeFactory.getInstance().getDto_recipe());
             } while (cursor.moveToNext());
         }
@@ -129,12 +132,13 @@ public class storageController extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 RecipeFactory.getInstance().setRecipeID(Integer.parseInt(cursor.getString(0)));
-                RecipeFactory.getInstance().setGrindSize(LogicController.getInstance().stringToGrindSizeObject(cursor.getString(2)));
-                RecipeFactory.getInstance().setRecipeName(cursor.getString(1));
-                RecipeFactory.getInstance().setCoffeeToWater(cursor.getFloat(3));
-                RecipeFactory.getInstance().setBrewingTemperature(cursor.getInt(4));
-                RecipeFactory.getInstance().setBloomWater(cursor.getInt(5));
-                RecipeFactory.getInstance().setBloomTime(cursor.getInt(6));
+                RecipeFactory.getInstance().setGroundCoffee(cursor.getInt(1));
+                RecipeFactory.getInstance().setGrindSize(cursor.getString(2));
+                RecipeFactory.getInstance().setRecipeName(cursor.getString(3));
+                RecipeFactory.getInstance().setWaterToCoffee(cursor.getFloat(4));
+                RecipeFactory.getInstance().setBrewingTemperature(cursor.getInt(5));
+                RecipeFactory.getInstance().setBloomWater(cursor.getInt(6));
+                RecipeFactory.getInstance().setBloomTime(cursor.getInt(7));
                 // Adding contact to list
                 recipeList.add(RecipeFactory.getInstance().getDto_recipe());
             } while (cursor.moveToNext());
@@ -154,13 +158,13 @@ public class storageController extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 RecipeFactory.getInstance().setRecipeID(Integer.parseInt(cursor.getString(0)));
-                RecipeFactory.getInstance().setGrindSize(LogicController.getInstance().stringToGrindSizeObject(cursor.getString(2)));
-                RecipeFactory.getInstance().setRecipeName(cursor.getString(1));
-                RecipeFactory.getInstance().setCoffeeToWater(cursor.getFloat(3));
-                RecipeFactory.getInstance().setBrewingTemperature(cursor.getInt(4));
-                RecipeFactory.getInstance().setBloomWater(cursor.getInt(5));
-                RecipeFactory.getInstance().setBloomTime(cursor.getInt(6));
-                // Adding contact to list
+                RecipeFactory.getInstance().setGroundCoffee(cursor.getInt(1));
+                RecipeFactory.getInstance().setGrindSize(cursor.getString(2));
+                RecipeFactory.getInstance().setRecipeName(cursor.getString(3));
+                RecipeFactory.getInstance().setWaterToCoffee(cursor.getFloat(4));
+                RecipeFactory.getInstance().setBrewingTemperature(cursor.getInt(5));
+                RecipeFactory.getInstance().setBloomWater(cursor.getInt(6));
+                RecipeFactory.getInstance().setBloomTime(cursor.getInt(7));
                 recipeList.add(RecipeFactory.getInstance().getDto_recipe());
             } while (cursor.moveToNext());
         }

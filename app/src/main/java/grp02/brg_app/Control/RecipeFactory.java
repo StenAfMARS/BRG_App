@@ -9,12 +9,6 @@ public class RecipeFactory {
     private DTO_recipe dto_recipe;
     private String recipeName; // Navn på recipe
     private GrindSize grindSize;
-    private float coffeeToWater; // Mængde af kaffe i gram
-    private int brewingTemperature; // Ønsket temp
-    private int bloomWater; // Mængde af bloom water
-    private int bloomTime; // Distribuerings tid
-    private int waterAmount; // Mængde af vand
-    private int recipeID;
 
     public DTO_recipe getDto_recipe() {
         return dto_recipe;
@@ -55,16 +49,16 @@ public class RecipeFactory {
         dto_recipe.setRecipeName(recipeName);
     }
 
-    public void setGrindSize(GrindSize grindSize) {
+    public void setGrindSize(String grindSize) {
         dto_recipe.setGrindSize(grindSize);
     }
 
-    public void setCoffeeToWater(float coffeeToWater) {
-        dto_recipe.setCoffeeToWater(coffeeToWater);
+    public void setWaterToCoffee(float waterToCoffee) {
+        dto_recipe.setWaterToCoffee(waterToCoffee);
     }
 
     public float getCoffeeToWater() {
-        return dto_recipe.getCoffeeToWater();
+        return dto_recipe.getWaterToCoffee();
     }
 
     public void setBrewingTemperature(int brewingTemperature) {
@@ -78,4 +72,9 @@ public class RecipeFactory {
     public void setBloomTime(int bloomTime) {
         dto_recipe.setBloomTime(bloomTime);
     }
+
+    public void setGroundCoffee(float groundCoffee) {
+        dto_recipe.setGroundCoffee(groundCoffee);
+    }
+
 }
