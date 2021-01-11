@@ -27,7 +27,7 @@ public class BrewingTemperature extends Fragment implements View.OnClickListener
     ScrollChoice scrollChoice;
     Button buttonNext2, buttonTilbage2;
     ProgressBar progressBar;
-    int progressBarStatus = 40;
+    int progressBarStatus = 48;
 
     @Override
     public View onCreateView(LayoutInflater i,ViewGroup container,Bundle savedInstanceState) {
@@ -74,7 +74,7 @@ public class BrewingTemperature extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         if (v == buttonNext2){
-            progressBarStatus += 20;
+            progressBarStatus += 16;
             progressBar.setProgress(progressBarStatus);
             RecipeFactoryController.getInstance().setBrewingTemperature(temp);
             BloomWater bloomWater = new BloomWater();
