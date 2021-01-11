@@ -42,7 +42,7 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
         waterCoffeeRatio.setText(recipeFactory.getDto_recipe().getWaterAmount() + " ml. vand pr. gram kaffe");
         brewingTemp.setText(recipeFactory.getDto_recipe().getBrewingTemperature() + " grader Celcius");
         bloomWater.setText(recipeFactory.getDto_recipe().getBloomWater() + " ml. vand til bloom");
-        bloomTime.setText(recipeFactory.getDto_recipe().getBloomTime()+ " sekunder til bloom vand distribuering");
+        bloomTime.setText(recipeFactory.getDto_recipe().getBloomTime()+ " sek til bloom vand distribuering");
 
 
         btnBrewAction = rod.findViewById(R.id.FB_brewActionBtn);
@@ -68,8 +68,6 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
 
         } else if (v == btnSaveBrew) {
             BroegActivity1 broegActivity1 = new BroegActivity1();
-          //  broegActivity1.list.add(new BrygObjekt(navn, gramKaffe, mlVand, antalSekunder, mlVandTilBloom, antalSekunderTilBloomVandDistribuering));
-
 
             grp02.brg_app.Control.storageController storageController = new storageController(getContext());
             storageController.addRowRecipes(RecipeFactory.getInstance().getDto_recipe());
@@ -84,7 +82,7 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
             System.out.println(storageController.getAllRecipes().get(storageController.getAllRecipes().size() - 1).getBloomTime());
             System.out.println("______________________________________________________________________________________________________");
 
-            System.out.println("DET HER ER TAGER FRA DEN INSTANS DER IKKE ER SLETTE ENDNU: ");
+            System.out.println("HER ER DET DEN INSTANS DER IKKE ER SLETTET ENDNU: ");
             System.out.println(RecipeFactory.getInstance().getDto_recipe().getRecipeName());
             System.out.println(RecipeFactory.getInstance().getDto_recipe().getGroundCoffee());
             System.out.println(RecipeFactory.getInstance().getDto_recipe().getGrindSize());

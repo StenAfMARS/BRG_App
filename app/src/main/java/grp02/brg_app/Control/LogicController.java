@@ -20,10 +20,6 @@ public class LogicController {
         return Instance;
     }
 
-    public GrindSize stringToGrindSizeObject(String str) {
-        return GrindSize.valueOf(str);
-    }
-
     public float convertStringsToFloats(String str1, String str2) {
         float val1 = Float.parseFloat(str1);
         float val2 = Float.parseFloat(str2);

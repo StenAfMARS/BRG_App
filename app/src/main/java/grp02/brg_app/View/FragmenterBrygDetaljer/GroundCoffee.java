@@ -54,7 +54,6 @@ public class GroundCoffee extends Fragment implements View.OnClickListener {
         gramKaffeScroll = LogicController.getInstance().loadMængderIGram();
         milliGramKaffeScroll = LogicController.getInstance().loadMængderIMilliGram();
 
-
         scrollChoice.addItems(gramKaffeScroll, 10); //default index, så den er på "60"
         gramKaffe = "60";
         scrollChoice.setOnItemSelectedListener(new ScrollChoice.OnItemSelectedListener() {
@@ -80,7 +79,7 @@ public class GroundCoffee extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         System.out.println("Gram Kaffe: " + gramKaffe + "," + milliGramKaffe + " g");
         if (v == buttonNext){
-            progressBarStatus +=20;
+            progressBarStatus +=16;
             progressBar.setProgress(progressBarStatus);
             RecipeFactory.getInstance().setGroundCoffee(LogicController.getInstance().convertStringsToFloats(gramKaffe, milliGramKaffe));
             System.out.println("This is RecipeFactory Value: " + RecipeFactory.getInstance().getCoffeeToWater());

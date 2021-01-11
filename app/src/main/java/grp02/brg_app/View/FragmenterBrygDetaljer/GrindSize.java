@@ -28,7 +28,7 @@ public class GrindSize extends Fragment implements View.OnClickListener {
     ScrollChoice scrollChoice;
     Button buttonNext, buttonTilbage;
     ProgressBar progressBar;
-    int progressBarStatus = 0;
+    int progressBarStatus = 16;
 
     @Override
     public View onCreateView(LayoutInflater i,ViewGroup container,Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class GrindSize extends Fragment implements View.OnClickListener {
         buttonTilbage.setOnClickListener(this);
 
         hvorMangeKramKaffe = rod.findViewById(R.id.textViewGrind);
-        hvorMangeKramKaffe.setText("HVOR MANGE GRAM KAFFE VIL DU HAVE?");
+        hvorMangeKramKaffe.setText("HVORDAN ER DIN COFFEE GRIND SIZE?");
 
         scrollChoice = rod.findViewById(R.id.scroll_choice_grind);
         fillGrindSizeScroll();
@@ -61,16 +61,16 @@ public class GrindSize extends Fragment implements View.OnClickListener {
         return rod;
     }
     private void fillGrindSizeScroll(){
-            grindSizeScroll.add("fine");
-            grindSizeScroll.add("medium");
-            grindSizeScroll.add("coarse");
+            grindSizeScroll.add("Fine");
+            grindSizeScroll.add("Medium");
+            grindSizeScroll.add("Coarse");
     }
 
     @Override
     public void onClick(View v) {
         System.out.println("Grind Size " + grindSize );
         if (v == buttonNext){
-            progressBarStatus +=20;
+            progressBarStatus +=16;
             progressBar.setProgress(progressBarStatus);
             RecipeFactory.getInstance().setGrindSize(grindSize);
             System.out.println("This is RecipeFactory Value: " + RecipeFactory.getInstance().getCoffeeToWater());

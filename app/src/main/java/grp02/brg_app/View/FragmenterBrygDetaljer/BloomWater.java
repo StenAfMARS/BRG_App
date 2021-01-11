@@ -29,7 +29,7 @@ public class BloomWater extends Fragment implements View.OnClickListener {
     ScrollChoice scrollChoice;
     Button buttonNext3, buttonTilbage3;
     ProgressBar progressBar;
-    int progressBarStatus = 60;
+    int progressBarStatus = 64;
 
 
     @Override
@@ -79,7 +79,7 @@ public class BloomWater extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == buttonNext3){
-            progressBarStatus += 20;
+            progressBarStatus += 16;
             progressBar.setProgress(progressBarStatus);
 
             RecipeFactory.getInstance().setBloomWater(mlVandTilBloomObjekt);
