@@ -5,20 +5,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.icu.text.SymbolTable;
 import android.os.Build;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import grp02.brg_app.Model.BrygObjekt;
 import grp02.brg_app.Model.DTO_recipe;
-import grp02.brg_app.Model.GrindSize;
-import grp02.brg_app.Model.SqlInstall;
 
 public class storageController extends SQLiteOpenHelper {
 
@@ -103,12 +98,10 @@ public class storageController extends SQLiteOpenHelper {
     // code comes from https://www.javatpoint.com/android-sqlite-tutorial
     public List<DTO_recipe> getAllRecipes() {
         List<DTO_recipe> recipeList = new ArrayList<DTO_recipe>();
-        // Select All Query
+
         String selectQuery = "SELECT  * FROM Recipes";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
                 RecipeFactory.getInstance().setRecipeID(Integer.parseInt(cursor.getString(0)));
@@ -118,12 +111,11 @@ public class storageController extends SQLiteOpenHelper {
                 RecipeFactory.getInstance().setBrewingTemperature(cursor.getInt(4));
                 RecipeFactory.getInstance().setBloomWater(cursor.getInt(5));
                 RecipeFactory.getInstance().setBloomTime(cursor.getInt(6));
-                // Adding contact to list
+
                 recipeList.add(RecipeFactory.getInstance().getDto_recipe());
             } while (cursor.moveToNext());
         }
 
-        // return contact list
         return recipeList;
     }
     public List<DTO_recipe> getHistory() {
