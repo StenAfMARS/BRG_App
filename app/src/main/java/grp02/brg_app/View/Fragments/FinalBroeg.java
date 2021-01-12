@@ -79,6 +79,9 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
                     .addToBackStack(null)
                     .commit();
         }
+        else if(v != btnBrewAction || v != btnSaveBrew){
+            storageController.deleteRecipies();
+        }
     }
 
     private void testRecipeFactory() {
