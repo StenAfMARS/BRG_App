@@ -1,4 +1,4 @@
-package grp02.brg_app.View.FragmenterBrygDetaljer;
+package grp02.brg_app.View.Fragments;
 
 import android.os.Bundle;
 
@@ -10,19 +10,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import grp02.brg_app.Control.IDatabaseConnector;
-import grp02.brg_app.Control.RecipeFactory;
+import grp02.brg_app.Control.RecipeFactoryController;
 import grp02.brg_app.Control.StorageController;
 import grp02.brg_app.R;
 import grp02.brg_app.View.BroegActivity1;
-import grp02.brg_app.View.OnSaveBryg;
-import grp02.brg_app.View.OnPressedBryg;
 
 public class FinalBroeg extends Fragment implements View.OnClickListener {
 
     TextView name, groundCoffee, grindSize, waterCoffeeRatio, brewingTemp, bloomTime, bloomWater;
     Button btnBrewAction, btnSaveBrew;
-    RecipeFactory recipeFactory = RecipeFactory.getInstance();
+    RecipeFactoryController recipeFactory = RecipeFactoryController.getInstance();
     StorageController storageController;
 
     @Override
@@ -60,9 +57,9 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == btnBrewAction) {
-            storageController.saveRecipe(RecipeFactory.getInstance().getDto_recipe());
+            storageController.saveRecipe(RecipeFactoryController.getInstance().getDto_recipe());
 
-            RecipeFactory.getInstance().clearRecipe();
+            RecipeFactoryController.getInstance().clearRecipe();
 
             getFragmentManager().beginTransaction()
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
@@ -71,7 +68,7 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
                     .commit();
 
         } else if (v == btnSaveBrew) {
-            storageController.saveRecipe(RecipeFactory.getInstance().getDto_recipe());
+            storageController.saveRecipe(RecipeFactoryController.getInstance().getDto_recipe());
 
             testRecipeFactory();
 
@@ -96,13 +93,13 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
         System.out.println("______________________________________________________________________________________________________");
 
         System.out.println("DET HER ER TAGER FRA DEN INSTANS DER IKKE ER SLETTE ENDNU: ");
-        System.out.println(RecipeFactory.getInstance().getDto_recipe().getRecipeName());
-        System.out.println(RecipeFactory.getInstance().getDto_recipe().getGroundCoffee());
-        System.out.println(RecipeFactory.getInstance().getDto_recipe().getGrindSize());
-        System.out.println(RecipeFactory.getInstance().getDto_recipe().getWaterToCoffee());
-        System.out.println(RecipeFactory.getInstance().getDto_recipe().getBrewingTemperature());
-        System.out.println(RecipeFactory.getInstance().getDto_recipe().getBloomWater());
-        System.out.println(RecipeFactory.getInstance().getDto_recipe().getBloomTime());
+        System.out.println(RecipeFactoryController.getInstance().getDto_recipe().getRecipeName());
+        System.out.println(RecipeFactoryController.getInstance().getDto_recipe().getGroundCoffee());
+        System.out.println(RecipeFactoryController.getInstance().getDto_recipe().getGrindSize());
+        System.out.println(RecipeFactoryController.getInstance().getDto_recipe().getWaterToCoffee());
+        System.out.println(RecipeFactoryController.getInstance().getDto_recipe().getBrewingTemperature());
+        System.out.println(RecipeFactoryController.getInstance().getDto_recipe().getBloomWater());
+        System.out.println(RecipeFactoryController.getInstance().getDto_recipe().getBloomTime());
         System.out.println("______________________________________________________________________________________________________");
         //Matching completely.
     }

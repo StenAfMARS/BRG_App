@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import grp02.brg_app.R;
-import grp02.brg_app.View.FragmenterBrygDetaljer.NameStart;
+import grp02.brg_app.View.Fragments.NameStart;
 
 
 public class BroegActivity1 extends AppCompatActivity{

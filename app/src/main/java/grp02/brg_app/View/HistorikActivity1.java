@@ -11,8 +11,9 @@ import android.widget.ListView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import grp02.brg_app.Control.IDatabaseConnector;
-import grp02.brg_app.Control.JsonDatabase;
+import grp02.brg_app.Control.JsonDBController;
 import grp02.brg_app.Model.DTO_recipe;
+import grp02.brg_app.Model.HistoryAdapter;
 import grp02.brg_app.R;
 
 public class HistorikActivity1 extends AppCompatActivity {
@@ -56,7 +57,7 @@ public class HistorikActivity1 extends AppCompatActivity {
         });
         // ##########################################################
 
-        InitHistoryList(new JsonDatabase(this));
+        InitHistoryList(new JsonDBController(this));
     }
 
     private void InitHistoryList(IDatabaseConnector db){
