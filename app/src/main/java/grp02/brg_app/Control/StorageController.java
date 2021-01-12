@@ -86,7 +86,7 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
     public List<DTO_recipe> getHistory() {
         List<DTO_recipe> recipeList = new ArrayList<DTO_recipe>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM Recipes INNER JOIN History ON History.fk_RecipeID = Recipes.RecipeID;";
+        String selectQuery = "SELECT  *,History.timeOfBrew FROM Recipes,History INNER JOIN History ON History.fk_RecipeID = Recipes.RecipeID;";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -101,6 +101,7 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
                 RecipeFactoryController.getInstance().setBrewingTemperature(cursor.getInt(5));
                 RecipeFactoryController.getInstance().setBloomWater(cursor.getInt(6));
                 RecipeFactoryController.getInstance().setBloomTime(cursor.getInt(7));
+                RecipeFactoryController.getInstance().setDateTime(cursor.getString(8));
                 // Adding contact to list
                 recipeList.add(RecipeFactoryController.getInstance().getDto_recipe());
             } while (cursor.moveToNext());
@@ -152,6 +153,20 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
     @Override
     public void deleteRecipe(String tableName, String tableRow,int ID) {
         db.delete(tableName, tableRow + "=" + ID, null);
+    }
+    public void deleteRecipies(){
+        String tableRow = "RecipeID";
+        String selectQuery = "SELECT * FROM Recipes WHERE   ID = (SELECT MAX(RecipeID)  FROM Recipes);";
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        int recipieID = 0;
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                recipieID = Integer.parseInt(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+        db.delete("Recipes", tableRow + "=" + recipieID, null);
     }
 
     @Override
