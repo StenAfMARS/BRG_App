@@ -1,4 +1,4 @@
-package grp02.brg_app.View;
+package grp02.brg_app.View.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import java.util.concurrent.TimeUnit;
 
 import grp02.brg_app.R;
+import grp02.brg_app.View.BroegActivity1;
+import grp02.brg_app.View.MainActivity;
 
 public class OnSaveBryg extends Fragment {
 

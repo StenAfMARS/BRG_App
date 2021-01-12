@@ -1,4 +1,4 @@
-package grp02.brg_app.View;
+package grp02.brg_app.Model;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,21 +7,23 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
 import grp02.brg_app.R;
 import grp02.brg_app.Model.DTO_recipe;
 
 public class HistoryAdapter extends BaseAdapter {
     Context mContext;
-    DTO_recipe[] recipes;
+    List<DTO_recipe> recipes;
 
-    public HistoryAdapter(Context context, DTO_recipe[] gameLogs){
+    public HistoryAdapter(Context context, List<DTO_recipe> gameLogs){
         mContext = context;
         this.recipes = gameLogs;
     }
 
     @Override
     public int getCount() {
-        return recipes.length;
+        return recipes.size();
     }
 
     @Override
@@ -37,7 +39,7 @@ public class HistoryAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        DTO_recipe recipe = recipes[position];
+        DTO_recipe recipe = recipes.get(position);
 
         if (convertView == null) {
             final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
