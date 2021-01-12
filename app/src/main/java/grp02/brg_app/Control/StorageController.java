@@ -59,7 +59,7 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
         switch (tableName){
             case"History":
                 if(fromNewRecipe == true) {
-                    String selectQuery = "SELECT * FROM Recipes WHERE   ID = (SELECT MAX(RecipeID)  FROM Recipes);";
+                    String selectQuery = "SELECT * FROM Recipes WHERE   RecipeID = (SELECT MAX(RecipeID)  FROM Recipes);";
 
                     Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -156,7 +156,7 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
     }
     public void deleteRecipies(){
         String tableRow = "RecipeID";
-        String selectQuery = "SELECT * FROM Recipes WHERE   ID = (SELECT MAX(RecipeID)  FROM Recipes);";
+        String selectQuery = "SELECT * FROM Recipes WHERE   RecipeID = (SELECT MAX(RecipeID)  FROM Recipes);";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
         int recipieID = 0;

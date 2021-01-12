@@ -1,7 +1,9 @@
 package grp02.brg_app.View.Fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -54,11 +56,12 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
         return rod;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onClick(View v) {
         if (v == btnBrewAction) {
             storageController.saveRecipe(RecipeFactoryController.getInstance().getDto_recipe());
-
+            storageController.addRow("History",0,true);
             RecipeFactoryController.getInstance().clearRecipe();
 
             getFragmentManager().beginTransaction()
@@ -69,7 +72,7 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
 
         } else if (v == btnSaveBrew) {
             storageController.saveRecipe(RecipeFactoryController.getInstance().getDto_recipe());
-
+            storageController.addRow("History",0,true);
             testRecipeFactory();
 
             getFragmentManager().beginTransaction()
