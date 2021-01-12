@@ -7,7 +7,7 @@ public class MainController {
     private MainController() {}
 
     public static MainController getInstance() {
-        if (Instance.equals(null)) {
+        if (Instance == null) {
             Instance = new MainController();
         }
 
