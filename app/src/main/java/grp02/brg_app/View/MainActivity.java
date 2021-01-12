@@ -13,6 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
+import grp02.brg_app.Control.DatabaseController;
 import grp02.brg_app.Control.IDatabaseConnector;
 import grp02.brg_app.Control.StorageController;
 import grp02.brg_app.Model.DTO_recipe;
@@ -21,14 +22,16 @@ import grp02.brg_app.R;
 public class MainActivity extends AppCompatActivity {
 
     public static SharedPreferences sharedPref;
-    public static StorageController storageController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        storageController = new StorageController(this);
+        DatabaseController.getInstance().UseSQL(this);
+
+
+        /*IDatabaseConnector storageController = DatabaseController.getInstance().getDB();
 
         if(storageController.getRecipes().size() == 0){
             storageController.addPrecreatedRecipes();
@@ -37,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; list.size()>i;i++){
             System.out.println(list.get(i).getRecipeName());
         }
+        System.out.println(storageController.getRecipes());*/
 
-        System.out.println(storageController.getRecipes());
         sharedPref = getPreferences(Context.MODE_PRIVATE);
 
         // Navigation

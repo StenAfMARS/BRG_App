@@ -53,8 +53,12 @@ public class JsonDBController implements IDatabaseConnector {
     }
 
     @Override
-    public List<DTO_recipe> getHistory() {
-        return null;
+    public List<DTO_recipe> getHistory(){
+        String jsonString = sharedPrefs.getString("JsonRecipes", "[]");
+
+        Type listType = new TypeToken<List<DTO_recipe>>() {}.getType();
+
+        return gson.fromJson(jsonString, listType);
     }
 
     @Override
