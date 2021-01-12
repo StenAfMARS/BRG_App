@@ -28,7 +28,7 @@ public class HistoryAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return recipes.get(position);
     }
 
     @Override
