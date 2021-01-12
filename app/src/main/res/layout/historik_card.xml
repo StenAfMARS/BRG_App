@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#B1B1B1">
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/HC_cardView"
         android:layout_width="300dp"
         android:layout_height="150dp"
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.textview.MaterialTextView
+            <TextView
                 android:id="@+id/HC_titleTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.064" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/HC_shareBtn"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
@@ -54,7 +54,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.058" />
 
-            <com.google.android.material.textview.MaterialTextView
+            <TextView
                 android:id="@+id/HC_brewDateTV"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.504" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/HC_brewBtn"
                 android:layout_width="71dp"
                 android:layout_height="37dp"
@@ -82,7 +82,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.958" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/HC_setfavoriteBtn"
                 android:layout_width="150dp"
                 android:layout_height="37dp"
@@ -99,7 +99,7 @@
                 app:layout_constraintVertical_bias="0.958" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,7 +50,7 @@ public class HistoryAdapter extends BaseAdapter {
 
         // 4
         title.setText(recipe.getRecipeName());
-        title.setText("");
+        date.setText("");
 
         return convertView;
     }

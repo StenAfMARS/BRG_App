@@ -14,26 +14,23 @@ import android.widget.TextView;
 import com.webianks.library.scroll_choice.ScrollChoice;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import grp02.brg_app.Control.LogicController;
 import grp02.brg_app.Control.RecipeFactory;
-import grp02.brg_app.Model.BrygObjekt;
 import grp02.brg_app.R;
 
-public class BroegFragmentet extends Fragment implements View.OnClickListener {
+public class GroundCoffee extends Fragment implements View.OnClickListener {
 
 
-    List<String> gramKaffe = new ArrayList<>();
-    List<String> milliGramKaffe = new ArrayList<>();
-    String gramKaffeObjekt;
-    String milliGramKaffeObjekt;
+    List<String> gramKaffeScroll = new ArrayList<>();
+    List<String> milliGramKaffeScroll = new ArrayList<>();
+    String gramKaffe, milliGramKaffe;
     TextView hvorMangeKramKaffe;
     ScrollChoice scrollChoice, scrollChoice2;
     Button buttonNext, buttonTilbage;
     ProgressBar progressBar;
-    int progressBarStatus;
+    int progressBarStatus = 0;
 
     @Override
     public View onCreateView(LayoutInflater i,ViewGroup container,Bundle savedInstanceState) {
@@ -54,55 +51,52 @@ public class BroegFragmentet extends Fragment implements View.OnClickListener {
 
         scrollChoice = rod.findViewById(R.id.scroll_choice);
         scrollChoice2 = rod.findViewById(R.id.scroll_choice2);
-        gramKaffe = LogicController.getInstance().loadMængderIGram();
-        milliGramKaffe = LogicController.getInstance().loadMængderIMilliGram();
+        gramKaffeScroll = LogicController.getInstance().loadMængderIGram();
+        milliGramKaffeScroll = LogicController.getInstance().loadMængderIMilliGram();
 
 
-        scrollChoice.addItems(gramKaffe, 10); //default index, så den er på "60"
-        gramKaffeObjekt = "60";
+        scrollChoice.addItems(gramKaffeScroll, 10); //default index, så den er på "60"
+        gramKaffe = "60";
         scrollChoice.setOnItemSelectedListener(new ScrollChoice.OnItemSelectedListener() {
             @Override
             public void onItemSelected(ScrollChoice scrollChoice, int position, String name) {
-                gramKaffeObjekt = name;
+                gramKaffe = name;
             }
         });
 
-        scrollChoice2.addItems(milliGramKaffe, 0);
-        milliGramKaffeObjekt = "0";
+        scrollChoice2.addItems(milliGramKaffeScroll, 0);
+        milliGramKaffe = "0";
         scrollChoice2.setOnItemSelectedListener(new ScrollChoice.OnItemSelectedListener() {
             @Override
             public void onItemSelected(ScrollChoice scrollChoice, int position, String name) {
-                milliGramKaffeObjekt = name;
+                milliGramKaffe = name;
             }
         });
 
-
-        RecipeFactory.getInstance().setCoffeeToWater(LogicController.getInstance().convertStringsToFloats(gramKaffeObjekt, milliGramKaffeObjekt));
         return rod;
     }
 
     @Override
     public void onClick(View v) {
-        System.out.println("Gram Kaffe: " + gramKaffeObjekt + "," + milliGramKaffeObjekt + " g");
+        System.out.println("Gram Kaffe: " + gramKaffe + "," + milliGramKaffe + " g");
         if (v == buttonNext){
             progressBarStatus +=20;
             progressBar.setProgress(progressBarStatus);
-            HvorMegetVandFragment hvorMegetVandFragment = new HvorMegetVandFragment();
+            RecipeFactory.getInstance().setGroundCoffee(LogicController.getInstance().convertStringsToFloats(gramKaffe, milliGramKaffe));
+            System.out.println("This is RecipeFactory Value: " + RecipeFactory.getInstance().getCoffeeToWater());
+            GrindSize grindSize = new GrindSize();
             getFragmentManager().beginTransaction()
                   //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                    .replace(R.id.broegFragmentetIActivity, hvorMegetVandFragment)
+                    .replace(R.id.broegFragmentetIActivity, grindSize)
                     .addToBackStack(null)
                     .commit();
-
-
-            System.out.println("This is RecipeFactory Value: " + RecipeFactory.getInstance().getCoffeeToWater());
         } else if (v == buttonTilbage){
-            StartBroeg startBroeg = new StartBroeg();
+            NameStart nameStart = new NameStart();
             getFragmentManager().beginTransaction()
                     //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
-                    .replace(R.id.broegFragmentetIActivity, startBroeg)
+                    .replace(R.id.broegFragmentetIActivity, nameStart)
                     .addToBackStack(null)
                     .commit();
         }

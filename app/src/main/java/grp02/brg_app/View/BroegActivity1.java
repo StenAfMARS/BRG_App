@@ -3,34 +3,32 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
-
-import grp02.brg_app.Model.BrygObjekt;
 import grp02.brg_app.R;
-import grp02.brg_app.View.FragmenterBrygDetaljer.StartBroeg;
+import grp02.brg_app.View.FragmenterBrygDetaljer.NameStart;
 
 
-public class BroegActivity1 extends AppCompatActivity {
+public class BroegActivity1 extends AppCompatActivity{
 
-    //Skal ikke være her
-    public ArrayList<BrygObjekt> list = new ArrayList<>();
-
+    @SuppressLint("StaticFieldLeak")
+    public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_broeg1);
 
+        context = this;
+
         if (savedInstanceState == null) {
-            Fragment fragment = new StartBroeg();
+            Fragment fragment = new NameStart();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.broegFragmentetIActivity, fragment)  // tom container i layout
                     .commit();
@@ -72,4 +70,6 @@ public class BroegActivity1 extends AppCompatActivity {
 
         }
     }
+
+
 }
