@@ -1,5 +1,7 @@
 package grp02.brg_app.Control;
 
+import java.util.Date;
+
 import grp02.brg_app.Model.DTO_recipe;
 
 public class RecipeFactoryController {
@@ -69,6 +71,9 @@ public class RecipeFactoryController {
 
     public void setGroundCoffee(float groundCoffee) {
         dto_recipe.setGroundCoffee(groundCoffee);
+    }
+    public void setDateTime(String DateTime) {
+        dto_recipe.setDateTime(DateTime);
     }
 
 }
