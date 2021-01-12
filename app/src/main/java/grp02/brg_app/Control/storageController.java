@@ -96,6 +96,20 @@ public class storageController extends SQLiteOpenHelper {
     public void deleteRow(String tableName, String tableRow,int ID){
         db.delete(tableName, tableRow + "=" + ID, null);
     }
+    public void deleteRecipies(){
+        String tableRow = "RecipeID";
+        String selectQuery = "SELECT * FROM Recipes WHERE   ID = (SELECT MAX(RecipeID)  FROM Recipes);";
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        int recipieID = 0;
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                recipieID = Integer.parseInt(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+        db.delete("Recipes", tableRow + "=" + recipieID, null);
+    }
 
     // code comes from https://www.javatpoint.com/android-sqlite-tutorial
     public List<DTO_recipe> getAllRecipes() {

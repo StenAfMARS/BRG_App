@@ -95,5 +95,9 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
             System.out.println("______________________________________________________________________________________________________");
             //Matching completely.
         }
+        if(v != btnBrewAction || v != btnSaveBrew){
+            grp02.brg_app.Control.storageController storageController = new storageController(getContext());
+            storageController.deleteRecipies();
+        }
     }
 }
