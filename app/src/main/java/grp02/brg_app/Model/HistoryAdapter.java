@@ -41,6 +41,7 @@ public class HistoryAdapter extends BaseAdapter {
 
         DTO_recipe recipe = recipes.get(position);
 
+
         if (convertView == null) {
             final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
             convertView = layoutInflater.inflate(R.layout.historik_card, null);
