@@ -86,7 +86,7 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
     public List<DTO_recipe> getHistory() {
         List<DTO_recipe> recipeList = new ArrayList<DTO_recipe>();
         // Select All Query
-        String selectQuery = "SELECT  *,History.timeOfBrew FROM Recipes,History INNER JOIN History ON History.fk_RecipeID = Recipes.RecipeID;";
+        String selectQuery = "SELECT  * FROM Recipes INNER JOIN History ON History.fk_RecipeID = Recipes.RecipeID;";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 

@@ -64,9 +64,6 @@ public class HistorikActivity1 extends AppCompatActivity {
     private void InitHistoryList(IDatabaseConnector db){
         ListView listView = findViewById(R.id.historyCardList);
 
-        db.saveRecipe(new DTO_recipe());
-        db.saveRecipe(new DTO_recipe());
-
         HistoryAdapter adapter = new HistoryAdapter(this, db.getHistory());
         listView.setAdapter(adapter);
     }
