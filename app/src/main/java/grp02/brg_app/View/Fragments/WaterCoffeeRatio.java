@@ -1,4 +1,4 @@
-package grp02.brg_app.View.FragmenterBrygDetaljer;
+package grp02.brg_app.View.Fragments;
 
 import android.os.Bundle;
 
@@ -16,7 +16,7 @@ import com.webianks.library.scroll_choice.ScrollChoice;
 import java.util.ArrayList;
 import java.util.List;
 
-import grp02.brg_app.Control.RecipeFactory;
+import grp02.brg_app.Control.RecipeFactoryController;
 import grp02.brg_app.R;
 
 public class WaterCoffeeRatio extends Fragment implements View.OnClickListener {
@@ -81,7 +81,7 @@ public class WaterCoffeeRatio extends Fragment implements View.OnClickListener {
         if (v == buttonNext1){
             progressBarStatus +=20;
             progressBar.setProgress(progressBarStatus);
-            RecipeFactory.getInstance().setWaterAmount(mlVand);
+            RecipeFactoryController.getInstance().setWaterAmount(mlVand);
             BrewingTemperature brewingTemperature = new BrewingTemperature();
         getFragmentManager().beginTransaction()
                 //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)

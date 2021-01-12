@@ -2,9 +2,9 @@ package grp02.brg_app.Control;
 
 import grp02.brg_app.Model.DTO_recipe;
 
-public class RecipeFactory {
+public class RecipeFactoryController {
     // Singleton class
-    private static RecipeFactory Instance;
+    private static RecipeFactoryController Instance;
     private DTO_recipe dto_recipe;
     private String recipeName; // Navn på recipe
 
@@ -24,11 +24,11 @@ public class RecipeFactory {
         dto_recipe.setWaterAmount(waterAmount);
     }
 
-    private RecipeFactory() {}
+    private RecipeFactoryController() {}
 
-    public static RecipeFactory getInstance() {
+    public static RecipeFactoryController getInstance() {
         if (Instance == null) {
-            Instance = new RecipeFactory();
+            Instance = new RecipeFactoryController();
             Instance.clearRecipe();
         }
 

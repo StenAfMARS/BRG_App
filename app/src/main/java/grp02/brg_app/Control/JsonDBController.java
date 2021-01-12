@@ -13,11 +13,11 @@ import java.util.List;
 
 import grp02.brg_app.Model.DTO_recipe;
 
-public class JsonDatabase implements IDatabaseConnector {
+public class JsonDBController implements IDatabaseConnector {
     private Gson gson = new Gson();
     private SharedPreferences sharedPrefs;
 
-    public JsonDatabase(Context context) {
+    public JsonDBController(Context context) {
         sharedPrefs = context.getSharedPreferences("Json", Context.MODE_PRIVATE);
     }
 

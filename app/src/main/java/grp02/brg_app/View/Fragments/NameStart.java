@@ -1,4 +1,4 @@
-package grp02.brg_app.View.FragmenterBrygDetaljer;
+package grp02.brg_app.View.Fragments;
 
 import android.os.Bundle;
 
@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import grp02.brg_app.Control.RecipeFactory;
+import grp02.brg_app.Control.RecipeFactoryController;
 import grp02.brg_app.R;
 
 public class NameStart extends Fragment implements View.OnClickListener {
@@ -52,7 +52,7 @@ public class NameStart extends Fragment implements View.OnClickListener {
             } else {
                 navn = editText.getText().toString();
                 System.out.println("Navnet: " + navn);
-                RecipeFactory.getInstance().setRecipeName(navn);
+                RecipeFactoryController.getInstance().setRecipeName(navn);
                 GroundCoffee groundCoffee = new GroundCoffee();
                 getFragmentManager().beginTransaction()
                         //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
