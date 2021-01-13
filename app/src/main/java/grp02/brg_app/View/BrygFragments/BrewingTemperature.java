@@ -31,7 +31,7 @@ public class BrewingTemperature extends Fragment implements View.OnClickListener
 
     @Override
     public View onCreateView(LayoutInflater i,ViewGroup container,Bundle savedInstanceState) {
-        View rod = i.inflate(R.layout.fragment_vand_fordelings_tid,container, false);
+        View rod = i.inflate(R.layout.fragment_brewing_temperature,container, false);
 
         progressBar = rod.findViewById(R.id.progressBar2);
         progressBar.setProgress(progressBarStatus);
