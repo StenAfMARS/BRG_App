@@ -1,11 +1,18 @@
 package grp02.brg_app.Model;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class DTO_recipe {
     private int recipeID;
@@ -95,12 +102,30 @@ public class DTO_recipe {
         dateTime = date;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressLint("SimpleDateFormat")
-    public String getDateTime(){
-        String pattern = "dd-MM-yy-kk:mm";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        dateTime = simpleDateFormat.format(new Date());
-        System.out.println(dateTime);
+    public String setBrewDateTime() {
+        ZonedDateTime now = ZonedDateTime.now();
+        int YY = now.getYear();
+        int MM = now.getMonthValue();
+        int dd = now.getDayOfMonth();
+        int hh = now.getHour();
+        int mm = now.getMinute();
+        String dash = "-";
+
+        dateTime = dd + dash + MM + dash + YY + dash + hh + dash + mm;
+
+//        String pattern = "dd-MM-yy-kk:mm";
+//        String timeZoneId = TimeZone.getDefault().getID();
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+//        simpleDateFormat.setTimeZone(TimeZone.getTimeZone(timeZoneId));
+//        dateTime = simpleDateFormat.format(new Date());
+        System.out.println("Date: " + dateTime);
+
+        return dateTime;
+    }
+
+    public String getDateTime() {
         return dateTime;
     }
 

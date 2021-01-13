@@ -62,7 +62,7 @@ public class JsonDBController implements IDatabaseConnector {
     }
 
     @Override
-    public void addRow(String tableName, int recipeID, boolean fromNewRecipe) {
+    public void addRow(String tableName, int recipeID, boolean fromNewRecipe, String time) {
 
     }
 

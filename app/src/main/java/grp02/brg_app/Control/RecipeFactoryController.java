@@ -1,5 +1,9 @@
 package grp02.brg_app.Control;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.util.Date;
 
 import grp02.brg_app.Model.DTO_recipe;
@@ -74,5 +78,8 @@ public class RecipeFactoryController {
     }
 
     public void setDateTime(String date) { dto_recipe.setDateTime(date); }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String setBrewDateTime() { return dto_recipe.setBrewDateTime(); }
 
 }

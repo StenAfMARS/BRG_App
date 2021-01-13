@@ -60,8 +60,9 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == btnBrewAction) {
-            storageController.saveRecipe(RecipeFactoryController.getInstance().getDto_recipe());
-            storageController.addRow("History",0,true);
+            RecipeFactoryController recipeFactoryController = RecipeFactoryController.getInstance();
+            storageController.saveRecipe(recipeFactoryController.getDto_recipe());
+            storageController.addRow("History",0,true, recipeFactoryController.setBrewDateTime());
             RecipeFactoryController.getInstance().clearRecipe();
 
             getFragmentManager().beginTransaction()
@@ -71,8 +72,9 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
                     .commit();
 
         } else if (v == btnSaveBrew) {
-            storageController.saveRecipe(RecipeFactoryController.getInstance().getDto_recipe());
-            storageController.addRow("History",0,true);
+            RecipeFactoryController recipeFactoryController = RecipeFactoryController.getInstance();
+            storageController.saveRecipe(recipeFactoryController.getDto_recipe());
+            storageController.addRow("History",0,true, recipeFactoryController.setBrewDateTime());
             testRecipeFactory();
 
             getFragmentManager().beginTransaction()
