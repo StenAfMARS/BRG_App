@@ -17,7 +17,7 @@ import grp02.brg_app.View.BroegActivity1;
 
 public class FinalBroeg extends Fragment implements View.OnClickListener {
 
-    private TextView name, groundCoffee, grindSize, waterCoffeeRatio, brewingTemp, bloomTime, bloomWater;
+    private TextView name, groundCoffee, grindSize, waterCoffeeRatio, brewingTemp, bloomTime, bloomWater, textViewFinal;
     private Button btnBrewAction, btnSaveBrew;
     private RecipeFactoryController recipeFactory = RecipeFactoryController.getInstance();
     private StorageController storageController;
@@ -36,6 +36,7 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
         brewingTemp = rod.findViewById(R.id.brewingTemperature);
         bloomWater = rod.findViewById(R.id.bloomWater);
         bloomTime = rod.findViewById(R.id.bloomTime);
+        textViewFinal = rod.findViewById(R.id.textViewFinal);
 
         name.setText(recipeFactory.getDto_recipe().getRecipeName());
         groundCoffee.setText(recipeFactory.getDto_recipe().getGroundCoffee() + "g. kaffe");
@@ -44,6 +45,7 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
         brewingTemp.setText(recipeFactory.getDto_recipe().getBrewingTemperature() + " grader Celcius");
         bloomWater.setText(recipeFactory.getDto_recipe().getBloomWater() + " ml. vand til bloom");
         bloomTime.setText(recipeFactory.getDto_recipe().getBloomTime() + " sekunder til bloom vand distribuering");
+        textViewFinal.setText("DIN BRYG");
 
         btnBrewAction = rod.findViewById(R.id.FB_brewActionBtn);
         btnBrewAction.setOnClickListener(this);
