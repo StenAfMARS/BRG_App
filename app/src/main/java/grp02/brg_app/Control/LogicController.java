@@ -1,6 +1,10 @@
 package grp02.brg_app.Control;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.view.View;
+
+import com.airbnb.lottie.LottieAnimationView;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
@@ -8,6 +12,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
+
+import android.os.Looper;
+import android.os.Handler;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
+import grp02.brg_app.View.BroegActivity1;
+import grp02.brg_app.View.MainActivity;
 
 public class LogicController {
 
@@ -80,4 +93,5 @@ public class LogicController {
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy-HH:mm");
         return df.format(date);
     }
+
 }
