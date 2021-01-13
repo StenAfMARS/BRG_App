@@ -23,20 +23,21 @@ import grp02.brg_app.R;
 public class GroundCoffee extends Fragment implements View.OnClickListener {
 
 
-    List<String> gramKaffeScroll = new ArrayList<>();
-    List<String> milliGramKaffeScroll = new ArrayList<>();
-    String gramKaffe, milliGramKaffe;
-    TextView hvorMangeKramKaffe;
-    ScrollChoice scrollChoice, scrollChoice2;
-    Button buttonNext, buttonTilbage;
-    ProgressBar progressBar;
-    int progressBarStatus = 0;
+    private List<String> gramKaffeScroll = new ArrayList<>();
+    private List<String> milliGramKaffeScroll = new ArrayList<>();
+    private String gramKaffe, milliGramKaffe;
+    private TextView hvorMangeKramKaffe;
+    private ScrollChoice scrollChoice, scrollChoice2;
+    private Button buttonNext, buttonTilbage;
+    private ProgressBar progressBar;
+    private int progressBarStatus = 0;
 
     @Override
     public View onCreateView(LayoutInflater i,ViewGroup container,Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.fragment_hvor_meget_kaffe,container, false);
 
         progressBar = rod.findViewById(R.id.progressBar);
+        progressBar.setProgress(progressBarStatus);
 
         buttonNext = rod.findViewById(R.id.buttonNext);
         buttonNext.setText("NÆSTE");
@@ -83,19 +84,17 @@ public class GroundCoffee extends Fragment implements View.OnClickListener {
             progressBar.setProgress(progressBarStatus);
             RecipeFactoryController.getInstance().setGroundCoffee(LogicController.getInstance().convertStringsToFloats(gramKaffe, milliGramKaffe));
             System.out.println("This is RecipeFactory Value: " + RecipeFactoryController.getInstance().getCoffeeToWater());
-            GrindSize grindSize = new GrindSize();
             getFragmentManager().beginTransaction()
                   //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                    .replace(R.id.broegFragmentetIActivity, grindSize)
+                    .replace(R.id.broegFragmentetIActivity, new GrindSize())
                     .addToBackStack(null)
                     .commit();
         } else if (v == buttonTilbage){
-            NameStart nameStart = new NameStart();
             getFragmentManager().beginTransaction()
                     //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
-                    .replace(R.id.broegFragmentetIActivity, nameStart)
+                    .replace(R.id.broegFragmentetIActivity, new NameStart())
                     .addToBackStack(null)
                     .commit();
         }

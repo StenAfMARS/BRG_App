@@ -21,13 +21,13 @@ import grp02.brg_app.R;
 
 public class BrewingTemperature extends Fragment implements View.OnClickListener {
 
-    List<String> tempScroll = new ArrayList<>();
-    int temp;
-    TextView temperatur;
-    ScrollChoice scrollChoice;
-    Button buttonNext2, buttonTilbage2;
-    ProgressBar progressBar;
-    int progressBarStatus = 48;
+    private List<String> tempScroll = new ArrayList<>();
+    private int temp;
+    private TextView temperatur;
+    private ScrollChoice scrollChoice;
+    private Button buttonNext2, buttonTilbage2;
+    private ProgressBar progressBar;
+    private int progressBarStatus = 48;
 
     @Override
     public View onCreateView(LayoutInflater i,ViewGroup container,Bundle savedInstanceState) {
@@ -77,19 +77,17 @@ public class BrewingTemperature extends Fragment implements View.OnClickListener
             progressBarStatus += 16;
             progressBar.setProgress(progressBarStatus);
             RecipeFactoryController.getInstance().setBrewingTemperature(temp);
-            BloomWater bloomWater = new BloomWater();
             getFragmentManager().beginTransaction()
                     //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                    .replace(R.id.broegFragmentetIActivity, bloomWater)
+                    .replace(R.id.broegFragmentetIActivity, new BloomWater())
                     .addToBackStack(null)
                     .commit();}
         else if (v == buttonTilbage2){
-            WaterCoffeeRatio waterCoffeeRatio = new WaterCoffeeRatio();
             getFragmentManager().beginTransaction()
                     //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
-                    .replace(R.id.broegFragmentetIActivity, waterCoffeeRatio)
+                    .replace(R.id.broegFragmentetIActivity, new WaterCoffeeRatio())
                     .addToBackStack(null)
                     .commit();
         }
