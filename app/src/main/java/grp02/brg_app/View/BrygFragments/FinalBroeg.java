@@ -17,10 +17,10 @@ import grp02.brg_app.View.BroegActivity1;
 
 public class FinalBroeg extends Fragment implements View.OnClickListener {
 
-    TextView name, groundCoffee, grindSize, waterCoffeeRatio, brewingTemp, bloomTime, bloomWater;
-    Button btnBrewAction, btnSaveBrew;
-    RecipeFactoryController recipeFactory = RecipeFactoryController.getInstance();
-    StorageController storageController;
+    private TextView name, groundCoffee, grindSize, waterCoffeeRatio, brewingTemp, bloomTime, bloomWater;
+    private Button btnBrewAction, btnSaveBrew;
+    private RecipeFactoryController recipeFactory = RecipeFactoryController.getInstance();
+    private StorageController storageController;
 
     @Override
     public View onCreateView(LayoutInflater i, ViewGroup container,
@@ -60,7 +60,6 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
             storageController.saveRecipe(RecipeFactoryController.getInstance().getDto_recipe());
 
             RecipeFactoryController.getInstance().clearRecipe();
-
             getFragmentManager().beginTransaction()
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
                     .replace(R.id.broegFragmentetIActivity, new OnPressedBryg())
