@@ -94,13 +94,13 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
         if (cursor.moveToFirst()) {
             do {
                 RecipeFactoryController.getInstance().setRecipeID(Integer.parseInt(cursor.getString(0)));
-                RecipeFactoryController.getInstance().setGroundCoffee(cursor.getInt(1));
                 RecipeFactoryController.getInstance().setGrindSize(cursor.getString(2));
-                RecipeFactoryController.getInstance().setRecipeName(cursor.getString(3));
-                RecipeFactoryController.getInstance().setWaterToCoffee(cursor.getFloat(4));
-                RecipeFactoryController.getInstance().setBrewingTemperature(cursor.getInt(5));
-                RecipeFactoryController.getInstance().setBloomWater(cursor.getInt(6));
-                RecipeFactoryController.getInstance().setBloomTime(cursor.getInt(7));
+                RecipeFactoryController.getInstance().setRecipeName(cursor.getString(1));
+                RecipeFactoryController.getInstance().setWaterToCoffee(cursor.getFloat(3));
+                RecipeFactoryController.getInstance().setBrewingTemperature(cursor.getInt(4));
+                RecipeFactoryController.getInstance().setBloomWater(cursor.getInt(5));
+                RecipeFactoryController.getInstance().setBloomTime(cursor.getInt(6));
+                RecipeFactoryController.getInstance().setGroundCoffee(cursor.getInt(7));
                 RecipeFactoryController.getInstance().setDateTime(cursor.getString(8));
                 // Adding contact to list
                 recipeList.add(RecipeFactoryController.getInstance().getDto_recipe());
@@ -122,13 +122,13 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
         if (cursor.moveToFirst()) {
             do {
                 RecipeFactoryController.getInstance().setRecipeID(Integer.parseInt(cursor.getString(0)));
-                RecipeFactoryController.getInstance().setGroundCoffee(cursor.getInt(1));
                 RecipeFactoryController.getInstance().setGrindSize(cursor.getString(2));
-                RecipeFactoryController.getInstance().setRecipeName(cursor.getString(3));
-                RecipeFactoryController.getInstance().setWaterToCoffee(cursor.getFloat(4));
-                RecipeFactoryController.getInstance().setBrewingTemperature(cursor.getInt(5));
-                RecipeFactoryController.getInstance().setBloomWater(cursor.getInt(6));
-                RecipeFactoryController.getInstance().setBloomTime(cursor.getInt(7));
+                RecipeFactoryController.getInstance().setRecipeName(cursor.getString(1));
+                RecipeFactoryController.getInstance().setWaterToCoffee(cursor.getFloat(3));
+                RecipeFactoryController.getInstance().setBrewingTemperature(cursor.getInt(4));
+                RecipeFactoryController.getInstance().setBloomWater(cursor.getInt(5));
+                RecipeFactoryController.getInstance().setBloomTime(cursor.getInt(6));
+                RecipeFactoryController.getInstance().setGroundCoffee(cursor.getInt(7));
                 recipeList.add(RecipeFactoryController.getInstance().getDto_recipe());
             } while (cursor.moveToNext());
         }
