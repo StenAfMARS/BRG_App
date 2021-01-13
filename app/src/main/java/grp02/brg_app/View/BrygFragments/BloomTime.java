@@ -1,4 +1,4 @@
-package grp02.brg_app.View.FragmenterBrygDetaljer;
+package grp02.brg_app.View.BrygFragments;
 
 import android.os.Bundle;
 
@@ -16,7 +16,7 @@ import com.webianks.library.scroll_choice.ScrollChoice;
 import java.util.ArrayList;
 import java.util.List;
 
-import grp02.brg_app.Control.RecipeFactory;
+import grp02.brg_app.Control.RecipeFactoryController;
 import grp02.brg_app.R;
 
 public class BloomTime extends Fragment implements View.OnClickListener {
@@ -81,7 +81,7 @@ public class BloomTime extends Fragment implements View.OnClickListener {
         if (v == buttonNext4){
             progressBarStatus += 20;
             progressBar.setProgress(progressBarStatus);
-            RecipeFactory.getInstance().setBloomTime(bloomDistTime);
+            RecipeFactoryController.getInstance().setBloomTime(bloomDistTime);
             FinalBroeg finalBroeg = new FinalBroeg();
             getFragmentManager().beginTransaction()
                     //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)

@@ -3,6 +3,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,15 +12,20 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import grp02.brg_app.R;
-import grp02.brg_app.View.FragmenterBrygDetaljer.NameStart;
+import grp02.brg_app.View.BrygFragments.NameStart;
 
 
 public class BroegActivity1 extends AppCompatActivity{
+
+    @SuppressLint("StaticFieldLeak")
+    public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_broeg1);
+
+        context = this;
 
         if (savedInstanceState == null) {
             Fragment fragment = new NameStart();

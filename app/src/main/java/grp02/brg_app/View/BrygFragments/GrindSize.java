@@ -1,4 +1,4 @@
-package grp02.brg_app.View.FragmenterBrygDetaljer;
+package grp02.brg_app.View.BrygFragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,8 +15,7 @@ import com.webianks.library.scroll_choice.ScrollChoice;
 import java.util.ArrayList;
 import java.util.List;
 
-import grp02.brg_app.Control.LogicController;
-import grp02.brg_app.Control.RecipeFactory;
+import grp02.brg_app.Control.RecipeFactoryController;
 import grp02.brg_app.R;
 
 public class GrindSize extends Fragment implements View.OnClickListener {
@@ -72,8 +71,8 @@ public class GrindSize extends Fragment implements View.OnClickListener {
         if (v == buttonNext){
             progressBarStatus +=16;
             progressBar.setProgress(progressBarStatus);
-            RecipeFactory.getInstance().setGrindSize(grindSize);
-            System.out.println("This is RecipeFactory Value: " + RecipeFactory.getInstance().getCoffeeToWater());
+            RecipeFactoryController.getInstance().setGrindSize(grindSize);
+            System.out.println("This is RecipeFactory Value: " + RecipeFactoryController.getInstance().getCoffeeToWater());
             WaterCoffeeRatio waterCoffeeRatio = new WaterCoffeeRatio();
             getFragmentManager().beginTransaction()
                   //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)

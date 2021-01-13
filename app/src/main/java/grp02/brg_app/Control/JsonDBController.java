@@ -13,17 +13,17 @@ import java.util.List;
 
 import grp02.brg_app.Model.DTO_recipe;
 
-public class JsonDatabase implements IDatabaseConnector {
+public class JsonDBController implements IDatabaseConnector {
     private Gson gson = new Gson();
     private SharedPreferences sharedPrefs;
 
-    public JsonDatabase(Context context) {
+    public JsonDBController(Context context) {
         sharedPrefs = context.getSharedPreferences("Json", Context.MODE_PRIVATE);
     }
 
     @Override
     public void saveRecipe(DTO_recipe recipe) {
-        List<DTO_recipe> recipes = getRecipeList();
+        List<DTO_recipe> recipes = getRecipes();
         recipes.add(0, recipe);
 
         sharedPrefs.edit()
@@ -32,9 +32,9 @@ public class JsonDatabase implements IDatabaseConnector {
     }
 
     @Override
-    public void deleteRecipe(int id) {
-        List<DTO_recipe> recipes = getRecipeList();
-        recipes.remove(id);
+    public void deleteRecipe(String tableName, String tableRow, int ID) {
+        List<DTO_recipe> recipes = getRecipes();
+        recipes.remove(ID);
 
         sharedPrefs.edit()
                 .putString("JsonRecipes", gson.toJson(recipes))
@@ -43,16 +43,36 @@ public class JsonDatabase implements IDatabaseConnector {
 
     @Override
     public DTO_recipe getRecipe(int id) {
-        List<DTO_recipe> recipes = getRecipeList();
+        List<DTO_recipe> recipes = getRecipes();
         return recipes.get(id);
     }
 
     @Override
-    public DTO_recipe[] getRecipes() {
-        return getRecipeList().toArray(new DTO_recipe[0]);
+    public List<DTO_recipe> getAllFavorites() {
+        return null;
     }
 
-    private List<DTO_recipe> getRecipeList()
+    @Override
+    public List<DTO_recipe> getHistory(){
+        String jsonString = sharedPrefs.getString("JsonRecipes", "[]");
+
+        Type listType = new TypeToken<List<DTO_recipe>>() {}.getType();
+
+        return gson.fromJson(jsonString, listType);
+    }
+
+    @Override
+    public void addRow(String tableName, int recipeID, boolean fromNewRecipe) {
+
+    }
+
+    @Override
+    public void addPrecreatedRecipes() {
+
+    }
+
+    @Override
+    public List<DTO_recipe> getRecipes()
     {
         String jsonString = sharedPrefs.getString("JsonRecipes", "[]");
 

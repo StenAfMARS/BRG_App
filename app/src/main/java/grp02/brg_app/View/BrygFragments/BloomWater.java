@@ -1,4 +1,4 @@
-package grp02.brg_app.View.FragmenterBrygDetaljer;
+package grp02.brg_app.View.BrygFragments;
 
 import android.os.Bundle;
 
@@ -16,7 +16,7 @@ import com.webianks.library.scroll_choice.ScrollChoice;
 import java.util.ArrayList;
 import java.util.List;
 
-import grp02.brg_app.Control.RecipeFactory;
+import grp02.brg_app.Control.RecipeFactoryController;
 import grp02.brg_app.R;
 
 public class BloomWater extends Fragment implements View.OnClickListener {
@@ -82,7 +82,7 @@ public class BloomWater extends Fragment implements View.OnClickListener {
             progressBarStatus += 16;
             progressBar.setProgress(progressBarStatus);
 
-            RecipeFactory.getInstance().setBloomWater(mlVandTilBloomObjekt);
+            RecipeFactoryController.getInstance().setBloomWater(mlVandTilBloomObjekt);
             BloomTime bloomvandDistribueringFragment = new BloomTime();
             getFragmentManager().beginTransaction()
                     //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)

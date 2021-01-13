@@ -1,14 +1,14 @@
 package grp02.brg_app.Control;
 
-import grp02.brg_app.Model.DTO_recipe;
-import grp02.brg_app.Model.GrindSize;
+import java.util.Date;
 
-public class RecipeFactory {
+import grp02.brg_app.Model.DTO_recipe;
+
+public class RecipeFactoryController {
     // Singleton class
-    private static RecipeFactory Instance;
+    private static RecipeFactoryController Instance;
     private DTO_recipe dto_recipe;
     private String recipeName; // Navn på recipe
-    private GrindSize grindSize;
 
     public DTO_recipe getDto_recipe() {
         return dto_recipe;
@@ -26,19 +26,15 @@ public class RecipeFactory {
         dto_recipe.setWaterAmount(waterAmount);
     }
 
-    private RecipeFactory() {}
+    private RecipeFactoryController() {}
 
-    public static RecipeFactory getInstance() {
+    public static RecipeFactoryController getInstance() {
         if (Instance == null) {
-            Instance = new RecipeFactory();
+            Instance = new RecipeFactoryController();
             Instance.clearRecipe();
         }
 
         return Instance;
-    }
-
-    public void calcGramKaffe(float kaffeGram) {
-
     }
 
     public void clearRecipe() {
@@ -75,6 +71,9 @@ public class RecipeFactory {
 
     public void setGroundCoffee(float groundCoffee) {
         dto_recipe.setGroundCoffee(groundCoffee);
+    }
+    public void setDateTime(String DateTime) {
+        dto_recipe.setDateTime(DateTime);
     }
 
 }

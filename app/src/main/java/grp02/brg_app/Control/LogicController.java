@@ -1,9 +1,6 @@
 package grp02.brg_app.Control;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-
-import grp02.brg_app.Model.GrindSize;
 
 public class LogicController {
 

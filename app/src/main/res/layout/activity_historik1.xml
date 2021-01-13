@@ -8,6 +8,7 @@
     tools:context=".HistorikActivity1">
 
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorPrimary"
@@ -39,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/header"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,19 +48,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/hero"
-        android:contentDescription="@string/header" />
+        app:srcCompat="@drawable/hero" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/historikCardRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
+    <ListView
+        android:id="@+id/historyCardList"
+        android:layout_width="370dp"
+        android:layout_height="346dp"
+        android:layout_margin="20dp"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerImage"
+        app:layout_constraintVertical_bias="0.99" />
+
+    <TextView
+        android:id="@+id/TVhistorikTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/historik"
+        android:textColor="@color/colorPrimary"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.072"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.785" />
+        app:layout_constraintVertical_bias="0.332" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
