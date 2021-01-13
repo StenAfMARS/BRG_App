@@ -97,26 +97,30 @@
 
     <Button
         android:id="@+id/FB_brewActionBtn"
-        android:layout_width="35dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/broeg_logo_2"
+        android:layout_width="100dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/default_btn"
+        android:drawableTint="@color/colorPrimary"
+        android:text="Brøg"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.812"
+        app:layout_constraintHorizontal_bias="0.781"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bloomTime" />
 
     <Button
         android:id="@+id/FB_saveBrewBtn"
-        android:layout_width="48dp"
+        android:layout_width="100dp"
         android:layout_height="42dp"
         android:layout_marginTop="40dp"
-        android:background="@android:drawable/ic_menu_save"
-        android:text=""
+        android:background="@drawable/default_btn"
+        android:drawableStart="@android:drawable/ic_menu_save"
+        android:drawableTint="@color/colorPrimary"
+        android:text="GEM"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.184"
+        app:layout_constraintHorizontal_bias="0.215"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bloomTime" />
 
