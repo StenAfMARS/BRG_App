@@ -1,4 +1,4 @@
-package grp02.brg_app.View.Fragments;
+package grp02.brg_app.View.BrygFragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
