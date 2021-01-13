@@ -1,5 +1,12 @@
 package grp02.brg_app.Model;
 
+import android.annotation.SuppressLint;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
 public class DTO_recipe {
     private int recipeID;
     private String recipeName;
@@ -10,7 +17,7 @@ public class DTO_recipe {
     private int bloomTime;
     private int waterAmount;
     private String grindSize;
-    private String DateTime;
+    private String dateTime;
 
     public int getWaterAmount() {
         return waterAmount;
@@ -83,7 +90,18 @@ public class DTO_recipe {
     public void setGrindSize(String grindSize) {
         this.grindSize = grindSize;
     }
-    public String getDateTime(){return DateTime;}
 
-    public void setDateTime(String dateTime) {DateTime = dateTime;}
+    public void setDateTime(String date) {
+        dateTime = date;
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    public String getDateTime(){
+        String pattern = "dd-MM-yy-kk:mm";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        dateTime = simpleDateFormat.format(new Date());
+        System.out.println(dateTime);
+        return dateTime;
+    }
+
 }

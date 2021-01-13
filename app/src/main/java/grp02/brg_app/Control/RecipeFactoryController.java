@@ -72,8 +72,7 @@ public class RecipeFactoryController {
     public void setGroundCoffee(float groundCoffee) {
         dto_recipe.setGroundCoffee(groundCoffee);
     }
-    public void setDateTime(String DateTime) {
-        dto_recipe.setDateTime(DateTime);
-    }
+
+    public void setDateTime(String date) { dto_recipe.setDateTime(date); }
 
 }
