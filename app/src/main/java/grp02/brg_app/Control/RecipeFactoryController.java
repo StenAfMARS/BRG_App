@@ -14,7 +14,7 @@ public class RecipeFactoryController {
     private DTO_recipe dto_recipe;
     private String recipeName; // Navn på recipe
 
-    public DTO_recipe getDto_recipe() {
+    public DTO_recipe getDTO_recipe() {
         return dto_recipe;
     }
 
@@ -79,7 +79,6 @@ public class RecipeFactoryController {
 
     public void setDateTime(String date) { dto_recipe.setDateTime(date); }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public String setBrewDateTime() { return dto_recipe.setBrewDateTime(); }
+    public String setBrewDateTime(String onAppStartUpDateTime) { return dto_recipe.setBrewDateTime(onAppStartUpDateTime); }
 
 }
