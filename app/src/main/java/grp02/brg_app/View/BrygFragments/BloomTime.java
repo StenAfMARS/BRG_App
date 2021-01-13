@@ -21,15 +21,13 @@ import grp02.brg_app.R;
 
 public class BloomTime extends Fragment implements View.OnClickListener {
 
-    List<String> bloomDistTimeScroll = new ArrayList<>();
-
-    int bloomDistTime;
-
-    TextView textViewDistribuering;
-    ScrollChoice scrollChoice;
-    Button buttonNext4, buttonTilbage4;
-    ProgressBar progressBar;
-    int progressBarStatus = 80;
+    private List<String> bloomDistTimeScroll = new ArrayList<>();
+    private int bloomDistTime;
+    private TextView textViewDistribuering;
+    private ScrollChoice scrollChoice;
+    private Button buttonNext4, buttonTilbage4;
+    private ProgressBar progressBar;
+    private int progressBarStatus = 80;
 
     @Override
     public View onCreateView(LayoutInflater i,ViewGroup container,Bundle savedInstanceState) {
@@ -82,21 +80,19 @@ public class BloomTime extends Fragment implements View.OnClickListener {
             progressBarStatus += 20;
             progressBar.setProgress(progressBarStatus);
             RecipeFactoryController.getInstance().setBloomTime(bloomDistTime);
-            FinalBroeg finalBroeg = new FinalBroeg();
             getFragmentManager().beginTransaction()
                     //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                    .replace(R.id.broegFragmentetIActivity, finalBroeg)
+                    .replace(R.id.broegFragmentetIActivity, new FinalBroeg())
                     .addToBackStack(null)
                     .commit();
 
         }
         else if (v == buttonTilbage4){
-            BloomWater bloomWater = new BloomWater();
             getFragmentManager().beginTransaction()
                     //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
-                    .replace(R.id.broegFragmentetIActivity, bloomWater)
+                    .replace(R.id.broegFragmentetIActivity, new BloomWater())
                     .addToBackStack(null)
                     .commit();
         }
