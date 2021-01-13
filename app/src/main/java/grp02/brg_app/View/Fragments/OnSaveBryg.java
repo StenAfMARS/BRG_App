@@ -23,14 +23,9 @@ public class OnSaveBryg extends Fragment {
 
         View onSaveBryg = inflater.inflate(R.layout.fragment_on_save_bryg, container, false);
 
-        showContent();
-        // Inflate the layout for this fragment
-        return onSaveBryg;
-    }
 
-    private void showContent() {
         try {
-            TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(4);
 
             Intent intent = new Intent(BroegActivity1.context, MainActivity.class);
             startActivity(intent);
@@ -38,5 +33,8 @@ public class OnSaveBryg extends Fragment {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        // Inflate the layout for this fragment
+        return onSaveBryg;
     }
 }

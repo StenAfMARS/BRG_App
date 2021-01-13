@@ -18,4 +18,7 @@
     <string name="app_info">App Info</string>
     <string name="forbind_til_enhed">Forbind Til Enhed:</string>
     <string name="wifi">WIFI SSID:</string>
+    <string name="defaultInputCardViewTitle">Columbia Java</string>
+    <string name="bryg">BRYG</string>
+    <string name="s_t_favorit">SÆT FAVORIT</string>
 </resources>
