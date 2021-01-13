@@ -12,8 +12,6 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import grp02.brg_app.R;
-import grp02.brg_app.View.BrygFragments.NameStart;
-import grp02.brg_app.View.RensFragments.Rens;
 import grp02.brg_app.View.RensFragments.RensIActivity;
 
 public class RensActivity1 extends AppCompatActivity {
