@@ -51,6 +51,7 @@ public class HistoryAdapter extends BaseAdapter {
         final TextView title = convertView.findViewById(R.id.HC_titleTV);
         final TextView date = convertView.findViewById(R.id.HC_brewDateTV);
 
+        String time = recipe.getDateTime();
         // 4
         title.setText(recipe.getRecipeName());
         date.setText(recipe.getDateTime());

@@ -1,6 +1,13 @@
 package grp02.brg_app.Control;
 
+import android.annotation.SuppressLint;
+
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class LogicController {
 
@@ -61,5 +68,16 @@ public class LogicController {
         }
 
         return convertedResults;
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    public String getCurrentDateTime() {
+        // Timezone
+        TimeZone tz = TimeZone.getDefault();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(tz);
+        Date date = calendar.getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy-HH:mm");
+        return df.format(date);
     }
 }

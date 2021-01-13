@@ -1,4 +1,4 @@
-package grp02.brg_app.View.BrygFragments;
+package grp02.brg_app.View.Fragments;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -20,10 +20,10 @@ import grp02.brg_app.View.BroegActivity1;
 
 public class FinalBroeg extends Fragment implements View.OnClickListener {
 
-    private TextView name, groundCoffee, grindSize, waterCoffeeRatio, brewingTemp, bloomTime, bloomWater, textViewFinal;
-    private Button btnBrewAction, btnSaveBrew;
-    private RecipeFactoryController recipeFactory = RecipeFactoryController.getInstance();
-    private StorageController storageController;
+    TextView name, groundCoffee, grindSize, waterCoffeeRatio, brewingTemp, bloomTime, bloomWater;
+    Button btnBrewAction, btnSaveBrew;
+    RecipeFactoryController recipeFactory = RecipeFactoryController.getInstance();
+    StorageController storageController;
 
     @Override
     public View onCreateView(LayoutInflater i, ViewGroup container,
@@ -39,18 +39,7 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
         brewingTemp = rod.findViewById(R.id.brewingTemperature);
         bloomWater = rod.findViewById(R.id.bloomWater);
         bloomTime = rod.findViewById(R.id.bloomTime);
-        textViewFinal = rod.findViewById(R.id.textViewFinal);
 
-<<<<<<< HEAD:app/src/main/java/grp02/brg_app/View/BrygFragments/FinalBroeg.java
-        name.setText(recipeFactory.getDto_recipe().getRecipeName());
-        groundCoffee.setText(recipeFactory.getDto_recipe().getGroundCoffee() + "g. kaffe");
-        grindSize.setText(recipeFactory.getDto_recipe().getGrindSize() + " grind size");
-        waterCoffeeRatio.setText(recipeFactory.getDto_recipe().getWaterAmount() + " ml. vand pr. gram kaffe");
-        brewingTemp.setText(recipeFactory.getDto_recipe().getBrewingTemperature() + " grader Celcius");
-        bloomWater.setText(recipeFactory.getDto_recipe().getBloomWater() + " ml. vand til bloom");
-        bloomTime.setText(recipeFactory.getDto_recipe().getBloomTime() + " sekunder til bloom vand distribuering");
-        textViewFinal.setText("DIN BRYG");
-=======
         name.setText(recipeFactory.getDTO_recipe().getRecipeName());
         groundCoffee.setText(recipeFactory.getDTO_recipe().getGroundCoffee() + "g. kaffe");
         grindSize.setText(recipeFactory.getDTO_recipe().getGrindSize() + " grind size");
@@ -58,7 +47,6 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
         brewingTemp.setText(recipeFactory.getDTO_recipe().getBrewingTemperature() + " grader Celcius");
         bloomWater.setText(recipeFactory.getDTO_recipe().getBloomWater() + " ml. vand til bloom");
         bloomTime.setText(recipeFactory.getDTO_recipe().getBloomTime() + " sekunder til bloom vand distribuering");
->>>>>>> dateTime_og_cleanup:app/src/main/java/grp02/brg_app/View/Fragments/FinalBroeg.java
 
         btnBrewAction = rod.findViewById(R.id.FB_brewActionBtn);
         btnBrewAction.setOnClickListener(this);
@@ -81,6 +69,7 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
                     0,
                     true, getDateTime);
             RecipeFactoryController.getInstance().clearRecipe();
+
             getFragmentManager().beginTransaction()
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
                     .replace(R.id.broegFragmentetIActivity, new OnPressedBryg())

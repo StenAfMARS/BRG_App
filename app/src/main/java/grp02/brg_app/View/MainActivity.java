@@ -3,6 +3,7 @@ package grp02.brg_app.View;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -11,12 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.List;
-
 import grp02.brg_app.Control.DatabaseController;
-import grp02.brg_app.Control.IDatabaseConnector;
-import grp02.brg_app.Control.StorageController;
-import grp02.brg_app.Model.DTO_recipe;
+import grp02.brg_app.Control.LogicController;
+import grp02.brg_app.Control.RecipeFactoryController;
 import grp02.brg_app.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,19 +28,10 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseController.getInstance().UseSQL(this);
 
-
-        /*IDatabaseConnector storageController = DatabaseController.getInstance().getDB();
-
-        if(storageController.getRecipes().size() == 0){
-            storageController.addPrecreatedRecipes();
-        }
-        List<DTO_recipe> list = storageController.getRecipes();
-        for (int i = 0; list.size()>i;i++){
-            System.out.println(list.get(i).getRecipeName());
-        }
-        System.out.println(storageController.getRecipes());*/
-
         sharedPref = getPreferences(Context.MODE_PRIVATE);
+
+        // Set DateTime
+        RecipeFactoryController.getInstance().setBrewDateTime(LogicController.getInstance().getCurrentDateTime());
 
         // Navigation
         // ##########################################################
