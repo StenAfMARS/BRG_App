@@ -1,6 +1,8 @@
 package grp02.brg_app.Model;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +70,8 @@ public class HistoryAdapter extends BaseAdapter {
                 if(v == HC_setfavoriteBtn){
                     System.out.println(recipe.getRecipeID());
                     DatabaseController.getInstance().getDB().addRow("Preferences",recipe.getRecipeID(),false,"");
+
+                    HC_setfavoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_24, 0);
                     System.out.println("row add");
                 }
             }
