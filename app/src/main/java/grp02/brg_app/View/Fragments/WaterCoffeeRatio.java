@@ -22,14 +22,13 @@ import grp02.brg_app.R;
 public class WaterCoffeeRatio extends Fragment implements View.OnClickListener {
 
 
-    List<String> mlVandScroll = new ArrayList<>();
-    int mlVand;
-    TextView hvorMangeMlVand;
-    ScrollChoice scrollChoice;
-    Button buttonNext1, buttonTilbage1;
-    ProgressBar progressBar;
-    int progressBarStatus = 20;
-    Bundle bundle = new Bundle();
+    private List<String> mlVandScroll = new ArrayList<>();
+    private int mlVand;
+    private TextView hvorMangeMlVand;
+    private ScrollChoice scrollChoice;
+    private Button buttonNext1, buttonTilbage1;
+    private ProgressBar progressBar;
+    private int progressBarStatus = 32;
 
 
     @Override
@@ -53,14 +52,12 @@ public class WaterCoffeeRatio extends Fragment implements View.OnClickListener {
         loadDeForskelligeMængder();
 
         mlVand = 45;
-        bundle.putInt("mlVandObjekt", mlVand);
 
         scrollChoice.addItems(mlVandScroll,15); //default index, så den er på "60"
         scrollChoice.setOnItemSelectedListener(new ScrollChoice.OnItemSelectedListener() {
             @Override
             public void onItemSelected(ScrollChoice scrollChoice, int position, String name) {
                 mlVand = Integer.parseInt(name.substring(0, name.length()-3));
-               bundle.putInt("mlVandObjekt", mlVand);
                 System.out.println("Ml vand: "+ mlVand);
             }
         });
@@ -75,26 +72,23 @@ public class WaterCoffeeRatio extends Fragment implements View.OnClickListener {
 
     }
 
-
     @Override
     public void onClick(View v) {
         if (v == buttonNext1){
-            progressBarStatus +=20;
+            progressBarStatus +=16;
             progressBar.setProgress(progressBarStatus);
             RecipeFactoryController.getInstance().setWaterAmount(mlVand);
-            BrewingTemperature brewingTemperature = new BrewingTemperature();
         getFragmentManager().beginTransaction()
                 //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                 .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                .replace(R.id.broegFragmentetIActivity, brewingTemperature)
+                .replace(R.id.broegFragmentetIActivity, new BrewingTemperature())
                 .addToBackStack(null)
                 .commit();}
         else if (v == buttonTilbage1){
-            GrindSize grindSize = new GrindSize();
             getFragmentManager().beginTransaction()
                   //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
-                    .replace(R.id.broegFragmentetIActivity, grindSize)
+                    .replace(R.id.broegFragmentetIActivity, new GrindSize())
                     .addToBackStack(null)
                     .commit();
         }

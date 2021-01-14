@@ -3,6 +3,13 @@
     package="grp02.brg_app">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -10,8 +17,7 @@
         android:roundIcon="@drawable/ic_launcher_round_old"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.BroegActivity1"
-            android:windowSoftInputMode="adjustNothing"></activity>
+        <activity android:name=".View.BroegActivity1" android:windowSoftInputMode="adjustNothing" />
         <activity android:name=".View.IndstillingerActivity1" />
         <activity android:name=".View.RensActivity1" />
         <activity android:name=".View.HistorikActivity1" />

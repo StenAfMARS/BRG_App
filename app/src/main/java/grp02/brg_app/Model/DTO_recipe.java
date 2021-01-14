@@ -10,7 +10,8 @@ public class DTO_recipe {
     private int bloomTime;
     private int waterAmount;
     private String grindSize;
-    private String DateTime;
+    private String dateTime;
+    private String onAppStartUpDateTime;
 
     public int getWaterAmount() {
         return waterAmount;
@@ -83,7 +84,18 @@ public class DTO_recipe {
     public void setGrindSize(String grindSize) {
         this.grindSize = grindSize;
     }
-    public String getDateTime(){return DateTime;}
 
-    public void setDateTime(String dateTime) {DateTime = dateTime;}
+    public void setDateTime(String date) {
+        dateTime = date;
+    }
+
+    public String setBrewDateTime(String onAppStartupDateTime) {
+        this.onAppStartUpDateTime = onAppStartupDateTime;
+        return onAppStartUpDateTime;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
 }

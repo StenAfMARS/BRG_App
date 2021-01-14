@@ -16,6 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import grp02.brg_app.Control.DatabaseController;
 import grp02.brg_app.Control.IDatabaseConnector;
 import grp02.brg_app.Control.JsonDBController;
+import grp02.brg_app.Control.StorageController;
 import grp02.brg_app.Model.DTO_recipe;
 import grp02.brg_app.Model.HistoryAdapter;
 import grp02.brg_app.R;

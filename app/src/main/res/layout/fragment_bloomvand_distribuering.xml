@@ -1,35 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E0E0E0">
+    android:background="@color/colorAccent">
 
+
+    <Button
+        android:id="@+id/buttonNext4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="285dp"
+        android:layout_marginEnd="73dp"
+        android:background="@drawable/default_btn"
+        android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ProgressBar
         android:id="@+id/progressBar4"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="266dp"
         android:layout_height="25dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="333dp"
         android:progressDrawable="@drawable/default_processbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scroll_choice_Distribuering" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonTilbage4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="285dp"
+        android:background="@drawable/default_btn"
+        android:drawableStart="@drawable/ic_baseline_arrow_back_ios_24"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textViewDistribuering"
         android:layout_width="308dp"
         android:layout_height="77dp"
         android:layout_marginTop="12dp"
-        android:background="#E0E0E0"
+        android:background="@color/colorAccent"
         android:gravity="center"
-        android:text="HVOR HURTIGT SKAL BLOOMVANDET DISTRIBUERES?"
-        android:textColor="#77482C"
-        android:textColorLink="#77482C"
-        android:textSize="20dp"
+        android:textColor="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,36 +67,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDistribuering"
         app:scroll_atmospheric="true"
-        app:scroll_background_color="#E0E0E0"
+        app:scroll_background_color="@color/colorAccent"
         app:scroll_indicator="true"
         app:scroll_item_align="center"
+        app:scroll_item_text_color="@color/colorPrimary"
         app:scroll_item_text_size="16dp"
-        app:scroll_item_text_color="#77482C"
-        app:scroll_selected_item_text_color="#8A6F62"
         app:scroll_visible_item_count="7" />
-
-    <Button
-        android:id="@+id/buttonNext4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:background="@drawable/default_btn"
-        android:text="@string/n_ste"
-        android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar4"
-        app:layout_constraintEnd_toEndOf="@+id/progressBar4" />
-
-    <Button
-        android:id="@+id/buttonTilbage4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:background="@drawable/default_btn"
-        android:text="@string/tilbage"
-        android:drawableStart="@drawable/ic_baseline_arrow_back_ios_24"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar4"
-        app:layout_constraintStart_toStartOf="@+id/progressBar4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

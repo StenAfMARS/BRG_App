@@ -11,6 +11,6 @@ public interface IDatabaseConnector {
     List<DTO_recipe> getRecipes();
     List<DTO_recipe> getAllFavorites();
     List<DTO_recipe> getHistory();
-    void addRow(String tableName, int recipeID, boolean fromNewRecipe);
+    void addRow(String tableName, int recipeID, boolean fromNewRecipe, String time);
     void addPrecreatedRecipes();
 }

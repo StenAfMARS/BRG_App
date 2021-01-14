@@ -42,6 +42,7 @@ public class HistoryAdapter extends BaseAdapter {
 
         DTO_recipe recipe = recipes.get(position);
 
+
         if (convertView == null) {
             final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
             convertView = layoutInflater.inflate(R.layout.historik_card, null);
@@ -53,6 +54,8 @@ public class HistoryAdapter extends BaseAdapter {
         final TextView hiddenId = convertView.findViewById(R.id.HC_hiddenID);
         final Button HC_brewBtn = convertView.findViewById(R.id.HC_brewBtn);
         final Button HC_setfavoriteBtn = convertView.findViewById(R.id.HC_setfavoriteBtn);
+
+        String time = recipe.getDateTime();
         // 4
 
         final View.OnClickListener onClickListener = new View.OnClickListener() {

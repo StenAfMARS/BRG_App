@@ -53,11 +53,10 @@ public class NameStart extends Fragment implements View.OnClickListener {
                 navn = editText.getText().toString();
                 System.out.println("Navnet: " + navn);
                 RecipeFactoryController.getInstance().setRecipeName(navn);
-                GroundCoffee groundCoffee = new GroundCoffee();
                 getFragmentManager().beginTransaction()
                         //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                         .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                        .replace(R.id.broegFragmentetIActivity, groundCoffee)
+                        .replace(R.id.broegFragmentetIActivity, new GroundCoffee())
                         .addToBackStack(null)
                         .commit();
             }
