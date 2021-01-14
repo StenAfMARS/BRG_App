@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -49,8 +50,25 @@ public class HistoryAdapter extends BaseAdapter {
         // 3
         final TextView title = convertView.findViewById(R.id.HC_titleTV);
         final TextView date = convertView.findViewById(R.id.HC_brewDateTV);
-
+        final TextView hiddenId = convertView.findViewById(R.id.HC_hiddenID);
+        final Button HC_brewBtn = convertView.findViewById(R.id.HC_brewBtn);
+        final Button HC_setfavoriteBtn = convertView.findViewById(R.id.HC_setfavoriteBtn);
         // 4
+
+        final View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(v == HC_brewBtn){
+
+                }
+                if(v == HC_setfavoriteBtn){
+                    System.out.println("test favorit"+recipe.getRecipeID());
+                }
+            }
+        };
+        HC_brewBtn.setOnClickListener(onClickListener);
+        HC_setfavoriteBtn.setOnClickListener(onClickListener);
+
         title.setText(recipe.getRecipeName());
         date.setText(recipe.getDateTime());
         System.out.println(recipe.getDateTime());
@@ -58,4 +76,5 @@ public class HistoryAdapter extends BaseAdapter {
 
         return convertView;
     }
+
 }
