@@ -23,7 +23,7 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
         super(context, DATABASE, null,VERSION);
     }
 
-    private SQLiteDatabase db = this.getWritableDatabase();
+    SQLiteDatabase db = this.getWritableDatabase();
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -78,7 +78,6 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
                 break;
         }
     }
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public List<DTO_recipe> getHistory() {

@@ -72,8 +72,6 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
                     "History",
                     0,
                     true, getDateTime);
-            storageController.saveRecipe(RecipeFactoryController.getInstance().getDto_recipe());
-            storageController.addRow("History",0,true);
             RecipeFactoryController.getInstance().clearRecipe();
             getFragmentManager().beginTransaction()
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
@@ -90,8 +88,6 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
                     0,
                     true,
                     getDateTime);
-            storageController.saveRecipe(RecipeFactoryController.getInstance().getDto_recipe());
-            storageController.addRow("History",0,true);
             testRecipeFactory();
 
             getFragmentManager().beginTransaction()

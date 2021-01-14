@@ -10,12 +10,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import grp02.brg_app.Control.DatabaseController;
+import grp02.brg_app.Control.StorageController;
 import grp02.brg_app.R;
 import grp02.brg_app.Model.DTO_recipe;
 
 public class HistoryAdapter extends BaseAdapter {
     Context mContext;
     List<DTO_recipe> recipes;
+    StorageController storageController;
 
     public HistoryAdapter(Context context, List<DTO_recipe> gameLogs){
         mContext = context;
@@ -51,13 +54,11 @@ public class HistoryAdapter extends BaseAdapter {
         // 3
         final TextView title = convertView.findViewById(R.id.HC_titleTV);
         final TextView date = convertView.findViewById(R.id.HC_brewDateTV);
-        final TextView hiddenId = convertView.findViewById(R.id.HC_hiddenID);
         final Button HC_brewBtn = convertView.findViewById(R.id.HC_brewBtn);
         final Button HC_setfavoriteBtn = convertView.findViewById(R.id.HC_setfavoriteBtn);
 
         String time = recipe.getDateTime();
         // 4
-
         final View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +66,9 @@ public class HistoryAdapter extends BaseAdapter {
 
                 }
                 if(v == HC_setfavoriteBtn){
-                    System.out.println("test favorit"+recipe.getRecipeID());
+                    System.out.println(recipe.getRecipeID());
+                    DatabaseController.getInstance().getDB().addRow("Preferences",recipe.getRecipeID(),false,"");
+                    System.out.println("row add");
                 }
             }
         };
