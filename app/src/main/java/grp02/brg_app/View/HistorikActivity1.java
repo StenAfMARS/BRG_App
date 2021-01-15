@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -67,5 +70,6 @@ public class HistorikActivity1 extends AppCompatActivity {
 
         HistoryAdapter adapter = new HistoryAdapter(this, db.getHistory());
         listView.setAdapter(adapter);
+
     }
-}
+    }
