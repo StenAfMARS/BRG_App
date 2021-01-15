@@ -75,7 +75,7 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
             RecipeFactoryController.getInstance().clearRecipe();
             getFragmentManager().beginTransaction()
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                    .replace(R.id.broegFragmentetIActivity, new OnPressedBryg())
+                    .replace(R.id.broegFragmentetIActivity, new OnPressedBryg(BroegActivity1.context))
                     .addToBackStack(null)
                     .commit();
 

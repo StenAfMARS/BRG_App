@@ -8,18 +8,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import grp02.brg_app.Control.DatabaseController;
 import grp02.brg_app.Control.IDatabaseConnector;
-import grp02.brg_app.Control.JsonDBController;
-import grp02.brg_app.Control.StorageController;
-import grp02.brg_app.Model.DTO_recipe;
 import grp02.brg_app.Model.HistoryAdapter;
 import grp02.brg_app.R;
 import grp02.brg_app.View.Fragments.NameStart;
@@ -88,7 +82,7 @@ public class HistorikActivity1 extends AppCompatActivity {
     }
 
     private void InitHistoryList(IDatabaseConnector db){
-        ListView listView = findViewById(R.id.historyCardList);
+        ListView listView = findViewById(R.id.historikCardList);
 
         HistoryAdapter adapter = new HistoryAdapter(this, db.getHistory());
         listView.setAdapter(adapter);

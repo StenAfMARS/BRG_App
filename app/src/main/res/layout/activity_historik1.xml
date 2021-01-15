@@ -61,6 +61,20 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/hero" />
 
+
+    <ListView
+        android:id="@+id/historikCardList"
+        android:layout_width="370dp"
+        android:layout_height="346dp"
+        android:layout_margin="20dp"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerImage"
+        app:layout_constraintVertical_bias="0.99" />
+
     <TextView
         android:id="@+id/TVhistorikTitle"
         android:layout_width="wrap_content"
