@@ -1,5 +1,6 @@
 package grp02.brg_app.View.Fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -27,6 +28,8 @@ public class OnPressedBryg extends Fragment {
 
     private Executor bg;
     private Handler ui;
+    private Context context;
+    public OnPressedBryg(Context context){this.context = context;}
 
 
     @Override
@@ -53,7 +56,7 @@ public class OnPressedBryg extends Fragment {
             try {
                 TimeUnit.SECONDS.sleep(5);
 
-                Intent intent = new Intent(BroegActivity1.context, MainActivity.class);
+                Intent intent = new Intent(context, MainActivity.class);
                 startActivity(intent);
 
             } catch (InterruptedException e) {

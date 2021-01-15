@@ -51,7 +51,7 @@
         app:srcCompat="@drawable/hero" />
 
     <ListView
-        android:id="@+id/historyCardList"
+        android:id="@+id/historikCardList"
         android:layout_width="370dp"
         android:layout_height="346dp"
         android:layout_margin="20dp"
