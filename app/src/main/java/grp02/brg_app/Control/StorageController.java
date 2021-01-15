@@ -28,7 +28,7 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE Recipes (RecipeID INTEGER PRIMARY KEY AUTOINCREMENT, RecipeName TEXT NOT NULL, GroundCoffee INTEGER NOT NULL, GrindSize TEXT NOT NULL, WaterToCoffee INTEGER NOT NULL, BrewingTemperature INTEGER NOT NULL, BloomWater INTEGER NOT NULL, BloomTime INTEGER NOT NULL)");
-        db.execSQL("CREATE TABLE History (fk_RecipeID INTEGER PRIMARY KEY, timeOfBrew TEXT NOT NULL)");
+        db.execSQL("CREATE TABLE History (historyID INTEGER PRIMARY KEY AUTOINCREMENT, fk_RecipeID INTEGER, timeOfBrew TEXT NOT NULL)");
         db.execSQL("CREATE TABLE Preferences ( fk_RecipeID INTEGER PRIMARY KEY)");
     }
 

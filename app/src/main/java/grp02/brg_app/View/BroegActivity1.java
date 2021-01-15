@@ -8,9 +8,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import grp02.brg_app.Control.DatabaseController;
+import grp02.brg_app.Control.IDatabaseConnector;
+import grp02.brg_app.Model.PreferencesAdapter;
 import grp02.brg_app.R;
 import grp02.brg_app.View.Fragments.NameStart;
 

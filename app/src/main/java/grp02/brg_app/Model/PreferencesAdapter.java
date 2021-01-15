@@ -1,6 +1,7 @@
 package grp02.brg_app.Model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.List;
 
 import grp02.brg_app.Control.DatabaseController;
@@ -18,12 +21,14 @@ import grp02.brg_app.Control.StorageController;
 import grp02.brg_app.R;
 import grp02.brg_app.Model.DTO_recipe;
 import grp02.brg_app.View.Fragments.OnPressedBryg;
+import grp02.brg_app.View.MainActivity;
 
-public class HistoryAdapter extends BaseAdapter {
+public class PreferencesAdapter extends BaseAdapter {
     Context mContext;
     List<DTO_recipe> recipes;
+    StorageController storageController;
 
-    public HistoryAdapter(Context context, List<DTO_recipe> gameLogs){
+    public PreferencesAdapter(Context context, List<DTO_recipe> gameLogs){
         mContext = context;
         this.recipes = gameLogs;
     }
@@ -42,7 +47,7 @@ public class HistoryAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return 0;
     }
-
+    boolean toogleFavorit = false;
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -56,25 +61,25 @@ public class HistoryAdapter extends BaseAdapter {
 
         // 3
         final TextView title = convertView.findViewById(R.id.HC_titleTV);
-        final TextView date = convertView.findViewById(R.id.HC_brewDateTV);
         final Button HC_brewBtn = convertView.findViewById(R.id.HC_brewBtn);
         final Button HC_setfavoriteBtn = convertView.findViewById(R.id.HC_setfavoriteBtn);
-
-        String time = recipe.getDateTime();
+        final FrameLayout ShowBrewAnimation = convertView.findViewById(R.id.ShowBrewAnimation);
         // 4
+        HC_setfavoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_24, 0);
         final View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(v == HC_brewBtn){
+                    MainActivity mainActivity = new MainActivity();
+                    mainActivity.getFragment();
 
                 }
-
                 if(v == HC_setfavoriteBtn){
                     System.out.println(recipe.getRecipeID());
-                    DatabaseController.getInstance().getDB().addRow("Preferences",recipe.getRecipeID(),false,"");
+                    DatabaseController.getInstance().getDB().deleteRecipe("Preferences","fk_RecipeID",recipe.getRecipeID());
+                    HC_setfavoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_outline_24, 0);
+                        System.out.println("row add");
 
-                    HC_setfavoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_24, 0);
-                    System.out.println("row add");
                 }
             }
         };
@@ -82,7 +87,6 @@ public class HistoryAdapter extends BaseAdapter {
         HC_setfavoriteBtn.setOnClickListener(onClickListener);
 
         title.setText(recipe.getRecipeName());
-        date.setText(recipe.getDateTime());
         System.out.println(recipe.getDateTime());
 
 

@@ -60,7 +60,7 @@
 
     <FrameLayout
         android:id="@+id/broegFragmentetIActivity"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="380dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNav"
         app:layout_constraintEnd_toEndOf="parent"
