@@ -48,7 +48,7 @@ public class BluetoothScanner {
 
         @Override
         public void onBatchScanResults(List<ScanResult> results) {
-            // Ignore for now
+           // Ignore for now
         }
 
         @Override

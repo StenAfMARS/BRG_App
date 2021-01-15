@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import grp02.brg_app.R;
 
 
-public class BluetoothIActivity extends Fragment implements View.OnClickListener {
+public class Indstillinger extends Fragment implements View.OnClickListener {
 
     TextView textView;
     Button bt_BTN, blueetoothConnect;

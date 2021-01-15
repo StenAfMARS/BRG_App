@@ -4,34 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothGatt;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import grp02.brg_app.Control.BLE.BluetoothController;
 import grp02.brg_app.R;
-import grp02.brg_app.View.IndstillingerFragments.BluetoothIActivity;
-import grp02.brg_app.View.RensFragments.RensIActivity;
+import grp02.brg_app.View.IndstillingerFragments.Indstillinger;
 
 
 public class IndstillingerActivity1 extends AppCompatActivity {
@@ -48,7 +31,7 @@ public class IndstillingerActivity1 extends AppCompatActivity {
         context = this;
 
         if (savedInstanceState == null) {
-            Fragment fragment = new BluetoothIActivity();
+            Fragment fragment = new Indstillinger();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.bluetoothFragment, fragment)  // tom container i layout
                     .commit();

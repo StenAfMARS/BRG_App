@@ -2,6 +2,7 @@ package grp02.brg_app.Control.BLE;
 
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattCallback;
 import android.content.Context;
 
 public class BluetoothController {
