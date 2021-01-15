@@ -33,7 +33,10 @@ import grp02.brg_app.R;
 import grp02.brg_app.View.IndstillingerFragments.BluetoothIActivity;
 import grp02.brg_app.View.RensFragments.RensIActivity;
 
+
 public class IndstillingerActivity1 extends AppCompatActivity {
+
+    private static final int REQUEST_ENABLE_BT = 1;
 
     @SuppressLint("StaticFieldLeak")
     public static Context context;
