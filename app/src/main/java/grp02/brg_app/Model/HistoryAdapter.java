@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -67,6 +68,7 @@ public class HistoryAdapter extends BaseAdapter {
                 if(v == HC_brewBtn){
 
                 }
+
                 if(v == HC_setfavoriteBtn){
                     System.out.println(recipe.getRecipeID());
                     DatabaseController.getInstance().getDB().addRow("Preferences",recipe.getRecipeID(),false,"");
