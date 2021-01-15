@@ -2,7 +2,9 @@ package grp02.brg_app.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,13 +16,26 @@ import grp02.brg_app.Control.DatabaseController;
 import grp02.brg_app.Control.IDatabaseConnector;
 import grp02.brg_app.Model.HistoryAdapter;
 import grp02.brg_app.R;
+import grp02.brg_app.View.Fragments.NameStart;
+import grp02.brg_app.View.HistorikFragments.HistorikList;
 
 public class HistorikActivity1 extends AppCompatActivity {
+
+    public static HistorikActivity1 historikActivity1;
+    public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historik1);
+
+        context = this;
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.FLHistorikOpenCards, new HistorikList())  // tom container i layout
+                    .commit();
+        }
 
         // Navigation
         // ##########################################################
@@ -59,6 +74,13 @@ public class HistorikActivity1 extends AppCompatActivity {
         InitHistoryList(DatabaseController.getInstance().getDB());
     }
 
+    public static HistorikActivity1 getInstance() {
+        if(historikActivity1 == null) {
+            historikActivity1 = new HistorikActivity1();
+        }
+        return historikActivity1;
+    }
+
     private void InitHistoryList(IDatabaseConnector db){
         ListView listView = findViewById(R.id.historikCardList);
 
@@ -66,4 +88,4 @@ public class HistorikActivity1 extends AppCompatActivity {
         listView.setAdapter(adapter);
 
     }
-    }
+}
