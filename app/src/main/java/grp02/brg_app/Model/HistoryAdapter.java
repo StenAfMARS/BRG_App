@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.google.android.material.card.MaterialCardView;
+
 import java.util.List;
 
 import grp02.brg_app.Control.DatabaseController;
@@ -22,6 +24,8 @@ import grp02.brg_app.View.Fragments.OnPressedBryg;
 public class HistoryAdapter extends BaseAdapter {
     Context mContext;
     List<DTO_recipe> recipes;
+    DTO_recipe recipe;
+    StorageController storageController;
 
     public HistoryAdapter(Context context, List<DTO_recipe> gameLogs){
         mContext = context;
@@ -34,7 +38,7 @@ public class HistoryAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public DTO_recipe getItem(int position) {
         return recipes.get(position);
     }
 
@@ -50,21 +54,28 @@ public class HistoryAdapter extends BaseAdapter {
 
 
         if (convertView == null) {
-            final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+            LayoutInflater layoutInflater = LayoutInflater.from(mContext);
             convertView = layoutInflater.inflate(R.layout.historik_card, null);
         }
 
         // 3
-        final TextView title = convertView.findViewById(R.id.HC_titleTV);
-        final TextView date = convertView.findViewById(R.id.HC_brewDateTV);
-        final Button HC_brewBtn = convertView.findViewById(R.id.HC_brewBtn);
-        final Button HC_setfavoriteBtn = convertView.findViewById(R.id.HC_setfavoriteBtn);
+        TextView title = convertView.findViewById(R.id.HC_titleTV);
+        TextView date = convertView.findViewById(R.id.HC_brewDateTV);
+        Button HC_brewBtn = convertView.findViewById(R.id.HC_brewBtn);
+        Button HC_setfavoriteBtn = convertView.findViewById(R.id.HC_setfavoriteBtn);
+        TextView id = convertView.findViewById(R.id.HC_cardID);
+        MaterialCardView cardView = convertView.findViewById(R.id.hsCard);
 
         String time = recipe.getDateTime();
+
         // 4
-        final View.OnClickListener onClickListener = new View.OnClickListener() {
+        View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(v == cardView) {
+                    System.out.println("YO MAMMA!!!!!! ");
+                }
+
                 if(v == HC_brewBtn){
 
                 }
@@ -78,15 +89,16 @@ public class HistoryAdapter extends BaseAdapter {
                 }
             }
         };
+
         HC_brewBtn.setOnClickListener(onClickListener);
         HC_setfavoriteBtn.setOnClickListener(onClickListener);
 
         title.setText(recipe.getRecipeName());
         date.setText(recipe.getDateTime());
+        id.setText(String.valueOf(recipe.getRecipeID()));
         System.out.println(recipe.getDateTime());
 
 
         return convertView;
     }
-
 }
