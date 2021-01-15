@@ -185,7 +185,7 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             do {
-
+                RecipeFactoryController.getInstance().clearRecipe();
                 RecipeFactoryController.getInstance().setRecipeID(Integer.parseInt(cursor.getString(0)));
                 RecipeFactoryController.getInstance().setGrindSize(cursor.getString(2));
                 RecipeFactoryController.getInstance().setRecipeName(cursor.getString(1));

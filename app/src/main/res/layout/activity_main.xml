@@ -7,14 +7,20 @@
     android:background="@color/colorAccent"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/ShowBrewAnimation"
-        android:layout_width="377dp"
-        android:layout_height="404dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="241dp">
-
-    </FrameLayout>
+    <TextView
+        android:id="@+id/TVRecipesTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Opskrifter"
+        android:textColor="@color/colorPrimary"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PreferencesCardList"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/TVPreferencesTitle3"
@@ -31,6 +37,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.338" />
+
+    <ListView
+        android:id="@+id/PreferencesCardList"
+        android:layout_width="379dp"
+        android:layout_height="169dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVPreferencesTitle3" />
 
     <View
         android:id="@+id/view3"
@@ -75,14 +89,24 @@
         app:srcCompat="@drawable/hero" />
 
     <ListView
-        android:id="@+id/PreferencesCardList"
-        android:layout_width="378dp"
-        android:layout_height="366dp"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomNav"
+        android:id="@+id/RecipesCardList"
+        android:layout_width="375dp"
+        android:layout_height="169dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerImage"
-        app:layout_constraintVertical_bias="0.376" />
+        app:layout_constraintTop_toBottomOf="@+id/TVRecipesTitle"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <FrameLayout
+        android:id="@+id/ShowBrewAnimation"
+        android:layout_width="376dp"
+        android:layout_height="414dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerImage">
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

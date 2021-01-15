@@ -22,6 +22,7 @@ import grp02.brg_app.Control.IDatabaseConnector;
 import grp02.brg_app.Control.LogicController;
 import grp02.brg_app.Control.RecipeFactoryController;
 import grp02.brg_app.Model.PreferencesAdapter;
+import grp02.brg_app.Model.RecipesAdapter;
 import grp02.brg_app.R;
 import grp02.brg_app.View.Fragments.OnPressedBryg;
 
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     InitPreferencesList(DatabaseController.getInstance().getDB());
+
                 }
                 sharedPref = getPreferences(Context.MODE_PRIVATE);
 
@@ -89,8 +91,10 @@ public class MainActivity extends AppCompatActivity {
                         return false;
                     }
                 });
+                InitRecipesList(DatabaseController.getInstance().getDB());
             }
-        }, 2000);   //5 seconds
+
+        }, 10);   //5 seconds
 
 
     }
@@ -103,6 +107,13 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.PreferencesCardList);
 
         PreferencesAdapter adapter = new PreferencesAdapter(this, db.getAllFavorites());
+        listView.setAdapter(adapter);
+
+    }
+    private void InitRecipesList(IDatabaseConnector db){
+        ListView listView = findViewById(R.id.RecipesCardList);
+
+        RecipesAdapter adapter = new RecipesAdapter(this, db.getRecipes());
         listView.setAdapter(adapter);
 
     }
