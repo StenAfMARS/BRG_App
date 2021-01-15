@@ -1,7 +1,9 @@
 package grp02.brg_app.View.Fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -10,17 +12,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import grp02.brg_app.Control.LogicController;
 import grp02.brg_app.Control.RecipeFactoryController;
 import grp02.brg_app.Control.StorageController;
 import grp02.brg_app.R;
 import grp02.brg_app.View.BroegActivity1;
+import grp02.brg_app.View.Fragments.OnPressedBryg;
+import grp02.brg_app.View.Fragments.OnSaveBryg;
 
 public class FinalBroeg extends Fragment implements View.OnClickListener {
 
-    TextView name, groundCoffee, grindSize, waterCoffeeRatio, brewingTemp, bloomTime, bloomWater;
-    Button btnBrewAction, btnSaveBrew;
-    RecipeFactoryController recipeFactory = RecipeFactoryController.getInstance();
-    StorageController storageController;
+    private TextView name, groundCoffee, grindSize, waterCoffeeRatio, brewingTemp, bloomTime, bloomWater, textViewFinal;
+    private Button btnBrewAction, btnSaveBrew;
+    private RecipeFactoryController recipeFactory = RecipeFactoryController.getInstance();
+    private StorageController storageController;
 
     @Override
     public View onCreateView(LayoutInflater i, ViewGroup container,
@@ -36,14 +41,16 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
         brewingTemp = rod.findViewById(R.id.brewingTemperature);
         bloomWater = rod.findViewById(R.id.bloomWater);
         bloomTime = rod.findViewById(R.id.bloomTime);
+        textViewFinal = rod.findViewById(R.id.textViewFinal);
 
-        name.setText(recipeFactory.getDto_recipe().getRecipeName());
-        groundCoffee.setText(recipeFactory.getDto_recipe().getGroundCoffee() + "g. kaffe");
-        grindSize.setText(recipeFactory.getDto_recipe().getGrindSize() + " grind size");
-        waterCoffeeRatio.setText(recipeFactory.getDto_recipe().getWaterAmount() + " ml. vand pr. gram kaffe");
-        brewingTemp.setText(recipeFactory.getDto_recipe().getBrewingTemperature() + " grader Celcius");
-        bloomWater.setText(recipeFactory.getDto_recipe().getBloomWater() + " ml. vand til bloom");
-        bloomTime.setText(recipeFactory.getDto_recipe().getBloomTime() + " sekunder til bloom vand distribuering");
+        textViewFinal.setText("DIN BRYG");
+        name.setText(recipeFactory.getDTO_recipe().getRecipeName());
+        groundCoffee.setText(recipeFactory.getDTO_recipe().getGroundCoffee() + "g. kaffe");
+        grindSize.setText(recipeFactory.getDTO_recipe().getGrindSize() + " grind size");
+        waterCoffeeRatio.setText(recipeFactory.getDTO_recipe().getWaterAmount() + " ml. vand pr. gram kaffe");
+        brewingTemp.setText(recipeFactory.getDTO_recipe().getBrewingTemperature() + " grader Celcius");
+        bloomWater.setText(recipeFactory.getDTO_recipe().getBloomWater() + " ml. vand til bloom");
+        bloomTime.setText(recipeFactory.getDTO_recipe().getBloomTime() + " sekunder til bloom vand distribuering");
 
         btnBrewAction = rod.findViewById(R.id.FB_brewActionBtn);
         btnBrewAction.setOnClickListener(this);
@@ -54,13 +61,18 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
         return rod;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onClick(View v) {
         if (v == btnBrewAction) {
-            storageController.saveRecipe(RecipeFactoryController.getInstance().getDto_recipe());
-
+            RecipeFactoryController recipeFactoryController = RecipeFactoryController.getInstance();
+            String getDateTime = recipeFactoryController.setBrewDateTime(LogicController.getInstance().getCurrentDateTime());
+            storageController.saveRecipe(recipeFactoryController.getDTO_recipe());
+            storageController.addRow(
+                    "History",
+                    0,
+                    true, getDateTime);
             RecipeFactoryController.getInstance().clearRecipe();
-
             getFragmentManager().beginTransaction()
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
                     .replace(R.id.broegFragmentetIActivity, new OnPressedBryg())
@@ -68,8 +80,14 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
                     .commit();
 
         } else if (v == btnSaveBrew) {
-            storageController.saveRecipe(RecipeFactoryController.getInstance().getDto_recipe());
-
+            RecipeFactoryController recipeFactoryController = RecipeFactoryController.getInstance();
+            String getDateTime = recipeFactoryController.setBrewDateTime(LogicController.getInstance().getCurrentDateTime());
+            storageController.saveRecipe(recipeFactoryController.getDTO_recipe());
+            storageController.addRow(
+                    "History",
+                    0,
+                    true,
+                    getDateTime);
             testRecipeFactory();
 
             getFragmentManager().beginTransaction()
@@ -78,6 +96,9 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
                     .replace(R.id.broegFragmentetIActivity, new OnSaveBryg())
                     .addToBackStack(null)
                     .commit();
+        }
+        else if(v != btnBrewAction || v != btnSaveBrew){
+            storageController.deleteRecipes();
         }
     }
 
@@ -93,13 +114,13 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
         System.out.println("______________________________________________________________________________________________________");
 
         System.out.println("DET HER ER TAGER FRA DEN INSTANS DER IKKE ER SLETTE ENDNU: ");
-        System.out.println(RecipeFactoryController.getInstance().getDto_recipe().getRecipeName());
-        System.out.println(RecipeFactoryController.getInstance().getDto_recipe().getGroundCoffee());
-        System.out.println(RecipeFactoryController.getInstance().getDto_recipe().getGrindSize());
-        System.out.println(RecipeFactoryController.getInstance().getDto_recipe().getWaterToCoffee());
-        System.out.println(RecipeFactoryController.getInstance().getDto_recipe().getBrewingTemperature());
-        System.out.println(RecipeFactoryController.getInstance().getDto_recipe().getBloomWater());
-        System.out.println(RecipeFactoryController.getInstance().getDto_recipe().getBloomTime());
+        System.out.println(RecipeFactoryController.getInstance().getDTO_recipe().getRecipeName());
+        System.out.println(RecipeFactoryController.getInstance().getDTO_recipe().getGroundCoffee());
+        System.out.println(RecipeFactoryController.getInstance().getDTO_recipe().getGrindSize());
+        System.out.println(RecipeFactoryController.getInstance().getDTO_recipe().getWaterToCoffee());
+        System.out.println(RecipeFactoryController.getInstance().getDTO_recipe().getBrewingTemperature());
+        System.out.println(RecipeFactoryController.getInstance().getDTO_recipe().getBloomWater());
+        System.out.println(RecipeFactoryController.getInstance().getDTO_recipe().getBloomTime());
         System.out.println("______________________________________________________________________________________________________");
         //Matching completely.
     }

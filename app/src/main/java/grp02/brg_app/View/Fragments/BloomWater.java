@@ -22,14 +22,13 @@ import grp02.brg_app.R;
 public class BloomWater extends Fragment implements View.OnClickListener {
 
 
-    List<String> mlVandTilBloom = new ArrayList<>();
-    int mlVandTilBloomObjekt;
-
-    TextView hvorMangeMlVand;
-    ScrollChoice scrollChoice;
-    Button buttonNext3, buttonTilbage3;
-    ProgressBar progressBar;
-    int progressBarStatus = 60;
+    private List<String> mlVandTilBloom = new ArrayList<>();
+    private int mlVandTilBloomObjekt;
+    private TextView hvorMangeMlVand;
+    private ScrollChoice scrollChoice;
+    private Button buttonNext3, buttonTilbage3;
+    private ProgressBar progressBar;
+    private int progressBarStatus = 64;
 
 
     @Override
@@ -79,23 +78,20 @@ public class BloomWater extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == buttonNext3){
-            progressBarStatus += 20;
+            progressBarStatus += 16;
             progressBar.setProgress(progressBarStatus);
-
             RecipeFactoryController.getInstance().setBloomWater(mlVandTilBloomObjekt);
-            BloomTime bloomvandDistribueringFragment = new BloomTime();
             getFragmentManager().beginTransaction()
                     //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                    .replace(R.id.broegFragmentetIActivity, bloomvandDistribueringFragment)
+                    .replace(R.id.broegFragmentetIActivity, new BloomTime())
                     .addToBackStack(null)
                     .commit();}
         else if (v == buttonTilbage3){
-            BrewingTemperature brewingTemperature = new BrewingTemperature();
             getFragmentManager().beginTransaction()
                     //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
-                    .replace(R.id.broegFragmentetIActivity, brewingTemperature)
+                    .replace(R.id.broegFragmentetIActivity, new BrewingTemperature())
                     .addToBackStack(null)
                     .commit();
         }

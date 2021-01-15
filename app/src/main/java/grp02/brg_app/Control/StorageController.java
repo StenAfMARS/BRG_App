@@ -9,7 +9,6 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
         super(context, DATABASE, null,VERSION);
     }
 
-    private SQLiteDatabase db = this.getWritableDatabase();
+    SQLiteDatabase db = this.getWritableDatabase();
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -52,14 +51,13 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
         System.out.println("test 3");
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
-    public void addRow(String tableName, int recipeID, boolean fromNewRecipe){
+    public void addRow(String tableName, int recipeID, boolean fromNewRecipe, String getDateTime){
         ContentValues cv  = new ContentValues();
         switch (tableName){
             case"History":
-                if(fromNewRecipe == true) {
-                    String selectQuery = "SELECT * FROM Recipes WHERE   ID = (SELECT MAX(RecipeID)  FROM Recipes);";
+                if(fromNewRecipe) {
+                    String selectQuery = "SELECT * FROM Recipes WHERE   RecipeID = (SELECT MAX(RecipeID)  FROM Recipes);";
 
                     Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -70,9 +68,8 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
                         } while (cursor.moveToNext());
                     }
                 }
-                LocalDateTime now = LocalDateTime.now();
                 cv.put("fk_RecipeID",recipeID);
-                cv.put("timeOfBrew",now.toString());
+                cv.put("timeOfBrew", getDateTime);
                 db.insert(tableName,null,cv);
                 break;
             case"Preferences":
@@ -81,28 +78,31 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
                 break;
         }
     }
-
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public List<DTO_recipe> getHistory() {
+        RecipeFactoryController recipeFactoryController = RecipeFactoryController.getInstance();
         List<DTO_recipe> recipeList = new ArrayList<DTO_recipe>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM Recipes INNER JOIN History ON History.fk_RecipeID = Recipes.RecipeID;";
+        String selectQuery = "SELECT  *, History.timeOfBrew FROM Recipes INNER JOIN History ON History.fk_RecipeID = Recipes.RecipeID;";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                RecipeFactoryController.getInstance().setRecipeID(Integer.parseInt(cursor.getString(0)));
-                RecipeFactoryController.getInstance().setGroundCoffee(cursor.getInt(1));
-                RecipeFactoryController.getInstance().setGrindSize(cursor.getString(2));
-                RecipeFactoryController.getInstance().setRecipeName(cursor.getString(3));
-                RecipeFactoryController.getInstance().setWaterToCoffee(cursor.getFloat(4));
-                RecipeFactoryController.getInstance().setBrewingTemperature(cursor.getInt(5));
-                RecipeFactoryController.getInstance().setBloomWater(cursor.getInt(6));
-                RecipeFactoryController.getInstance().setBloomTime(cursor.getInt(7));
+                recipeFactoryController.clearRecipe();
+                recipeFactoryController.setRecipeID(Integer.parseInt(cursor.getString(0)));
+                recipeFactoryController.setGrindSize(cursor.getString(2));
+                recipeFactoryController.setRecipeName(cursor.getString(1));
+                recipeFactoryController.setWaterToCoffee(cursor.getFloat(3));
+                recipeFactoryController.setBrewingTemperature(cursor.getInt(4));
+                recipeFactoryController.setBloomWater(cursor.getInt(5));
+                recipeFactoryController.setBloomTime(cursor.getInt(6));
+                recipeFactoryController.setGroundCoffee(cursor.getInt(7));
+                recipeFactoryController.setDateTime(cursor.getString(9));
                 // Adding contact to list
-                recipeList.add(RecipeFactoryController.getInstance().getDto_recipe());
+                recipeList.add(recipeFactoryController.getDTO_recipe());
             } while (cursor.moveToNext());
         }
 
@@ -112,6 +112,7 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
 
     @Override
     public List<DTO_recipe> getAllFavorites() {
+        RecipeFactoryController recipeFactoryController = RecipeFactoryController.getInstance();
         List<DTO_recipe> recipeList = new ArrayList<DTO_recipe>();
         // Select All Query
         String selectQuery = "SELECT  * FROM Recipes INNER JOIN Preferences ON Preferences.fk_RecipeID = Recipes.RecipeID;";
@@ -120,15 +121,16 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                RecipeFactoryController.getInstance().setRecipeID(Integer.parseInt(cursor.getString(0)));
-                RecipeFactoryController.getInstance().setGroundCoffee(cursor.getInt(1));
-                RecipeFactoryController.getInstance().setGrindSize(cursor.getString(2));
-                RecipeFactoryController.getInstance().setRecipeName(cursor.getString(3));
-                RecipeFactoryController.getInstance().setWaterToCoffee(cursor.getFloat(4));
-                RecipeFactoryController.getInstance().setBrewingTemperature(cursor.getInt(5));
-                RecipeFactoryController.getInstance().setBloomWater(cursor.getInt(6));
-                RecipeFactoryController.getInstance().setBloomTime(cursor.getInt(7));
-                recipeList.add(RecipeFactoryController.getInstance().getDto_recipe());
+                recipeFactoryController.clearRecipe();
+                recipeFactoryController.setRecipeID(Integer.parseInt(cursor.getString(0)));
+                recipeFactoryController.setGrindSize(cursor.getString(2));
+                recipeFactoryController.setRecipeName(cursor.getString(1));
+                recipeFactoryController.setWaterToCoffee(cursor.getFloat(3));
+                recipeFactoryController.setBrewingTemperature(cursor.getInt(4));
+                recipeFactoryController.setBloomWater(cursor.getInt(5));
+                recipeFactoryController.setBloomTime(cursor.getInt(6));
+                recipeFactoryController.setGroundCoffee(cursor.getInt(7));
+                recipeList.add(recipeFactoryController.getDTO_recipe());
             } while (cursor.moveToNext());
         }
 
@@ -139,19 +141,33 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
     @Override
     public void saveRecipe(DTO_recipe recipe) {
         ContentValues cv  = new ContentValues();
-        cv.put("RecipeName", RecipeFactoryController.getInstance().getDto_recipe().getRecipeName());
-        cv.put("GroundCoffee", RecipeFactoryController.getInstance().getDto_recipe().getGroundCoffee());
-        cv.put("GrindSize", RecipeFactoryController.getInstance().getDto_recipe().getGrindSize());
-        cv.put("WaterToCoffee", RecipeFactoryController.getInstance().getDto_recipe().getWaterToCoffee());
-        cv.put("BrewingTemperature", RecipeFactoryController.getInstance().getDto_recipe().getBrewingTemperature());
-        cv.put("BloomWater", RecipeFactoryController.getInstance().getDto_recipe().getBloomWater());
-        cv.put("BloomTime", RecipeFactoryController.getInstance().getDto_recipe().getBloomTime());
+        cv.put("RecipeName", RecipeFactoryController.getInstance().getDTO_recipe().getRecipeName());
+        cv.put("GroundCoffee", RecipeFactoryController.getInstance().getDTO_recipe().getGroundCoffee());
+        cv.put("GrindSize", RecipeFactoryController.getInstance().getDTO_recipe().getGrindSize());
+        cv.put("WaterToCoffee", RecipeFactoryController.getInstance().getDTO_recipe().getWaterToCoffee());
+        cv.put("BrewingTemperature", RecipeFactoryController.getInstance().getDTO_recipe().getBrewingTemperature());
+        cv.put("BloomWater", RecipeFactoryController.getInstance().getDTO_recipe().getBloomWater());
+        cv.put("BloomTime", RecipeFactoryController.getInstance().getDTO_recipe().getBloomTime());
         db.insert("Recipes",null,cv);
     }
 
     @Override
     public void deleteRecipe(String tableName, String tableRow,int ID) {
         db.delete(tableName, tableRow + "=" + ID, null);
+    }
+    public void deleteRecipes(){
+        String tableRow = "RecipeID";
+        String selectQuery = "SELECT * FROM Recipes WHERE   RecipeID = (SELECT MAX(RecipeID)  FROM Recipes);";
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        int recipieID = 0;
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                recipieID = Integer.parseInt(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+        db.delete("Recipes", tableRow + "=" + recipieID, null);
     }
 
     @Override
@@ -178,7 +194,7 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
                 RecipeFactoryController.getInstance().setBloomWater(cursor.getInt(5));
                 RecipeFactoryController.getInstance().setBloomTime(cursor.getInt(6));
                 RecipeFactoryController.getInstance().setGroundCoffee(cursor.getInt(7));
-                recipeList.add(RecipeFactoryController.getInstance().getDto_recipe());
+                recipeList.add(RecipeFactoryController.getInstance().getDTO_recipe());
             } while (cursor.moveToNext());
         }
 

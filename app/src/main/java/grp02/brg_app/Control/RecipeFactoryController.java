@@ -1,5 +1,11 @@
 package grp02.brg_app.Control;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
+import java.util.Date;
+
 import grp02.brg_app.Model.DTO_recipe;
 
 public class RecipeFactoryController {
@@ -8,7 +14,7 @@ public class RecipeFactoryController {
     private DTO_recipe dto_recipe;
     private String recipeName; // Navn på recipe
 
-    public DTO_recipe getDto_recipe() {
+    public DTO_recipe getDTO_recipe() {
         return dto_recipe;
     }
 
@@ -70,5 +76,9 @@ public class RecipeFactoryController {
     public void setGroundCoffee(float groundCoffee) {
         dto_recipe.setGroundCoffee(groundCoffee);
     }
+
+    public void setDateTime(String date) { dto_recipe.setDateTime(date); }
+
+    public String setBrewDateTime(String onAppStartUpDateTime) { return dto_recipe.setBrewDateTime(onAppStartUpDateTime); }
 
 }
