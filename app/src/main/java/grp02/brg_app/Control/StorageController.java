@@ -100,7 +100,7 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
                 recipeFactoryController.setBloomWater(cursor.getInt(5));
                 recipeFactoryController.setBloomTime(cursor.getInt(6));
                 recipeFactoryController.setGroundCoffee(cursor.getInt(7));
-                recipeFactoryController.setDateTime(cursor.getString(9));
+                recipeFactoryController.setDateTime(cursor.getString(10));
                 // Adding contact to list
                 recipeList.add(recipeFactoryController.getDTO_recipe());
             } while (cursor.moveToNext());

@@ -89,11 +89,6 @@ public class DTO_recipe {
         dateTime = date;
     }
 
-    public String setBrewDateTime(String onAppStartupDateTime) {
-        this.onAppStartUpDateTime = onAppStartupDateTime;
-        return onAppStartUpDateTime;
-    }
-
     public String getDateTime() {
         return dateTime;
     }

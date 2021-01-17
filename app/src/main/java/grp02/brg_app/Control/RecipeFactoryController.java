@@ -12,7 +12,6 @@ public class RecipeFactoryController {
     // Singleton class
     private static RecipeFactoryController Instance;
     private DTO_recipe dto_recipe;
-    private String recipeName; // Navn på recipe
 
     public DTO_recipe getDTO_recipe() {
         return dto_recipe;
@@ -78,7 +77,5 @@ public class RecipeFactoryController {
     }
 
     public void setDateTime(String date) { dto_recipe.setDateTime(date); }
-
-    public String setBrewDateTime(String onAppStartUpDateTime) { return dto_recipe.setBrewDateTime(onAppStartUpDateTime); }
 
 }
