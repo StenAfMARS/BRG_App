@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/gramKaffe1"
+        android:id="@+id/FCI_gramKaffe1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimary"
@@ -21,18 +21,7 @@
         app:layout_constraintVertical_bias="0.025" />
 
     <TextView
-        android:id="@+id/bloomWater"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bloomTime" />
-
-    <TextView
-        android:id="@+id/brewingTemperature"
+        android:id="@+id/FCI_bloomWater"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -40,30 +29,41 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bloomWater" />
+        app:layout_constraintTop_toBottomOf="@+id/FCI_bloomTime" />
 
     <TextView
-        android:id="@+id/grindSize2"
+        android:id="@+id/FCI_brewingTemperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="8dp"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/brewingTemperature" />
+        app:layout_constraintTop_toBottomOf="@+id/FCI_bloomWater" />
 
     <TextView
-        android:id="@+id/navn"
+        android:id="@+id/FCI_grindSize2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FCI_brewingTemperature" />
+
+    <TextView
+        android:id="@+id/FCI_navn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto_bold"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/grindSize2" />
+        app:layout_constraintTop_toBottomOf="@+id/FCI_grindSize2" />
 
     <Button
         android:id="@+id/FCI_BeginBrewBtn"
@@ -75,24 +75,9 @@
         android:text="Brøg"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.768"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/navn" />
-
-    <Button
-        android:id="@+id/FCI_SaveBrewBtn"
-        android:layout_width="100dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/default_btn"
-        android:drawableStart="@android:drawable/ic_menu_save"
-        android:drawableTint="@color/colorPrimary"
-        android:text="GEM"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.247"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/navn" />
+        app:layout_constraintTop_toBottomOf="@+id/FCI_navn" />
 
     <Button
         android:id="@+id/FCI_backToHistoryBtn"
@@ -111,7 +96,7 @@
         app:layout_constraintVertical_bias="0.002" />
 
     <TextView
-        android:id="@+id/waterCoffeeRatio"
+        android:id="@+id/FCI_waterCoffeeRatio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -120,19 +105,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gramKaffe1"
+        app:layout_constraintTop_toBottomOf="@+id/FCI_gramKaffe1"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/bloomTime"
+        android:id="@+id/FCI_bloomTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/waterCoffeeRatio" />
+        app:layout_constraintTop_toBottomOf="@+id/FCI_waterCoffeeRatio" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

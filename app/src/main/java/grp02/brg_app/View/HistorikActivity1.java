@@ -71,7 +71,6 @@ public class HistorikActivity1 extends AppCompatActivity {
         });
         // ##########################################################
 
-        InitHistoryList(DatabaseController.getInstance().getDB());
     }
 
     public static HistorikActivity1 getInstance() {
@@ -81,11 +80,4 @@ public class HistorikActivity1 extends AppCompatActivity {
         return historikActivity1;
     }
 
-    private void InitHistoryList(IDatabaseConnector db){
-        ListView listView = findViewById(R.id.historikCardList);
-
-        HistoryAdapter adapter = new HistoryAdapter(this, db.getHistory());
-        listView.setAdapter(adapter);
-
-    }
 }
