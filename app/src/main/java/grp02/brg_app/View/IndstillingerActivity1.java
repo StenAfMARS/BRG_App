@@ -7,17 +7,12 @@ import androidx.fragment.app.Fragment;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import grp02.brg_app.R;
 import grp02.brg_app.View.IndstillingerFragments.BluetoothIActivity;
-import grp02.brg_app.View.RensFragments.RensIActivity;
 
 public class IndstillingerActivity1 extends AppCompatActivity {
 
