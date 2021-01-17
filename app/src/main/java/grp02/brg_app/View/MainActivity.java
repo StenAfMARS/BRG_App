@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         context = this;
 
-        System.out.println("nej");
         DatabaseController.getInstance().UseSQL(this);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 sharedPref = getPreferences(Context.MODE_PRIVATE);
 
                 // Set DateTime
-                RecipeFactoryController.getInstance().setBrewDateTime(LogicController.getInstance().getCurrentDateTime());
+                RecipeFactoryController.getInstance().setDateTime(LogicController.getInstance().getCurrentDateTime());
 
                 // Navigation
                 // ##########################################################

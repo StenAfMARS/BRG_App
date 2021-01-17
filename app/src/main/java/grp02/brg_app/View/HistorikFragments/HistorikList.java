@@ -33,7 +33,6 @@ public class HistorikList extends Fragment {
 
     private View historikListView;
     private Context context = HistorikActivity1.context;
-    DTO_recipe recipe;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,12 +51,14 @@ public class HistorikList extends Fragment {
         HistoryAdapter adapter = new HistoryAdapter(context, db.getHistory());
         listView.setAdapter(adapter);
 
+/*
         listView.setOnItemClickListener((parent, view, position, id) -> {
             recipe = adapter.getItem(position);
             int recipeID = recipe.getRecipeID();
 
             System.out.println(recipe.getRecipeName());
         });
+*/
 
     }
 }
