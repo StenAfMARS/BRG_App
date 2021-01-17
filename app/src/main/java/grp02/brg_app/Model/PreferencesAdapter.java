@@ -23,10 +23,9 @@ import grp02.brg_app.Model.DTO_recipe;
 import grp02.brg_app.View.Fragments.OnPressedBryg;
 import grp02.brg_app.View.MainActivity;
 
-public class PreferencesAdapter extends BaseAdapter {
+public class PreferencesAdapter extends BaseAdapter implements View.OnClickListener {
     Context mContext;
     List<DTO_recipe> recipes;
-    StorageController storageController;
 
     public PreferencesAdapter(Context context, List<DTO_recipe> gameLogs){
         mContext = context;
@@ -63,35 +62,38 @@ public class PreferencesAdapter extends BaseAdapter {
         final TextView title = convertView.findViewById(R.id.HC_titleTV);
         final Button HC_brewBtn = convertView.findViewById(R.id.HC_brewBtn);
         final Button HC_setfavoriteBtn = convertView.findViewById(R.id.HC_setfavoriteBtn);
-        final FrameLayout ShowBrewAnimation = convertView.findViewById(R.id.ShowBrewAnimation);
+        final View HC_cardHeader = convertView.findViewById(R.id.hsCardHeader);
         // 4
         HC_setfavoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_24, 0);
-        HC_setfavoriteBtn.setText("fjern favorit");
-        final View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(v == HC_brewBtn){
-                    MainActivity mainActivity = new MainActivity();
-                    mainActivity.getFragment();
-
-                }
-                if(v == HC_setfavoriteBtn){
-                    System.out.println(recipe.getRecipeID());
-                    DatabaseController.getInstance().getDB().deleteRecipe("Preferences","fk_RecipeID",recipe.getRecipeID());
-                    HC_setfavoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_outline_24, 0);
-                        System.out.println("row add");
-
-                }
-            }
-        };
-        HC_brewBtn.setOnClickListener(onClickListener);
-        HC_setfavoriteBtn.setOnClickListener(onClickListener);
 
         title.setText(recipe.getRecipeName());
-        System.out.println(recipe.getDateTime());
 
+        HC_brewBtn.setOnClickListener(this);
+        HC_setfavoriteBtn.setOnClickListener(this);
+        HC_cardHeader.setOnClickListener(this);
 
         return convertView;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+
+        }
+
+        /*
+        if(v == HC_brewBtn){
+            MainActivity mainActivity = new MainActivity();
+            mainActivity.getFragment();
+
+        }
+        if(v == HC_setfavoriteBtn){
+            System.out.println(recipe.getRecipeID());
+            DatabaseController.getInstance().getDB().deleteRecipe("Preferences","fk_RecipeID",recipe.getRecipeID());
+            HC_setfavoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_outline_24, 0);
+                System.out.println("row add");
+
+        }
+         */
+    }
 }
