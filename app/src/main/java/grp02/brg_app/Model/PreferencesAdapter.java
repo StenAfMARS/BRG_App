@@ -66,6 +66,7 @@ public class PreferencesAdapter extends BaseAdapter {
         final FrameLayout ShowBrewAnimation = convertView.findViewById(R.id.ShowBrewAnimation);
         // 4
         HC_setfavoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_24, 0);
+        HC_setfavoriteBtn.setText("fjern favorit");
         final View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
