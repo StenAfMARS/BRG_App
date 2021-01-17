@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+
+import grp02.brg_app.Control.BLE.BluetoothController;
+import grp02.brg_app.Control.BLE.BluetoothScanner;
 import grp02.brg_app.R;
 
 
@@ -16,6 +19,8 @@ public class Indstillinger extends Fragment implements View.OnClickListener {
 
     TextView textView;
     Button bt_BTN, blueetoothConnect;
+    BluetoothScanner scanner = BluetoothScanner.getInstance();
+    BluetoothController BLEController = BluetoothController.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
@@ -38,8 +43,10 @@ public class Indstillinger extends Fragment implements View.OnClickListener {
             if(!(bt_BTN.getBackgroundTintList() == ColorStateList.valueOf(Color.BLUE))) {
 
                 // State Bluetooth Connected!
+
                 bt_BTN.setBackgroundResource(R.drawable.ic_baseline_bluetooth_audio_24);
                 bt_BTN.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+
             } else {
 
                 // State Bluetooth NOT Connected!
