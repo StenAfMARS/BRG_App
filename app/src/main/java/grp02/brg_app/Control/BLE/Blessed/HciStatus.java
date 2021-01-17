@@ -21,7 +21,7 @@
  *
  */
 
-package com.welie.blessed;
+package grp02.brg_app.Control.BLE.Blessed;
 
 import org.jetbrains.annotations.NotNull;
 

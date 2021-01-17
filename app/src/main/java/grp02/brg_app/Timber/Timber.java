@@ -1,4 +1,4 @@
-package timber.log;
+package grp02.brg_app.Timber;
 
 import android.os.Build;
 import android.util.Log;

@@ -21,7 +21,7 @@
  *
  */
 
-package com.welie.blessed;
+package grp02.brg_app.Control.BLE.Blessed;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -57,7 +57,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import timber.log.Timber;
+import grp02.brg_app.Timber.Timber;
 
 import static android.bluetooth.BluetoothDevice.TRANSPORT_LE;
 import static android.bluetooth.BluetoothGatt.CONNECTION_PRIORITY_BALANCED;

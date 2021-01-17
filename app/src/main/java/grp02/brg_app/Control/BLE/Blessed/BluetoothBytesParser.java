@@ -21,7 +21,7 @@
  *
  */
 
-package com.welie.blessed;
+package grp02.brg_app.Control.BLE.Blessed;
 
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;

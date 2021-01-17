@@ -21,7 +21,7 @@
  *
  */
 
-package com.welie.blessed;
+package grp02.brg_app.Control.BLE.Blessed;
 
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
@@ -41,8 +41,10 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.ParcelUuid;
 
+
+import androidx.annotation.Nullable;
+
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -54,7 +56,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-import timber.log.Timber;
+import grp02.brg_app.Timber.Timber;
 
 /**
  * Central class to connect and communicate with bluetooth peripherals.
@@ -102,10 +104,12 @@ public class BluetoothCentral {
     private static final String NO_VALID_PERIPHERAL_PROVIDED = "no valid peripheral provided";
     private static final String NO_VALID_PERIPHERAL_CALLBACK_SPECIFIED = "no valid peripheral callback specified";
 
-    private @NotNull final Context context;
+    private @NotNull
+    final Context context;
     private @NotNull final Handler callBackHandler;
     private @NotNull final BluetoothAdapter bluetoothAdapter;
-    private @Nullable BluetoothLeScanner bluetoothScanner;
+    private @Nullable
+    BluetoothLeScanner bluetoothScanner;
     private @Nullable BluetoothLeScanner autoConnectScanner;
     private @NotNull final BluetoothCentralCallback bluetoothCentralCallback;
     private @NotNull final Map<String, BluetoothPeripheral> connectedPeripherals = new ConcurrentHashMap<>();

@@ -21,7 +21,7 @@
  *
  */
 
-package com.welie.blessed;
+package grp02.brg_app.Control.BLE.Blessed;
 
 /**
  * WriteType describes the type of write that can be done
