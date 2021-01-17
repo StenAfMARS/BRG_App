@@ -44,15 +44,12 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = getIntent();
                 if(intent.getBooleanExtra("Frag",false) == true){
-                    /*(System.out.println("ja");
                     getSupportFragmentManager().beginTransaction()
                             .add(R.id.ShowBrewAnimation, new OnPressedBryg(getApplicationContext()))  // tom container i layout
                             .commit();
                     TextView headerText = (TextView) findViewById(R.id.TVPreferencesTitle3);
                     headerText.setVisibility(View.GONE);
 
-
-                     */
                 }
                 else{
                     InitPreferencesList(DatabaseController.getInstance().getDB());
@@ -95,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                         return false;
                     }
                 });
-                InitRecipesList(DatabaseController.getInstance().getDB());
+                //InitRecipesList(DatabaseController.getInstance().getDB());
             }
 
         }, 10);   //5 seconds
@@ -114,11 +111,13 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
     }
-    private void InitRecipesList(IDatabaseConnector db){
+/*    private void InitRecipesList(IDatabaseConnector db){
         ListView listView = findViewById(R.id.RecipesCardList);
 
         RecipesAdapter adapter = new RecipesAdapter(this, db.getRecipes());
         listView.setAdapter(adapter);
 
     }
+
+ */
 }

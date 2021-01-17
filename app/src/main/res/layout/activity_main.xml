@@ -19,25 +19,12 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/TVRecipesTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="240dp"
-        android:text="Opskrifter"
-        android:textColor="@color/colorPrimary"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.034"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
         android:id="@+id/TVPreferencesTitle3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:text="FARVORITTER"
+        android:text="FAVORITTER"
         android:textColor="@color/colorPrimary"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -61,15 +48,14 @@
 
     <ListView
         android:id="@+id/PreferencesCardList"
-        android:layout_width="415dp"
-        android:layout_height="174dp"
+        android:layout_width="match_parent"
+        android:layout_height="397dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/TVRecipesTitle"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVPreferencesTitle3"
-        app:layout_constraintVertical_bias="0.653" />
+        app:layout_constraintTop_toBottomOf="@+id/TVPreferencesTitle3" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
@@ -100,16 +86,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.003"
         app:srcCompat="@drawable/hero" />
-
-    <ListView
-        android:id="@+id/RecipesCardList"
-        android:layout_width="411dp"
-        android:layout_height="168dp"
-        android:layout_marginTop="4dp"
-        android:layout_weight="1"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVRecipesTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
