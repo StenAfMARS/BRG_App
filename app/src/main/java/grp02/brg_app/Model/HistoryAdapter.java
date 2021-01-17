@@ -15,9 +15,13 @@ import java.util.List;
 import grp02.brg_app.Control.DatabaseController;
 import grp02.brg_app.R;
 
-public class HistoryAdapter extends BaseAdapter {
+public class HistoryAdapter extends BaseAdapter implements View.OnClickListener {
     Context mContext;
     List<DTO_recipe> recipes;
+    Button HC_setfavoriteBtn;
+    Button HC_brewBtn;
+    ConstraintLayout HC_cardHeader;
+    DTO_recipe recipe;
 
     public HistoryAdapter(Context context, List<DTO_recipe> gameLogs){
         mContext = context;
@@ -42,7 +46,7 @@ public class HistoryAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        DTO_recipe recipe = recipes.get(position);
+        recipe = recipes.get(position);
         String recId = String.valueOf(recipe.getRecipeID());
         String recDate = recipe.getDateTime();
         String recTitel = recipe.getRecipeName();
@@ -56,41 +60,41 @@ public class HistoryAdapter extends BaseAdapter {
         // 3
         TextView title = convertView.findViewById(R.id.HC_titleTV);
         TextView date = convertView.findViewById(R.id.HC_brewDateTV);
-        Button HC_brewBtn = convertView.findViewById(R.id.HC_brewBtn);
-        Button HC_setfavoriteBtn = convertView.findViewById(R.id.HC_setfavoriteBtn);
+        HC_brewBtn = convertView.findViewById(R.id.HC_brewBtn);
+        HC_setfavoriteBtn = convertView.findViewById(R.id.HC_setfavoriteBtn);
         TextView id = convertView.findViewById(R.id.HC_cardID);
-        ConstraintLayout cardHeader = convertView.findViewById(R.id.hsCardHeader);
+        HC_cardHeader = convertView.findViewById(R.id.hsCardHeader);
 
         title.setText(recTitel);
         date.setText(recDate);
         id.setText(recId);
 
+        HC_brewBtn.setOnClickListener(this);
+        HC_setfavoriteBtn.setOnClickListener(this);
+        HC_cardHeader.setOnClickListener(this);
 
-        // 4
-        View.OnClickListener onClickListener = v -> {
-            if(v == cardHeader) {
-                System.out.println("YO MAMMA!!!!!! ");
-            }
-
-            if(v == HC_brewBtn){
-
-            }
-
-            if(v == HC_setfavoriteBtn){
-                System.out.println(recipe.getRecipeID());
-                DatabaseController.getInstance().getDB().addRow("Preferences", recipe.getRecipeID(),false,"");
-
-                HC_setfavoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_24, 0);
-                System.out.println("row add");
-            }
-        };
-
-        HC_brewBtn.setOnClickListener(onClickListener);
-        HC_setfavoriteBtn.setOnClickListener(onClickListener);
-        cardHeader.setOnClickListener(onClickListener);
-
-        System.out.println(recipe.getDateTime());
 
         return convertView;
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        if(view == HC_cardHeader) {
+            System.out.println("YO MAMMA!!!!!! ");
+        }
+
+        if(view == HC_brewBtn){
+
+        }
+
+        if(view == HC_setfavoriteBtn){
+            System.out.println(recipe.getRecipeID());
+            DatabaseController.getInstance().getDB().addRow("Preferences", recipe.getRecipeID(),false,"");
+
+            HC_setfavoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_24, 0);
+            System.out.println("row add");
+        }
+
     }
 }
