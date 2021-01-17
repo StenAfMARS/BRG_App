@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -43,12 +44,15 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = getIntent();
                 if(intent.getBooleanExtra("Frag",false) == true){
-                    System.out.println("ja");
+                    /*(System.out.println("ja");
                     getSupportFragmentManager().beginTransaction()
                             .add(R.id.ShowBrewAnimation, new OnPressedBryg(getApplicationContext()))  // tom container i layout
                             .commit();
                     TextView headerText = (TextView) findViewById(R.id.TVPreferencesTitle3);
                     headerText.setVisibility(View.GONE);
+
+
+                     */
                 }
                 else{
                     InitPreferencesList(DatabaseController.getInstance().getDB());
