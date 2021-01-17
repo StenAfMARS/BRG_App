@@ -18,9 +18,6 @@ import grp02.brg_app.R;
 public class HistoryAdapter extends BaseAdapter implements View.OnClickListener {
     Context mContext;
     List<DTO_recipe> recipes;
-    Button HC_setfavoriteBtn;
-    Button HC_brewBtn;
-    ConstraintLayout HC_cardHeader;
     DTO_recipe recipe;
 
     public HistoryAdapter(Context context, List<DTO_recipe> gameLogs){
@@ -60,10 +57,10 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
         // 3
         TextView title = convertView.findViewById(R.id.HC_titleTV);
         TextView date = convertView.findViewById(R.id.HC_brewDateTV);
-        HC_brewBtn = convertView.findViewById(R.id.HC_brewBtn);
-        HC_setfavoriteBtn = convertView.findViewById(R.id.HC_setfavoriteBtn);
         TextView id = convertView.findViewById(R.id.HC_cardID);
-        HC_cardHeader = convertView.findViewById(R.id.hsCardHeader);
+        Button HC_brewBtn = convertView.findViewById(R.id.HC_brewBtn);
+        Button HC_setfavoriteBtn = convertView.findViewById(R.id.HC_setfavoriteBtn);
+        View HC_cardHeader = convertView.findViewById(R.id.hsCardHeader);
 
         title.setText(recTitel);
         date.setText(recDate);
@@ -80,6 +77,16 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
     @Override
     public void onClick(View view) {
 
+        switch (view.getId()){
+            case R.id.HC_brewBtn:
+                break;
+            case R.id.HC_setfavoriteBtn:
+                break;
+            default:
+                // der er trykket på selve kortet.
+                break;
+        }
+/*
         if(view == HC_cardHeader) {
             System.out.println("YO MAMMA!!!!!! ");
         }
@@ -95,6 +102,6 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
             HC_setfavoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_24, 0);
             System.out.println("row add");
         }
-
+*/
     }
 }
