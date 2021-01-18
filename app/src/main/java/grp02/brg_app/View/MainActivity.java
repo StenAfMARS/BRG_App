@@ -32,6 +32,15 @@ import grp02.brg_app.View.Fragments.OnPressedBryg;
 public class MainActivity extends AppCompatActivity {
     public static Context context;
     public static SharedPreferences sharedPref;
+    public static MainActivity Instance;
+
+    public static MainActivity getInstance() {
+        if(Instance == null) {
+            Instance = new MainActivity();
+        }
+
+        return Instance;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,32 +104,24 @@ public class MainActivity extends AppCompatActivity {
                         return false;
                     }
                 });
-                //InitRecipesList(DatabaseController.getInstance().getDB());
             }
 
         }, 100);   //5 seconds
 
-
+        ListView preferencesLV = findViewById(R.id.PreferencesCardList);
+        preferencesLV.setVisibility(View.VISIBLE);
     }
     public void getFragment(){
         Intent intent = new Intent(MainActivity.context,MainActivity.class);
         intent.putExtra("Frag",true);
         context.startActivity(intent);
     }
-    private void InitPreferencesList(IDatabaseConnector db){
+
+    public void InitPreferencesList(IDatabaseConnector db){
         ListView listView = findViewById(R.id.PreferencesCardList);
 
         PreferencesAdapter adapter = new PreferencesAdapter(this, db.getAllFavorites());
         listView.setAdapter(adapter);
 
     }
-/*    private void InitRecipesList(IDatabaseConnector db){
-        ListView listView = findViewById(R.id.RecipesCardList);
-
-        RecipesAdapter adapter = new RecipesAdapter(this, db.getRecipes());
-        listView.setAdapter(adapter);
-
-    }
-
- */
 }

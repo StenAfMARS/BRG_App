@@ -223,7 +223,7 @@ public class IndstillingerActivity1 extends AppCompatActivity {
     }
 
     private void checkPermissions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             String[] missingPermissions = getMissingPermissions(getRequiredPermissions());
             if (missingPermissions.length > 0) {
                 requestPermissions(missingPermissions, ACCESS_LOCATION_REQUEST);
@@ -235,7 +235,7 @@ public class IndstillingerActivity1 extends AppCompatActivity {
 
     private String[] getMissingPermissions(String[] requiredPermissions) {
         List<String> missingPermissions = new ArrayList<>();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             for (String requiredPermission : requiredPermissions) {
                 if (getApplicationContext().checkSelfPermission(requiredPermission) != PackageManager.PERMISSION_GRANTED) {
                     missingPermissions.add(requiredPermission);
@@ -247,7 +247,7 @@ public class IndstillingerActivity1 extends AppCompatActivity {
 
     private String[] getRequiredPermissions() {
         int targetSdkVersion = getApplicationInfo().targetSdkVersion;
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && targetSdkVersion >= Build.VERSION_CODES.Q)
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && targetSdkVersion >= Build.VERSION_CODES.N)
             return new String[] {Manifest.permission.ACCESS_FINE_LOCATION};
         else return new String[] {Manifest.permission.ACCESS_COARSE_LOCATION};
     }
