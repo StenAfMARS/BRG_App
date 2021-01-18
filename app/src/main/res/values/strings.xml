@@ -34,4 +34,7 @@
     <string name="bloomWaterTV">Mængde af vand til blooming:</string>
     <string name="bloomDistTV">Indtast en bloom distribueringstid:</string>
     <string name="brewNameET">Navngivning af bryg</string>
+    <string name="slet">Slet</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
