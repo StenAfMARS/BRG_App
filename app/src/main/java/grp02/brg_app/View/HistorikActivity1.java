@@ -17,6 +17,7 @@ import grp02.brg_app.Control.IDatabaseConnector;
 import grp02.brg_app.Model.HistoryAdapter;
 import grp02.brg_app.R;
 import grp02.brg_app.View.Fragments.NameStart;
+import grp02.brg_app.View.HistorikFragments.CardInfo;
 import grp02.brg_app.View.HistorikFragments.HistorikList;
 
 public class HistorikActivity1 extends AppCompatActivity {
@@ -78,6 +79,12 @@ public class HistorikActivity1 extends AppCompatActivity {
             historikActivity1 = new HistorikActivity1();
         }
         return historikActivity1;
+    }
+
+    public void launchFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.broegFragmentetIActivity, new CardInfo())  // tom container i layout
+                .commit();
     }
 
 }

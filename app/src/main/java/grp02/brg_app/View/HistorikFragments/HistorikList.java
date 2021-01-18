@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.material.card.MaterialCardView;
 
@@ -33,6 +35,17 @@ public class HistorikList extends Fragment {
 
     private View historikListView;
     private Context context = HistorikActivity1.context;
+    DatabaseController dbControl = DatabaseController.getInstance();
+
+    public static HistorikList Instance;
+
+    public static HistorikList getInstance() {
+        if(Instance == null) {
+            Instance = new HistorikList();
+        }
+
+        return Instance;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,5 +63,29 @@ public class HistorikList extends Fragment {
 
         HistoryAdapter adapter = new HistoryAdapter(context, db.getHistory());
         listView.setAdapter(adapter);
+    }
+
+    public void toggleFavoritesBtn(DTO_recipe recipe, Button currentBtn) {
+
+        // Check if Id is in preferences
+        if(dbControl.getDB().checkPreferencesForItem(recipe.getRecipeID())) {
+            // If true -> remove it
+            DatabaseController.getInstance().getDB().deleteRecipe("Preferences", "fk_RecipeID", recipe.getRecipeID());
+            System.out.println("DELETE: " + recipe.getRecipeID());
+            toggleVisuals(true, currentBtn);
+        } else {
+            // if False -> Add it
+            DatabaseController.getInstance().getDB().addRow("Preferences", recipe.getRecipeID(),false,"");
+            System.out.println("ADD: " + recipe.getRecipeID());
+            toggleVisuals(false, currentBtn);
+        }
+    }
+
+    public void toggleVisuals(boolean toggle, Button currentBtn) {
+        if(toggle) {
+            currentBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_outline_24, 0);
+        } else {
+            currentBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_24, 0);
+        }
     }
 }

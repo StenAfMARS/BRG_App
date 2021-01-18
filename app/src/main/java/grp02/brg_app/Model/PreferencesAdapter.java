@@ -26,6 +26,7 @@ import grp02.brg_app.View.MainActivity;
 public class PreferencesAdapter extends BaseAdapter implements View.OnClickListener {
     Context mContext;
     List<DTO_recipe> recipes;
+    DTO_recipe recipe;
 
     public PreferencesAdapter(Context context, List<DTO_recipe> gameLogs){
         mContext = context;
@@ -50,7 +51,7 @@ public class PreferencesAdapter extends BaseAdapter implements View.OnClickListe
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        DTO_recipe recipe = recipes.get(position);
+        recipe = recipes.get(position);
 
 
         if (convertView == null) {
@@ -77,23 +78,20 @@ public class PreferencesAdapter extends BaseAdapter implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        Button setFavoriteBtn = v.findViewById(R.id.HC_setfavoriteBtn);
+
         switch (v.getId()){
-
+            case R.id.HC_brewBtn:
+                MainActivity mainActivity = new MainActivity();
+                mainActivity.getFragment();
+                break;
+            case R.id.HC_setfavoriteBtn:
+                DatabaseController.getInstance().getDB().deleteRecipe("Preferences","fk_RecipeID",recipe.getRecipeID());
+                setFavoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_outline_24, 0);
+                setFavoriteBtn.setVisibility(View.GONE);
+                break;
+            default:
+                break;
         }
-
-        /*
-        if(v == HC_brewBtn){
-            MainActivity mainActivity = new MainActivity();
-            mainActivity.getFragment();
-
-        }
-        if(v == HC_setfavoriteBtn){
-            System.out.println(recipe.getRecipeID());
-            DatabaseController.getInstance().getDB().deleteRecipe("Preferences","fk_RecipeID",recipe.getRecipeID());
-            HC_setfavoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_outline_24, 0);
-                System.out.println("row add");
-
-        }
-         */
     }
 }

@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 //InitRecipesList(DatabaseController.getInstance().getDB());
             }
 
-        }, 10);   //5 seconds
+        }, 100);   //5 seconds
 
 
     }
