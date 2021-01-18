@@ -66,6 +66,7 @@ public class Indstillinger extends Fragment implements View.OnClickListener {
         blueetoothConnect.setText("Enheder");
 
         info = (Button) rod.findViewById(R.id.info);
+        info.setText("App info");
         info.setOnClickListener(this);
 
         return rod;
