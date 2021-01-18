@@ -69,7 +69,6 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
     public View getView(int position, View convertView, ViewGroup parent) {
 
         DTO_recipe recipe = recipes.get(recipes.size() - (position+1));
-        String recId = String.valueOf(recipe.getRecipeID());
         String recDate = recipe.getDateTime();
         String recTitel = recipe.getRecipeName();
 
@@ -82,7 +81,6 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
         // 3
         TextView title = convertView.findViewById(R.id.HC_titleTV);
         TextView date = convertView.findViewById(R.id.HC_brewDateTV);
-        TextView id = convertView.findViewById(R.id.HC_cardID);
         Button HC_brewBtn = convertView.findViewById(R.id.HC_brewBtn);
         Button HC_setfavoriteBtn = convertView.findViewById(R.id.HC_setfavoriteBtn);
         Button HC_shareBtn = convertView.findViewById(R.id.HC_shareBtn);
@@ -90,7 +88,6 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
 
         title.setText(recTitel);
         date.setText(recDate);
-        id.setText(recId);
 
         // Check if recipe is in favorites.
         if(dbControl.getDB().checkPreferencesForItem(recipe.getRecipeID())) {
@@ -101,11 +98,19 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
 
         HC_brewBtn.setOnClickListener(this);
         HC_setfavoriteBtn.setOnClickListener(this);
-        HC_cardHeader.setOnClickListener(this);
         HC_shareBtn.setOnClickListener(this);
+
         HC_shareBtn.setTag(recipe);
         HC_setfavoriteBtn.setTag(recipe);
+
+        HC_cardHeader.setOnClickListener(this);
+        title.setOnClickListener(this);
+        date.setOnClickListener(this);
+
         HC_cardHeader.setTag(recipe.getRecipeID());
+        title.setTag(recipe.getRecipeID());
+        date.setTag(recipe.getRecipeID());
+
 
         return convertView;
     }
