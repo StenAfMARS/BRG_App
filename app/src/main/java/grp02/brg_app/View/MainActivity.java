@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ import grp02.brg_app.Control.IDatabaseConnector;
 import grp02.brg_app.Control.LogicController;
 import grp02.brg_app.Control.RecipeFactoryController;
 import grp02.brg_app.Model.PreferencesAdapter;
+import grp02.brg_app.Model.RecipesAdapter;
 import grp02.brg_app.R;
 import grp02.brg_app.View.Fragments.OnPressedBryg;
 
@@ -35,27 +37,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         context = this;
 
-        System.out.println("nej");
         DatabaseController.getInstance().UseSQL(this);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
                 Intent intent = getIntent();
                 if(intent.getBooleanExtra("Frag",false) == true){
-                    System.out.println("ja");
                     getSupportFragmentManager().beginTransaction()
                             .add(R.id.ShowBrewAnimation, new OnPressedBryg(getApplicationContext()))  // tom container i layout
                             .commit();
                     TextView headerText = (TextView) findViewById(R.id.TVPreferencesTitle3);
                     headerText.setVisibility(View.GONE);
+
                 }
                 else{
                     InitPreferencesList(DatabaseController.getInstance().getDB());
+
                 }
                 sharedPref = getPreferences(Context.MODE_PRIVATE);
 
                 // Set DateTime
-                RecipeFactoryController.getInstance().setBrewDateTime(LogicController.getInstance().getCurrentDateTime());
+                RecipeFactoryController.getInstance().setDateTime(LogicController.getInstance().getCurrentDateTime());
 
                 // Navigation
                 // ##########################################################
@@ -89,8 +91,10 @@ public class MainActivity extends AppCompatActivity {
                         return false;
                     }
                 });
+                //InitRecipesList(DatabaseController.getInstance().getDB());
             }
-        }, 2000);   //5 seconds
+
+        }, 10);   //5 seconds
 
 
     }
@@ -106,4 +110,13 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
     }
+/*    private void InitRecipesList(IDatabaseConnector db){
+        ListView listView = findViewById(R.id.RecipesCardList);
+
+        RecipesAdapter adapter = new RecipesAdapter(this, db.getRecipes());
+        listView.setAdapter(adapter);
+
+    }
+
+ */
 }

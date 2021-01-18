@@ -66,12 +66,13 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         if (v == btnBrewAction) {
             RecipeFactoryController recipeFactoryController = RecipeFactoryController.getInstance();
-            String getDateTime = recipeFactoryController.setBrewDateTime(LogicController.getInstance().getCurrentDateTime());
+            String getDateTime = LogicController.getInstance().getCurrentDateTime();
             storageController.saveRecipe(recipeFactoryController.getDTO_recipe());
             storageController.addRow(
                     "History",
                     0,
-                    true, getDateTime);
+                    true,
+                    getDateTime);
             RecipeFactoryController.getInstance().clearRecipe();
             getFragmentManager().beginTransaction()
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
@@ -81,14 +82,13 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
 
         } else if (v == btnSaveBrew) {
             RecipeFactoryController recipeFactoryController = RecipeFactoryController.getInstance();
-            String getDateTime = recipeFactoryController.setBrewDateTime(LogicController.getInstance().getCurrentDateTime());
+            String getDateTime = LogicController.getInstance().getCurrentDateTime();
             storageController.saveRecipe(recipeFactoryController.getDTO_recipe());
             storageController.addRow(
                     "History",
                     0,
                     true,
                     getDateTime);
-            testRecipeFactory();
 
             getFragmentManager().beginTransaction()
                     //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
@@ -96,33 +96,9 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
                     .replace(R.id.broegFragmentetIActivity, new OnSaveBryg())
                     .addToBackStack(null)
                     .commit();
-        }
-        else if(v != btnBrewAction || v != btnSaveBrew){
+        } else if(v != btnBrewAction || v != btnSaveBrew){
             storageController.deleteRecipes();
         }
-    }
-
-    private void testRecipeFactory() {
-        System.out.println("DET HER ER TAGET FRA DATABASEN: ");
-        System.out.println(storageController.getRecipes().get(storageController.getRecipes().size() - 1).getRecipeName());
-        System.out.println(storageController.getRecipes().get(storageController.getRecipes().size() - 1).getGroundCoffee());
-        System.out.println(storageController.getRecipes().get(storageController.getRecipes().size() - 1).getGrindSize());
-        System.out.println(storageController.getRecipes().get(storageController.getRecipes().size() - 1).getWaterToCoffee());
-        System.out.println(storageController.getRecipes().get(storageController.getRecipes().size() - 1).getBrewingTemperature());
-        System.out.println(storageController.getRecipes().get(storageController.getRecipes().size() - 1).getBloomWater());
-        System.out.println(storageController.getRecipes().get(storageController.getRecipes().size() - 1).getBloomTime());
-        System.out.println("______________________________________________________________________________________________________");
-
-        System.out.println("DET HER ER TAGER FRA DEN INSTANS DER IKKE ER SLETTE ENDNU: ");
-        System.out.println(RecipeFactoryController.getInstance().getDTO_recipe().getRecipeName());
-        System.out.println(RecipeFactoryController.getInstance().getDTO_recipe().getGroundCoffee());
-        System.out.println(RecipeFactoryController.getInstance().getDTO_recipe().getGrindSize());
-        System.out.println(RecipeFactoryController.getInstance().getDTO_recipe().getWaterToCoffee());
-        System.out.println(RecipeFactoryController.getInstance().getDTO_recipe().getBrewingTemperature());
-        System.out.println(RecipeFactoryController.getInstance().getDTO_recipe().getBloomWater());
-        System.out.println(RecipeFactoryController.getInstance().getDTO_recipe().getBloomTime());
-        System.out.println("______________________________________________________________________________________________________");
-        //Matching completely.
     }
 
 }

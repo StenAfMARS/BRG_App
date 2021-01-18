@@ -1,31 +1,24 @@
 package grp02.brg_app.Model;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.google.android.material.card.MaterialCardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.List;
 
 import grp02.brg_app.Control.DatabaseController;
-import grp02.brg_app.Control.StorageController;
 import grp02.brg_app.R;
-import grp02.brg_app.Model.DTO_recipe;
-import grp02.brg_app.View.Fragments.OnPressedBryg;
 
-public class HistoryAdapter extends BaseAdapter {
+public class HistoryAdapter extends BaseAdapter implements View.OnClickListener {
     Context mContext;
     List<DTO_recipe> recipes;
     DTO_recipe recipe;
-    StorageController storageController;
 
     public HistoryAdapter(Context context, List<DTO_recipe> gameLogs){
         mContext = context;
@@ -50,7 +43,10 @@ public class HistoryAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        DTO_recipe recipe = recipes.get(position);
+        recipe = recipes.get(position);
+        String recId = String.valueOf(recipe.getRecipeID());
+        String recDate = recipe.getDateTime();
+        String recTitel = recipe.getRecipeName();
 
 
         if (convertView == null) {
@@ -61,44 +57,51 @@ public class HistoryAdapter extends BaseAdapter {
         // 3
         TextView title = convertView.findViewById(R.id.HC_titleTV);
         TextView date = convertView.findViewById(R.id.HC_brewDateTV);
+        TextView id = convertView.findViewById(R.id.HC_cardID);
         Button HC_brewBtn = convertView.findViewById(R.id.HC_brewBtn);
         Button HC_setfavoriteBtn = convertView.findViewById(R.id.HC_setfavoriteBtn);
-        TextView id = convertView.findViewById(R.id.HC_cardID);
-        MaterialCardView cardView = convertView.findViewById(R.id.hsCard);
+        View HC_cardHeader = convertView.findViewById(R.id.hsCardHeader);
 
-        String time = recipe.getDateTime();
+        title.setText(recTitel);
+        date.setText(recDate);
+        id.setText(recId);
 
-        // 4
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(v == cardView) {
-                    System.out.println("YO MAMMA!!!!!! ");
-                }
-
-                if(v == HC_brewBtn){
-
-                }
-
-                if(v == HC_setfavoriteBtn){
-                    System.out.println(recipe.getRecipeID());
-                    DatabaseController.getInstance().getDB().addRow("Preferences",recipe.getRecipeID(),false,"");
-
-                    HC_setfavoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_24, 0);
-                    System.out.println("row add");
-                }
-            }
-        };
-
-        HC_brewBtn.setOnClickListener(onClickListener);
-        HC_setfavoriteBtn.setOnClickListener(onClickListener);
-
-        title.setText(recipe.getRecipeName());
-        date.setText(recipe.getDateTime());
-        id.setText(String.valueOf(recipe.getRecipeID()));
-        System.out.println(recipe.getDateTime());
+        HC_brewBtn.setOnClickListener(this);
+        HC_setfavoriteBtn.setOnClickListener(this);
+        HC_cardHeader.setOnClickListener(this);
 
 
         return convertView;
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()){
+            case R.id.HC_brewBtn:
+                break;
+            case R.id.HC_setfavoriteBtn:
+                break;
+            default:
+                // der er trykket på selve kortet.
+                break;
+        }
+/*
+        if(view == HC_cardHeader) {
+            System.out.println("YO MAMMA!!!!!! ");
+        }
+
+        if(view == HC_brewBtn){
+
+        }
+
+        if(view == HC_setfavoriteBtn){
+            System.out.println(recipe.getRecipeID());
+            DatabaseController.getInstance().getDB().addRow("Preferences", recipe.getRecipeID(),false,"");
+
+            HC_setfavoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_24, 0);
+            System.out.println("row add");
+        }
+*/
     }
 }
