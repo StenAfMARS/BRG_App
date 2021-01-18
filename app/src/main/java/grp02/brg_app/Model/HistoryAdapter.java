@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
 
 import org.w3c.dom.Text;
 
@@ -35,6 +37,7 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
     List<DTO_recipe> recipes;
     DatabaseController dbControl = DatabaseController.getInstance();
     HistorikList hsList = HistorikList.getInstance();
+    HistorikActivity1 hsAct = HistorikActivity1.getInstance();
 
     public HistoryAdapter(Context context, List<DTO_recipe> gameLogs){
         mContext = context;
@@ -93,6 +96,7 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
         HC_setfavoriteBtn.setOnClickListener(this);
         HC_cardHeader.setOnClickListener(this);
         HC_setfavoriteBtn.setTag(recipe);
+        HC_cardHeader.setTag(recipe.getRecipeID());
 
         return convertView;
     }
@@ -114,7 +118,19 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
                 break;
             default:
                 // der er trykket på selve kortet.
-                System.out.println("THIS IS A TEST!");
+                int id = (Integer) view.getTag();
+                // hsList.changeFragmentToCardInfo(id);
+                // Show CardInfo
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", id);
+
+                Fragment cardInfoFrag = new CardInfo();
+                cardInfoFrag.setArguments(bundle);
+
+                ((HistorikActivity1)mContext).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.FLHistorikOpenCards, cardInfoFrag)
+                        .addToBackStack(null)
+                        .commit();
                 break;
         }
     }

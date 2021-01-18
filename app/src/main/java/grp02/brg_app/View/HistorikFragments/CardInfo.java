@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import grp02.brg_app.Control.RecipeFactoryController;
 import grp02.brg_app.Control.StorageController;
+import grp02.brg_app.Control.TextController;
 import grp02.brg_app.Model.DTO_recipe;
 import grp02.brg_app.R;
 import grp02.brg_app.View.Fragments.GroundCoffee;
@@ -25,6 +27,8 @@ public class CardInfo extends Fragment implements View.OnClickListener {
     private TextView gramKaffe, bloomWater, brewTemp, grindSize, name, WCRatio, bloomTime;
     private int recipeId;
     DTO_recipe recipe;
+    TextController textController = TextController.getInstance();
+    RecipeFactoryController recipeFactory = RecipeFactoryController.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,6 +38,7 @@ public class CardInfo extends Fragment implements View.OnClickListener {
 
         View cardInfoView = inflater.inflate(R.layout.fragment_card_info, container, false);
 
+
         gramKaffe = cardInfoView.findViewById(R.id.FCI_gramKaffe1);
         bloomWater = cardInfoView.findViewById(R.id.FCI_bloomWater);
         bloomTime = cardInfoView.findViewById(R.id.FCI_bloomTime);
@@ -42,7 +47,7 @@ public class CardInfo extends Fragment implements View.OnClickListener {
         name = cardInfoView.findViewById(R.id.FCI_navn);
         WCRatio = cardInfoView.findViewById(R.id.FCI_waterCoffeeRatio);
 
-        recipeId = getArguments().getInt("recipeId");
+        recipeId = getArguments().getInt("id");
 
         backToHistoryBtn = cardInfoView.findViewById(R.id.FCI_backToHistoryBtn);
         beginBrewBtn = cardInfoView.findViewById(R.id.FCI_BeginBrewBtn);
@@ -56,13 +61,13 @@ public class CardInfo extends Fragment implements View.OnClickListener {
 
     public void getInfoFromDatabase() {
         recipe = storageController.getRecipe(recipeId);
-        gramKaffe.setText(String.valueOf(recipe.getGroundCoffee()));
-        bloomWater.setText(String.valueOf(recipe.getBloomWater()));
-        bloomTime.setText(String.valueOf(recipe.getBloomTime()));
-        brewTemp.setText(String.valueOf(recipe.getBrewingTemperature()));
-        grindSize.setText(recipe.getGrindSize());
-        name.setText(recipe.getRecipeName());
-        WCRatio.setText(String.valueOf(recipe.getWaterToCoffee()));
+
+        gramKaffe.setText(textController.getContextStrings(R.string.kaffeGram, recipe.getGroundCoffee()));
+        grindSize.setText(textController.getContextStrings(R.string.grindSize, recipe.getGrindSize()));
+        WCRatio.setText(textController.getContextStrings(R.string.waterCoffeeRatio, recipe.getWaterAmount()));
+        brewTemp.setText(textController.getContextStrings(R.string.brewTemp, recipe.getBrewingTemperature()));
+        bloomWater.setText(textController.getContextStrings(R.string.bloomWater, recipe.getBloomWater()));
+        bloomTime.setText(textController.getContextStrings(R.string.bloomTime, recipe.getBloomTime()));
     }
 
     @Override
@@ -77,10 +82,6 @@ public class CardInfo extends Fragment implements View.OnClickListener {
         }
 
         if(view == beginBrewBtn) {
-
-            // Get info from Database
-                // Brew from storageController.getRecipe(id)
-
             // Show new Fragment and Start Brew
             getFragmentManager().beginTransaction()
                     //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)

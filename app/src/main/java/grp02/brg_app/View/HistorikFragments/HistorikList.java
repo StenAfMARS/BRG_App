@@ -88,4 +88,8 @@ public class HistorikList extends Fragment {
             currentBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_24, 0);
         }
     }
+
+    public void changeFragmentToCardInfo(int id) {
+        HistorikActivity1.getInstance().changeFragment(id);
+    }
 }

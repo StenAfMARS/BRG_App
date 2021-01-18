@@ -81,10 +81,19 @@ public class HistorikActivity1 extends AppCompatActivity {
         return historikActivity1;
     }
 
-    public void launchFragment() {
+    public void changeFragment(int id) {
+        // Show CardInfo
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", id);
+
+        Fragment cardInfoFrag = new CardInfo();
+        cardInfoFrag.setArguments(bundle);
+
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.broegFragmentetIActivity, new CardInfo())  // tom container i layout
+                .replace(R.id.FLHistorikOpenCards, cardInfoFrag)
+                .addToBackStack(null)
                 .commit();
     }
+
 
 }
