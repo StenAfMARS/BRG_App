@@ -57,7 +57,7 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
 
     @Override
     public DTO_recipe getItem(int position) {
-        return recipes.get(position);
+        return recipes.get(recipes.size() - (position+1));
     }
 
     @Override
