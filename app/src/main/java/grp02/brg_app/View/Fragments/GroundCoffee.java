@@ -40,15 +40,15 @@ public class GroundCoffee extends Fragment implements View.OnClickListener {
         progressBar.setProgress(progressBarStatus);
 
         buttonNext = rod.findViewById(R.id.buttonNext);
-        buttonNext.setText("NÆSTE");
+        buttonNext.setText(R.string.n_ste);
         buttonNext.setOnClickListener(this);
 
         buttonTilbage = rod.findViewById(R.id.buttonTilbage);
-        buttonTilbage.setText("TILBAGE");
+        buttonTilbage.setText(R.string.tilbage);
         buttonTilbage.setOnClickListener(this);
 
         hvorMangeKramKaffe = rod.findViewById(R.id.textView);
-        hvorMangeKramKaffe.setText("HVOR MANGE GRAM KAFFE VIL DU HAVE?");
+        hvorMangeKramKaffe.setText(R.string.groundCoffeeTV);
 
         scrollChoice = rod.findViewById(R.id.scroll_choice);
         scrollChoice2 = rod.findViewById(R.id.scroll_choice2);

@@ -25,19 +25,14 @@ public class NameStart extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.fragment_start, container, false);
 
-
-
         buttonNextStart = rod.findViewById(R.id.buttonNextStart);
-        buttonNextStart.setText("NÆSTE");
+        buttonNextStart.setText(R.string.n_ste);
         buttonNextStart.setOnClickListener(this);
 
         textView = rod.findViewById(R.id.textViewStart);
-        textView.setText("Hvad skal din brøg hedde");
+        textView.setText(R.string.brewName);
 
         editText = rod.findViewById(R.id.navnPaaBroeggen);
-        editText.setHint("Navn på din brøg");
-        System.out.println("Start fragment");
-
 
         return rod;
     }
@@ -48,10 +43,9 @@ public class NameStart extends Fragment implements View.OnClickListener {
         if (v == buttonNextStart) {
             String navn1 = editText.getText().toString();
             if (navn1.isEmpty()){
-            editText.setError("Husk at indtaste et navn");
+            editText.setError("Husk at indtaste et label");
             } else {
                 navn = editText.getText().toString();
-                System.out.println("Navnet: " + navn);
                 RecipeFactoryController.getInstance().setRecipeName(navn);
                 getFragmentManager().beginTransaction()
                         //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
