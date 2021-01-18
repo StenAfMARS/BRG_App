@@ -37,15 +37,15 @@ public class BrewingTemperature extends Fragment implements View.OnClickListener
         progressBar.setProgress(progressBarStatus);
 
         buttonNext2 = rod.findViewById(R.id.buttonNext2);
-        buttonNext2.setText("NÆSTE");
+        buttonNext2.setText(R.string.n_ste);
         buttonNext2.setOnClickListener(this);
 
         buttonTilbage2 = rod.findViewById(R.id.buttonTilbage2);
-        buttonTilbage2.setText("TILBAGE");
+        buttonTilbage2.setText(R.string.tilbage);
         buttonTilbage2.setOnClickListener(this);
 
         temperatur = rod.findViewById(R.id.textViewSekunder);
-        temperatur.setText("HVAD SKAL TEMPERATUREN VÆRE?");
+        temperatur.setText(R.string.brewTempTV);
 
         scrollChoice = rod.findViewById(R.id.scroll_choice_sekunder);
         loadDeForskelligeMængder();

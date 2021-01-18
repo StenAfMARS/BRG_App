@@ -3,6 +3,7 @@ package grp02.brg_app.View;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,6 +23,7 @@ import grp02.brg_app.Control.DatabaseController;
 import grp02.brg_app.Control.IDatabaseConnector;
 import grp02.brg_app.Control.LogicController;
 import grp02.brg_app.Control.RecipeFactoryController;
+import grp02.brg_app.Control.TextController;
 import grp02.brg_app.Model.PreferencesAdapter;
 import grp02.brg_app.Model.RecipesAdapter;
 import grp02.brg_app.R;
@@ -30,12 +32,23 @@ import grp02.brg_app.View.Fragments.OnPressedBryg;
 public class MainActivity extends AppCompatActivity {
     public static Context context;
     public static SharedPreferences sharedPref;
+    public static MainActivity Instance;
+
+    public static MainActivity getInstance() {
+        if(Instance == null) {
+            Instance = new MainActivity();
+        }
+
+        return Instance;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
+
+        TextController.getInstance().setResources(getResources());
 
         DatabaseController.getInstance().UseSQL(this);
         Handler handler = new Handler();
@@ -44,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = getIntent();
                 if(intent.getBooleanExtra("Frag",false) == true){
                     getSupportFragmentManager().beginTransaction()
-                            .add(R.id.ShowBrewAnimation, new OnPressedBryg(getApplicationContext()))  // tom container i layout
+                            .add(R.id.ShowBrewAnimation, new OnPressedBryg(getApplicationContext()))
                             .commit();
                     TextView headerText = (TextView) findViewById(R.id.TVPreferencesTitle3);
                     headerText.setVisibility(View.GONE);
@@ -91,32 +104,24 @@ public class MainActivity extends AppCompatActivity {
                         return false;
                     }
                 });
-                //InitRecipesList(DatabaseController.getInstance().getDB());
             }
 
-        }, 10);   //5 seconds
+        }, 100);   //5 seconds
 
-
+        ListView preferencesLV = findViewById(R.id.PreferencesCardList);
+        preferencesLV.setVisibility(View.VISIBLE);
     }
     public void getFragment(){
         Intent intent = new Intent(MainActivity.context,MainActivity.class);
         intent.putExtra("Frag",true);
         context.startActivity(intent);
     }
-    private void InitPreferencesList(IDatabaseConnector db){
+
+    public void InitPreferencesList(IDatabaseConnector db){
         ListView listView = findViewById(R.id.PreferencesCardList);
 
         PreferencesAdapter adapter = new PreferencesAdapter(this, db.getAllFavorites());
         listView.setAdapter(adapter);
 
     }
-/*    private void InitRecipesList(IDatabaseConnector db){
-        ListView listView = findViewById(R.id.RecipesCardList);
-
-        RecipesAdapter adapter = new RecipesAdapter(this, db.getRecipes());
-        listView.setAdapter(adapter);
-
-    }
-
- */
 }

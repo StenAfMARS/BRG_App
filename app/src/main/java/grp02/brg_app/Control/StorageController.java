@@ -172,7 +172,67 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
 
     @Override
     public DTO_recipe getRecipe(int id) {
-        return null;
+        DTO_recipe recipe = new DTO_recipe();
+
+        String selectQuery = "SELECT  * FROM Recipes WHERE RecipeID = " + id;
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                RecipeFactoryController.getInstance().clearRecipe();
+                RecipeFactoryController.getInstance().setRecipeID(Integer.parseInt(cursor.getString(0)));
+                RecipeFactoryController.getInstance().setGrindSize(cursor.getString(2));
+                RecipeFactoryController.getInstance().setRecipeName(cursor.getString(1));
+                RecipeFactoryController.getInstance().setWaterToCoffee(cursor.getFloat(3));
+                RecipeFactoryController.getInstance().setBrewingTemperature(cursor.getInt(4));
+                RecipeFactoryController.getInstance().setBloomWater(cursor.getInt(5));
+                RecipeFactoryController.getInstance().setBloomTime(cursor.getInt(6));
+                RecipeFactoryController.getInstance().setGroundCoffee(cursor.getInt(7));
+                recipe = RecipeFactoryController.getInstance().getDTO_recipe();
+            } while (cursor.moveToNext());
+        }
+
+        return recipe;
+    }
+
+    @Override
+    public DTO_recipe getFavorite(int id) {
+        DTO_recipe recipe = new DTO_recipe();
+
+        String selectQuery = "SELECT  * FROM Preferences WHERE fk_RecipeID = " + id;
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                RecipeFactoryController.getInstance().clearRecipe();
+                RecipeFactoryController.getInstance().setRecipeID(Integer.parseInt(cursor.getString(0)));
+                RecipeFactoryController.getInstance().setGrindSize(cursor.getString(2));
+                RecipeFactoryController.getInstance().setRecipeName(cursor.getString(1));
+                RecipeFactoryController.getInstance().setWaterToCoffee(cursor.getFloat(3));
+                RecipeFactoryController.getInstance().setBrewingTemperature(cursor.getInt(4));
+                RecipeFactoryController.getInstance().setBloomWater(cursor.getInt(5));
+                RecipeFactoryController.getInstance().setBloomTime(cursor.getInt(6));
+                RecipeFactoryController.getInstance().setGroundCoffee(cursor.getInt(7));
+                recipe = RecipeFactoryController.getInstance().getDTO_recipe();
+            } while (cursor.moveToNext());
+        }
+
+        return recipe;
+    }
+
+    @Override
+    public boolean checkPreferencesForItem(int id) {
+        String selectQuery = "SELECT * FROM Preferences WHERE fk_RecipeID = " + id;
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if(cursor.moveToFirst()) {
+            // If exists
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     // code comes from https://www.javatpoint.com/android-sqlite-tutorial

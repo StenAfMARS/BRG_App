@@ -16,7 +16,7 @@ public class DatabaseController {
         return Instance;
     }
 
-    private IDatabaseConnector db;
+    public IDatabaseConnector db;
 
     public void UseSQL(Context context){
         new Thread(() -> {

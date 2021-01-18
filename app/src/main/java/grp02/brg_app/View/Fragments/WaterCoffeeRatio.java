@@ -38,15 +38,15 @@ public class WaterCoffeeRatio extends Fragment implements View.OnClickListener {
         progressBar = rod.findViewById(R.id.progressBar1);
         progressBar.setProgress(progressBarStatus);
         buttonNext1 = rod.findViewById(R.id.buttonNext1);
-        buttonNext1.setText("NÆSTE");
+        buttonNext1.setText(R.string.n_ste);
         buttonNext1.setOnClickListener(this);
 
         buttonTilbage1 = rod.findViewById(R.id.buttonTilbage1);
-        buttonTilbage1.setText("TILBAGE");
+        buttonTilbage1.setText(R.string.tilbage);
         buttonTilbage1.setOnClickListener(this);
 
         hvorMangeMlVand = rod.findViewById(R.id.textViewVand);
-        hvorMangeMlVand.setText("HVOR MEGET VAND PR. GRAM KAFFE VIL DU BRUGE?");
+        hvorMangeMlVand.setText(R.string.waterCoffeeRatioTV);
 
         scrollChoice = rod.findViewById(R.id.scroll_choice_vand);
         loadDeForskelligeMængder();

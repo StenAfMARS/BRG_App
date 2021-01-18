@@ -39,15 +39,15 @@ public class BloomWater extends Fragment implements View.OnClickListener {
         progressBar.setProgress(progressBarStatus);
 
         buttonNext3 = rod.findViewById(R.id.buttonNext3);
-        buttonNext3.setText("NÆSTE");
+        buttonNext3.setText(R.string.n_ste);
         buttonNext3.setOnClickListener(this);
 
         buttonTilbage3 = rod.findViewById(R.id.buttonTilbage3);
-        buttonTilbage3.setText("TILBAGE");
+        buttonTilbage3.setText(R.string.tilbage);
         buttonTilbage3.setOnClickListener(this);
 
         hvorMangeMlVand = rod.findViewById(R.id.textViewBloomTid);
-        hvorMangeMlVand.setText("HVOR MEGET VAND SKAL DU BRUGE TIL BLOOM?");
+        hvorMangeMlVand.setText(R.string.bloomWaterTV);
 
         scrollChoice = rod.findViewById(R.id.scroll_choice_BloomTid);
         loadDeForskelligeMængder();

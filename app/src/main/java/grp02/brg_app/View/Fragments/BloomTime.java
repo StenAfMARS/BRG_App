@@ -37,15 +37,15 @@ public class BloomTime extends Fragment implements View.OnClickListener {
         progressBar.setProgress(progressBarStatus);
 
         buttonNext4 = rod.findViewById(R.id.buttonNext4);
-        buttonNext4.setText("NÆSTE");
+        buttonNext4.setText(R.string.n_ste);
         buttonNext4.setOnClickListener(this);
 
         buttonTilbage4 = rod.findViewById(R.id.buttonTilbage4);
-        buttonTilbage4.setText("TILBAGE");
+        buttonTilbage4.setText(R.string.tilbage);
         buttonTilbage4.setOnClickListener(this);
 
         textViewDistribuering = rod.findViewById(R.id.textViewDistribuering);
-        textViewDistribuering.setText("HVOR HURTIGT SKAL BLOOMVANDET DISTRIBUERES?");
+        textViewDistribuering.setText(R.string.bloomDistTV);
 
         scrollChoice = rod.findViewById(R.id.scroll_choice_Distribuering);
         loadDeForskelligeMængder();
