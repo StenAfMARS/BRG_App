@@ -62,7 +62,7 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        DTO_recipe recipe = recipes.get(position);
+        DTO_recipe recipe = recipes.get(recipes.size() - (position+1));
         String recId = String.valueOf(recipe.getRecipeID());
         String recDate = recipe.getDateTime();
         String recTitel = recipe.getRecipeName();
