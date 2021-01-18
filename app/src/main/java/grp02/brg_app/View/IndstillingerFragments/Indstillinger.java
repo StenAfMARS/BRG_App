@@ -2,24 +2,19 @@ package grp02.brg_app.View.IndstillingerFragments;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import android.content.ContextWrapper;
-import android.widget.Toast;
 
 
 import com.airbnb.lottie.animation.content.Content;
@@ -37,7 +32,7 @@ import grp02.brg_app.View.IndstillingerActivity1;
 public class Indstillinger extends Fragment implements View.OnClickListener {
 
     TextView textView;
-    Button bt_BTN, blueetoothConnect, info;
+    Button bt_BTN, blueetoothConnect;
     BluetoothPeripheral peripheral = null;
     BluetoothCentralCallback callback;
     Handler handler;
@@ -64,10 +59,8 @@ public class Indstillinger extends Fragment implements View.OnClickListener {
         bt_BTN.setOnClickListener(this);
         blueetoothConnect.setOnClickListener(this);
 
+        textView = (TextView) rod.findViewById(R.id.textView5);
         blueetoothConnect.setText("Enheder");
-
-        info = (Button) rod.findViewById(R.id.info);
-        info.setOnClickListener(this);
 
         return rod;
     }
@@ -99,11 +92,6 @@ public class Indstillinger extends Fragment implements View.OnClickListener {
                     .replace(R.id.bluetoothFragment, new Bluetooth())
                     .addToBackStack(null)
                     .commit();
-        } else if (v==info){
-            AlertDialog.Builder build= new AlertDialog.Builder(getActivity());
-            build.setMessage(Html.fromHtml("<b>Applikationen er skabt af:</b><br>Adrian Roed Schøning<br>Mathias Sejrup Bærentzen<br>Peter Martin Skaarup<br>Simon Søborg<br>Jacob Chua Ziska", 1));
-            build.setPositiveButton("OK", (dialog, which) -> Toast.makeText(getContext(), "Enjoy", Toast.LENGTH_LONG).show());
-            build.show();
         }
     }
 
