@@ -19,7 +19,7 @@ import grp02.brg_app.View.IndstillingerFragments.Indstillinger;
 
 public class IndstillingerActivity1 extends AppCompatActivity {
 
-    private static final int REQUEST_ENABLE_BT = 1;
+    public static final int REQUEST_ENABLE_BT = 1;
 
     @SuppressLint("StaticFieldLeak")
     public static Context context;

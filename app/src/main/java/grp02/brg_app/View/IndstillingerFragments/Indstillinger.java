@@ -1,5 +1,10 @@
 package grp02.brg_app.View.IndstillingerFragments;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothManager;
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,17 +14,26 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+
+import grp02.brg_app.Control.BLE.BluetoothController;
 import grp02.brg_app.R;
+
+import static androidx.core.content.ContextCompat.getSystemService;
 
 
 public class Indstillinger extends Fragment implements View.OnClickListener {
 
     TextView textView;
     Button bt_BTN, blueetoothConnect;
+    BluetoothController bluetoothController = BluetoothController.getInstance();
+    BluetoothDevice device = null;
+    BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+    BluetoothGatt gatt;
 
     @Override
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.fragment_bluetooth_i_activity, container, false);
+
 
         blueetoothConnect = rod.findViewById(R.id.bluetoothConnect);
         bt_BTN = rod.findViewById(R.id.BTN_Bluetooth);
@@ -38,6 +52,9 @@ public class Indstillinger extends Fragment implements View.OnClickListener {
             if(!(bt_BTN.getBackgroundTintList() == ColorStateList.valueOf(Color.BLUE))) {
 
                 // State Bluetooth Connected!
+                connect();
+
+              //  bluetoothController.connect(this.getContext());
                 bt_BTN.setBackgroundResource(R.drawable.ic_baseline_bluetooth_audio_24);
                 bt_BTN.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
             } else {
@@ -55,5 +72,10 @@ public class Indstillinger extends Fragment implements View.OnClickListener {
                     .addToBackStack(null)
                     .commit();
         }
+    }
+
+    public void connect(){
+        device = adapter.getRemoteDevice("40:F5:20:63:8E");
+        gatt = device.connectGatt(getContext(), false, null);
     }
 }
