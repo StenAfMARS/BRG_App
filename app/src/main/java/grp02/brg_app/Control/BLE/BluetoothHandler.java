@@ -1,5 +1,6 @@
 package grp02.brg_app.Control.BLE;
 
+import java.util.ArrayList;
 import java.util.UUID;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothGattCharacteristic;
@@ -43,7 +44,9 @@ public class BluetoothHandler {
     private static final UUID MANUFACTURER_NAME_CHARACTERISTIC_UUID = UUID.fromString("00002A29-0000-1000-8000-00805f9b34fb");
     private static final UUID MODEL_NUMBER_CHARACTERISTIC_UUID = UUID.fromString("00002A24-0000-1000-8000-00805f9b34fb");
 
-    private final BluetoothCentralCallback BluetoothCentralCallback = new BluetoothCentralCallback() {
+    private static final UUID[] uuids = {ESP32_SERVICE_UUID};
+
+    public final BluetoothCentralCallback BluetoothCentralCallback = new BluetoothCentralCallback() {
         @Override
         public void onConnectedPeripheral(@NotNull BluetoothPeripheral peripheral) {
             Timber.i("connected to '%s'", peripheral.getName());
@@ -91,7 +94,7 @@ public class BluetoothHandler {
         }
     };
 
-    private final BluetoothPeripheralCallback peripheralCallback = new BluetoothPeripheralCallback() {
+    public final BluetoothPeripheralCallback peripheralCallback = new BluetoothPeripheralCallback() {
         @Override
         public void onServicesDiscovered(@NotNull BluetoothPeripheral peripheral) {
             Timber.i("discovered services");
@@ -170,5 +173,14 @@ public class BluetoothHandler {
         }
 
         return single_instance;
+    }
+
+    public final void connect(){
+
+        central.connectPeripheral(central.getPeripheral("40:F5:20:70:63:8E"),peripheralCallback);
+    }
+
+    public final void disconnect(){
+        central.cancelConnection(central.getConnectedPeripherals().get(0));
     }
 }

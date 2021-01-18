@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,14 @@ import android.content.ContextWrapper;
 
 import com.airbnb.lottie.animation.content.Content;
 
+import java.util.UUID;
+
 import grp02.brg_app.Control.BLE.Blessed.BluetoothCentral;
+import grp02.brg_app.Control.BLE.Blessed.BluetoothCentralCallback;
 import grp02.brg_app.Control.BLE.Blessed.BluetoothPeripheral;
 import grp02.brg_app.Control.BLE.BluetoothHandler;
 import grp02.brg_app.R;
+import grp02.brg_app.View.IndstillingerActivity1;
 
 
 public class Indstillinger extends Fragment implements View.OnClickListener {
@@ -29,6 +34,11 @@ public class Indstillinger extends Fragment implements View.OnClickListener {
     TextView textView;
     Button bt_BTN, blueetoothConnect;
     BluetoothPeripheral peripheral = null;
+    BluetoothCentralCallback callback;
+    Handler handler;
+    BluetoothHandler BLEhandler = BluetoothHandler.getInstance(IndstillingerActivity1.context);
+
+    UUID[] uuids = {UUID.fromString("4fafc201-1fb5-459e-8fcc-c5c9c331914b")};
 
 
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -63,11 +73,14 @@ public class Indstillinger extends Fragment implements View.OnClickListener {
 
                 // State Bluetooth Connected!
 
+                BLEhandler.connect();
+
                 bt_BTN.setBackgroundResource(R.drawable.ic_baseline_bluetooth_audio_24);
                 bt_BTN.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
             } else {
 
                 // State Bluetooth NOT Connected!
+
                 bt_BTN.setBackgroundResource(R.drawable.ic_baseline_bluetooth_24);
                 bt_BTN.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(139, 90, 57)));
 
@@ -81,8 +94,6 @@ public class Indstillinger extends Fragment implements View.OnClickListener {
                     .commit();
         }
     }
-
-    private void initBluetoothHandler() { BluetoothHandler.getInstance(getContext().getApplicationContext()); }
 
     private BluetoothPeripheral getPeripheral(String peripheralAddress) {
         BluetoothCentral central = BluetoothHandler.getInstance(getContext().getApplicationContext()).central;
