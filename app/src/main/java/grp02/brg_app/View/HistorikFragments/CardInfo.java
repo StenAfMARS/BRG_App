@@ -86,7 +86,6 @@ public class CardInfo extends Fragment implements View.OnClickListener {
                 startActivity(intent);
             } else {
                 getFragmentManager().beginTransaction()
-                        //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                         .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
                         .replace(R.id.FLHistorikOpenCards, new HistorikList())
                         .addToBackStack(null)
@@ -95,13 +94,21 @@ public class CardInfo extends Fragment implements View.OnClickListener {
         }
 
         if(view == beginBrewBtn) {
-            // Show new Fragment and Start Brew
-            getFragmentManager().beginTransaction()
-                    //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-                    .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                    .replace(R.id.FLHistorikOpenCards, new OnPressedBryg(HistorikActivity1.context))
-                    .addToBackStack(null)
-                    .commit();
+            if(prefEntry) {
+                // Show new Fragment and Start Brew
+                getFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
+                        .replace(R.id.ShowBrewAnimation, new OnPressedBryg(MainActivity.context))
+                        .addToBackStack(null)
+                        .commit();
+            } else {
+                // Show new Fragment and Start Brew
+                getFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
+                        .replace(R.id.FLHistorikOpenCards, new OnPressedBryg(HistorikActivity1.context))
+                        .addToBackStack(null)
+                        .commit();
+            }
 
         }
 
@@ -112,14 +119,12 @@ public class CardInfo extends Fragment implements View.OnClickListener {
 
             if(prefEntry) {
                 getFragmentManager().beginTransaction()
-                        //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                         .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
                         .replace(R.id.ShowBrewAnimation, new OnItemDelete())
                         .addToBackStack(null)
                         .commit();
             } else {
                 getFragmentManager().beginTransaction()
-                        //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                         .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
                         .replace(R.id.FLHistorikOpenCards, new OnItemDelete())
                         .addToBackStack(null)
