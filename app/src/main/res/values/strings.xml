@@ -33,4 +33,5 @@
     <string name="brewTempTV">Vælg en temperatur:</string>
     <string name="bloomWaterTV">Mængde af vand til blooming:</string>
     <string name="bloomDistTV">Indtast en bloom distribueringstid:</string>
+    <string name="brewNameET">Navngivning af bryg</string>
 </resources>
