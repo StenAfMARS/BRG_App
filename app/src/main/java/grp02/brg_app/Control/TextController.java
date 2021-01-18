@@ -13,8 +13,6 @@ import grp02.brg_app.R;
 
 public class TextController {
     RecipeFactoryController recipeFactoryController = RecipeFactoryController.getInstance();
-    StringBuilder sb = new StringBuilder();
-    Formatter formatter = new Formatter(sb, Locale.getDefault());
     private Resources resources;
     private static TextController Instance;
 
@@ -31,6 +29,8 @@ public class TextController {
     }
 
     public String getContextStrings(int StringID, Object... obj) {
+        StringBuilder sb = new StringBuilder();
+        Formatter formatter = new Formatter(sb, Locale.getDefault());
         return formatter.format(resources.getString(StringID), obj).toString();
     }
 }
