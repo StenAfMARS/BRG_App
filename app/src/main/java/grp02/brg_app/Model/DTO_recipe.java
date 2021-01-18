@@ -4,7 +4,6 @@ public class DTO_recipe {
     private int recipeID;
     private String recipeName;
     private float groundCoffee;
-    private float waterToCoffee;
     private int brewingTemperature;
     private int bloomWater;
     private int bloomTime;
@@ -35,14 +34,6 @@ public class DTO_recipe {
 
     public void setRecipeName(String recipeName) {
         this.recipeName = recipeName;
-    }
-
-    public float getWaterToCoffee() {
-        return waterToCoffee;
-    }
-
-    public void setWaterToCoffee(float waterToCoffee) {
-        this.waterToCoffee = waterToCoffee;
     }
 
     public int getBrewingTemperature() {

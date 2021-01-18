@@ -72,7 +72,6 @@ public class GrindSize extends Fragment implements View.OnClickListener {
             progressBarStatus +=16;
             progressBar.setProgress(progressBarStatus);
             RecipeFactoryController.getInstance().setGrindSize(grindSize);
-            System.out.println("This is RecipeFactory Value: " + RecipeFactoryController.getInstance().getCoffeeToWater());
             getFragmentManager().beginTransaction()
                   //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)

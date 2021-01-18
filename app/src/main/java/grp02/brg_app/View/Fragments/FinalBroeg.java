@@ -43,7 +43,7 @@ public class FinalBroeg extends Fragment implements View.OnClickListener {
         TextView textViewFinal = rod.findViewById(R.id.textViewFinal);
 
         textViewFinal.setText(R.string.dinBryg);
-        name.setText(recipeFactory.getDTO_recipe().getRecipeName());
+        name.setText(recipe.getRecipeName());
         groundCoffee.setText(textController.getContextStrings(R.string.kaffeGram, recipe.getGroundCoffee()));
         grindSize.setText(textController.getContextStrings(R.string.grindSize, recipe.getGrindSize()));
         waterCoffeeRatio.setText(textController.getContextStrings(R.string.waterCoffeeRatio, recipe.getWaterAmount()));

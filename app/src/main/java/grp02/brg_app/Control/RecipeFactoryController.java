@@ -1,11 +1,5 @@
 package grp02.brg_app.Control;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
-import java.util.Date;
-
 import grp02.brg_app.Model.DTO_recipe;
 
 public class RecipeFactoryController {
@@ -50,14 +44,6 @@ public class RecipeFactoryController {
 
     public void setGrindSize(String grindSize) {
         dto_recipe.setGrindSize(grindSize);
-    }
-
-    public void setWaterToCoffee(float waterToCoffee) {
-        dto_recipe.setWaterToCoffee(waterToCoffee);
-    }
-
-    public float getCoffeeToWater() {
-        return dto_recipe.getWaterToCoffee();
     }
 
     public void setBrewingTemperature(int brewingTemperature) {

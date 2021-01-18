@@ -83,7 +83,6 @@ public class GroundCoffee extends Fragment implements View.OnClickListener {
             progressBarStatus +=16;
             progressBar.setProgress(progressBarStatus);
             RecipeFactoryController.getInstance().setGroundCoffee(LogicController.getInstance().convertStringsToFloats(gramKaffe, milliGramKaffe));
-            System.out.println("This is RecipeFactory Value: " + RecipeFactoryController.getInstance().getCoffeeToWater());
             getFragmentManager().beginTransaction()
                   //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
