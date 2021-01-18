@@ -16,6 +16,7 @@ import grp02.brg_app.Control.TextController;
 import grp02.brg_app.Model.DTO_recipe;
 import grp02.brg_app.R;
 import grp02.brg_app.View.Fragments.GroundCoffee;
+import grp02.brg_app.View.Fragments.OnPressedBryg;
 import grp02.brg_app.View.Fragments.OnSaveBryg;
 import grp02.brg_app.View.HistorikActivity1;
 
@@ -86,7 +87,7 @@ public class CardInfo extends Fragment implements View.OnClickListener {
             getFragmentManager().beginTransaction()
                     //  .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                    .replace(R.id.FLHistorikOpenCards, new OnSaveBryg())
+                    .replace(R.id.FLHistorikOpenCards, new OnPressedBryg(HistorikActivity1.context))
                     .addToBackStack(null)
                     .commit();
 
