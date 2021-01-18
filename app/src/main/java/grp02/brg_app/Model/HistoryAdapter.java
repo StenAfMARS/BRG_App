@@ -2,6 +2,7 @@ package grp02.brg_app.Model;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -14,20 +15,25 @@ import android.view.contentcapture.DataShareWriteAdapter;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import com.google.gson.Gson;
+
 import org.w3c.dom.Text;
 
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import grp02.brg_app.Control.DatabaseController;
 import grp02.brg_app.R;
 import grp02.brg_app.View.Fragments.GrindSize;
+import grp02.brg_app.View.Fragments.OnPressedBryg;
 import grp02.brg_app.View.HistorikActivity1;
 import grp02.brg_app.View.HistorikFragments.CardInfo;
 import grp02.brg_app.View.HistorikFragments.HistorikList;
@@ -79,6 +85,7 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
         TextView id = convertView.findViewById(R.id.HC_cardID);
         Button HC_brewBtn = convertView.findViewById(R.id.HC_brewBtn);
         Button HC_setfavoriteBtn = convertView.findViewById(R.id.HC_setfavoriteBtn);
+        Button HC_shareBtn = convertView.findViewById(R.id.HC_shareBtn);
         View HC_cardHeader = convertView.findViewById(R.id.hsCardHeader);
 
         title.setText(recTitel);
@@ -95,6 +102,8 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
         HC_brewBtn.setOnClickListener(this);
         HC_setfavoriteBtn.setOnClickListener(this);
         HC_cardHeader.setOnClickListener(this);
+        HC_shareBtn.setOnClickListener(this);
+        HC_shareBtn.setTag(recipe);
         HC_setfavoriteBtn.setTag(recipe);
         HC_cardHeader.setTag(recipe.getRecipeID());
 
@@ -107,6 +116,10 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
 
         switch (view.getId()){
             case R.id.HC_brewBtn:
+                ((HistorikActivity1)mContext).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.FLHistorikOpenCards, new OnPressedBryg((HistorikActivity1)mContext))
+                        .addToBackStack(null)
+                        .commit();
                 break;
             case R.id.HC_setfavoriteBtn:
                 Button changeIconState = view.findViewById(R.id.HC_setfavoriteBtn);
@@ -115,6 +128,18 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
 
                 hsList.toggleFavoritesBtn(recipe, changeIconState);
 
+                break;
+            case R.id.HC_shareBtn:
+                DTO_recipe recipeObj = (DTO_recipe) view.getTag();
+                Gson gson = new Gson();
+
+                String shareBody = gson.toJson(recipeObj);
+
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, recipeObj.getRecipeName());
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+                ((HistorikActivity1)mContext).startActivity(Intent.createChooser(sharingIntent, "Share via"));
                 break;
             default:
                 // der er trykket på selve kortet.
