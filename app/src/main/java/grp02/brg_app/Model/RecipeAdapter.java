@@ -1,22 +1,17 @@
 package grp02.brg_app.Model;
 
-import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.contentcapture.DataShareWriteAdapter;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ShareActionProvider;
 import android.widget.TextView;
+import androidx.fragment.app.FragmentActivity;
 
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -24,29 +19,22 @@ import androidx.fragment.app.Fragment;
 
 import com.google.gson.Gson;
 
-import org.w3c.dom.Text;
-
-import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 import grp02.brg_app.Control.DatabaseController;
 import grp02.brg_app.R;
-import grp02.brg_app.View.Fragments.GrindSize;
 import grp02.brg_app.View.Fragments.OnPressedBryg;
 import grp02.brg_app.View.HistorikActivity1;
 import grp02.brg_app.View.HistorikFragments.CardInfo;
-import grp02.brg_app.View.HistorikFragments.HistorikList;
+import grp02.brg_app.View.HistorikFragments.RecipeList;
 
-public class HistoryAdapter extends BaseAdapter implements View.OnClickListener {
-    Context mContext;
+public class RecipeAdapter extends BaseAdapter implements View.OnClickListener {
+    FragmentActivity activity;
     List<DTO_recipe> recipes;
     DatabaseController dbControl = DatabaseController.getInstance();
-    HistorikList hsList = HistorikList.getInstance();
-    HistorikActivity1 hsAct = HistorikActivity1.getInstance();
 
-    public HistoryAdapter(Context context, List<DTO_recipe> gameLogs){
-        mContext = context;
+    public RecipeAdapter(FragmentActivity activity, List<DTO_recipe> gameLogs){
+        this.activity = activity;
         this.recipes = gameLogs;
     }
 
@@ -74,8 +62,7 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
 
 
         if (convertView == null) {
-            LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-            convertView = layoutInflater.inflate(R.layout.historik_card, null);
+            convertView = activity.getLayoutInflater().inflate(R.layout.historik_card, null);
         }
 
         // 3
@@ -121,8 +108,8 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
 
         switch (view.getId()){
             case R.id.HC_brewBtn:
-                ((HistorikActivity1)mContext).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.FLHistorikOpenCards, new OnPressedBryg((HistorikActivity1)mContext))
+                activity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.FLHistorikOpenCards, new OnPressedBryg(activity))
                         .addToBackStack(null)
                         .commit();
                 break;
@@ -131,7 +118,7 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
 
                 DTO_recipe recipe = (DTO_recipe) view.getTag();
 
-                hsList.toggleFavoritesBtn(recipe, changeIconState);
+                RecipeList.toggleFavoritesBtn(recipe, changeIconState);
 
                 break;
             case R.id.HC_shareBtn:
@@ -144,7 +131,7 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
                 sharingIntent.setType("text/plain");
                 sharingIntent.putExtra(Intent.EXTRA_SUBJECT, recipeObj.getRecipeName());
                 sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
-                ((HistorikActivity1)mContext).startActivity(Intent.createChooser(sharingIntent, "Share via"));
+                activity.startActivity(Intent.createChooser(sharingIntent, "Share via"));
                 break;
             default:
                 // der er trykket på selve kortet.
@@ -157,7 +144,7 @@ public class HistoryAdapter extends BaseAdapter implements View.OnClickListener 
                 Fragment cardInfoFrag = new CardInfo();
                 cardInfoFrag.setArguments(bundle);
 
-                ((HistorikActivity1)mContext).getSupportFragmentManager().beginTransaction()
+                activity.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.FLHistorikOpenCards, cardInfoFrag)
                         .addToBackStack(null)
                         .commit();

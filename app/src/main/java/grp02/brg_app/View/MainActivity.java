@@ -20,9 +20,10 @@ import grp02.brg_app.Control.IDatabaseConnector;
 import grp02.brg_app.Control.LogicController;
 import grp02.brg_app.Control.RecipeFactoryController;
 import grp02.brg_app.Control.TextController;
-import grp02.brg_app.Model.HistoryAdapter;
+import grp02.brg_app.Model.RecipeAdapter;
 import grp02.brg_app.R;
 import grp02.brg_app.View.Fragments.OnPressedBryg;
+import grp02.brg_app.View.HistorikFragments.RecipeList;
 
 public class MainActivity extends AppCompatActivity {
     public static Context context;
@@ -58,9 +59,10 @@ public class MainActivity extends AppCompatActivity {
                     headerText.setVisibility(View.GONE);
 
                 }
-                else{
-                    InitPreferencesList(DatabaseController.getInstance().getDB());
-
+                else if (savedInstanceState == null) {
+                    getSupportFragmentManager().beginTransaction()
+                            .add(R.id.FLHistorikOpenCards, new RecipeList(DatabaseController.getInstance().getDB().getAllFavorites()))  // tom container i layout
+                            .commit();
                 }
                 sharedPref = getPreferences(Context.MODE_PRIVATE);
 
@@ -103,19 +105,11 @@ public class MainActivity extends AppCompatActivity {
 
         }, 100);   //5 seconds
 
-        ListView preferencesLV = findViewById(R.id.PreferencesCardList);
-        preferencesLV.setVisibility(View.VISIBLE);
+
     }
     public void getFragment(){
         Intent intent = new Intent(MainActivity.context,MainActivity.class);
         intent.putExtra("Frag",true);
         context.startActivity(intent);
-    }
-
-    public void InitPreferencesList(IDatabaseConnector db){
-        ListView listView = findViewById(R.id.PreferencesCardList);
-
-        HistoryAdapter adapter = new HistoryAdapter(this, db.getAllFavorites());
-        listView.setAdapter(adapter);
     }
 }

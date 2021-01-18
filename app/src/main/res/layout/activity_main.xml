@@ -35,8 +35,8 @@
 
     </FrameLayout>
 
-    <ListView
-        android:id="@+id/PreferencesCardList"
+    <FrameLayout
+        android:id="@+id/FLHistorikOpenCards"
         android:layout_width="370dp"
         android:layout_height="346dp"
         android:layout_margin="20dp"
@@ -46,8 +46,7 @@
         app:layout_constraintHorizontal_bias="0.609"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVPreferencesTitle3"
-        app:layout_constraintVertical_bias="0.0">
-    </ListView>
+        app:layout_constraintVertical_bias="0.0" />
 
     <View
         android:id="@+id/view3"

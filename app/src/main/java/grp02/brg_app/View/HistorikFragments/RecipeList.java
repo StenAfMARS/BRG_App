@@ -8,43 +8,30 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.TextView;
+import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.material.card.MaterialCardView;
 
-import org.w3c.dom.ls.LSOutput;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import grp02.brg_app.Control.DatabaseController;
 import grp02.brg_app.Control.IDatabaseConnector;
 import grp02.brg_app.Model.DTO_recipe;
-import grp02.brg_app.Model.HistoryAdapter;
+import grp02.brg_app.Model.RecipeAdapter;
 import grp02.brg_app.R;
-import grp02.brg_app.View.Fragments.OnSaveBryg;
-import grp02.brg_app.View.Fragments.WaterCoffeeRatio;
 import grp02.brg_app.View.HistorikActivity1;
 
 
-public class HistorikList extends Fragment {
+public class RecipeList extends Fragment {
 
     private View historikListView;
-    private Context context = HistorikActivity1.context;
-    DatabaseController dbControl = DatabaseController.getInstance();
+    private List<DTO_recipe> recipes;
+    static DatabaseController dbControl = DatabaseController.getInstance();
 
-    public static HistorikList Instance;
-
-    public static HistorikList getInstance() {
-        if(Instance == null) {
-            Instance = new HistorikList();
-        }
-
-        return Instance;
+    public RecipeList(List<DTO_recipe> recipes){
+        this.recipes = recipes;
     }
 
     @Override
@@ -53,19 +40,19 @@ public class HistorikList extends Fragment {
 
         historikListView = inflater.inflate(R.layout.fragment_historik_list, container, false);
 
-        initHistoryList(DatabaseController.getInstance().getDB());
+        initHistoryList(getActivity());
 
         return historikListView;
     }
 
-    private void initHistoryList(IDatabaseConnector db) {
+    private void initHistoryList(FragmentActivity activity) {
         final ListView listView = historikListView.findViewById(R.id.historyCardList);
 
-        HistoryAdapter adapter = new HistoryAdapter(context, db.getHistory());
+        RecipeAdapter adapter = new RecipeAdapter(activity, recipes);
         listView.setAdapter(adapter);
     }
 
-    public void toggleFavoritesBtn(DTO_recipe recipe, Button currentBtn) {
+    public static void toggleFavoritesBtn(DTO_recipe recipe, Button currentBtn) {
 
         // Check if Id is in preferences
         if(dbControl.getDB().checkPreferencesForItem(recipe.getRecipeID())) {
@@ -81,15 +68,11 @@ public class HistorikList extends Fragment {
         }
     }
 
-    public void toggleVisuals(boolean toggle, Button currentBtn) {
+    public static void toggleVisuals(boolean toggle, Button currentBtn) {
         if(toggle) {
             currentBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_outline_24, 0);
         } else {
             currentBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_star_24, 0);
         }
-    }
-
-    public void changeFragmentToCardInfo(int id) {
-        HistorikActivity1.getInstance().changeFragment(id);
     }
 }

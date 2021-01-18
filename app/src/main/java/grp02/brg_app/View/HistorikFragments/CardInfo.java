@@ -9,17 +9,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import grp02.brg_app.Control.DatabaseController;
-import grp02.brg_app.Control.RecipeFactoryController;
 import grp02.brg_app.Control.StorageController;
 import grp02.brg_app.Control.TextController;
 import grp02.brg_app.Model.DTO_recipe;
 import grp02.brg_app.R;
-import grp02.brg_app.View.Fragments.GroundCoffee;
 import grp02.brg_app.View.Fragments.OnPressedBryg;
-import grp02.brg_app.View.Fragments.OnSaveBryg;
 import grp02.brg_app.View.HistorikActivity1;
 import grp02.brg_app.View.MainActivity;
 
@@ -27,7 +22,6 @@ import static grp02.brg_app.View.MainActivity.context;
 
 public class CardInfo extends Fragment implements View.OnClickListener {
 
-    private HistorikActivity1 historikActivity1 = HistorikActivity1.getInstance();
     private Button backToHistoryBtn, beginBrewBtn, deleteBrewBtn;
     private StorageController storageController;
     private TextView gramKaffe, bloomWater, brewTemp, grindSize, name, WCRatio, bloomTime;
@@ -81,30 +75,19 @@ public class CardInfo extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if(view == backToHistoryBtn) {
-            if(prefEntry) {
-                Intent intent = new Intent(((MainActivity)getContext()), MainActivity.class);
-                startActivity(intent);
-            } else {
-                getFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.fade_out, R.anim.fade_in)
-                        .replace(R.id.FLHistorikOpenCards, new HistorikList())
-                        .addToBackStack(null)
-                        .commit();
+                getFragmentManager().popBackStackImmediate();
             }
-        }
 
         if(view == beginBrewBtn) {
             if(prefEntry) {
                 // Show new Fragment and Start Brew
                 getFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
                         .replace(R.id.ShowBrewAnimation, new OnPressedBryg(MainActivity.context))
                         .addToBackStack(null)
                         .commit();
             } else {
                 // Show new Fragment and Start Brew
                 getFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
                         .replace(R.id.FLHistorikOpenCards, new OnPressedBryg(HistorikActivity1.context))
                         .addToBackStack(null)
                         .commit();
@@ -119,13 +102,11 @@ public class CardInfo extends Fragment implements View.OnClickListener {
 
             if(prefEntry) {
                 getFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
                         .replace(R.id.ShowBrewAnimation, new OnItemDelete())
                         .addToBackStack(null)
                         .commit();
             } else {
                 getFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
                         .replace(R.id.FLHistorikOpenCards, new OnItemDelete())
                         .addToBackStack(null)
                         .commit();

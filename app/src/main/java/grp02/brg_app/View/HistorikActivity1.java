@@ -8,21 +8,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.ListView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import grp02.brg_app.Control.DatabaseController;
-import grp02.brg_app.Control.IDatabaseConnector;
-import grp02.brg_app.Model.HistoryAdapter;
 import grp02.brg_app.R;
-import grp02.brg_app.View.Fragments.NameStart;
 import grp02.brg_app.View.HistorikFragments.CardInfo;
-import grp02.brg_app.View.HistorikFragments.HistorikList;
+import grp02.brg_app.View.HistorikFragments.RecipeList;
 
 public class HistorikActivity1 extends AppCompatActivity {
-
-    public static HistorikActivity1 historikActivity1;
     public static Context context;
 
     @Override
@@ -34,7 +28,7 @@ public class HistorikActivity1 extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.FLHistorikOpenCards, new HistorikList())  // tom container i layout
+                    .add(R.id.FLHistorikOpenCards, new RecipeList(DatabaseController.getInstance().getDB().getHistory()))  // tom container i layout
                     .commit();
         }
 
@@ -72,13 +66,6 @@ public class HistorikActivity1 extends AppCompatActivity {
         });
         // ##########################################################
 
-    }
-
-    public static HistorikActivity1 getInstance() {
-        if(historikActivity1 == null) {
-            historikActivity1 = new HistorikActivity1();
-        }
-        return historikActivity1;
     }
 
     public void changeFragment(int id) {
