@@ -23,7 +23,7 @@
     <string name="favoritter">FAVORITTER</string>
     <string name="dinBryg">DIN BRYG</string>
     <string name="grindSize">%s grind size</string>
-    <string name="kaffeGram">%d g. kaffe</string>
+    <string name="kaffeGram">%.2f g. kaffe</string>
     <string name="waterCoffeeRatio">%d ml. vand pr. gram kaffe</string>
     <string name="brewTemp">%d grader Celcius</string>
     <string name="bloomWater">%d ml. vand til bloom</string>
