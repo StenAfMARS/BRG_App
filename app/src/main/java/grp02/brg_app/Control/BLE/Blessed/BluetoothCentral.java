@@ -848,7 +848,7 @@ public class BluetoothCentral {
 
     private boolean permissionsGranted() {
         int targetSdkVersion = context.getApplicationInfo().targetSdkVersion;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && targetSdkVersion >= Build.VERSION_CODES.Q) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BASE && targetSdkVersion >= Build.VERSION_CODES.BASE) {
             if (context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 Timber.e("no ACCESS_FINE_LOCATION permission, cannot scan");
                 return false;
