@@ -17,6 +17,7 @@ import grp02.brg_app.Control.IDatabaseConnector;
 import grp02.brg_app.Model.HistoryAdapter;
 import grp02.brg_app.R;
 import grp02.brg_app.View.Fragments.NameStart;
+import grp02.brg_app.View.HistorikFragments.CardInfo;
 import grp02.brg_app.View.HistorikFragments.HistorikList;
 
 public class HistorikActivity1 extends AppCompatActivity {
@@ -79,5 +80,20 @@ public class HistorikActivity1 extends AppCompatActivity {
         }
         return historikActivity1;
     }
+
+    public void changeFragment(int id) {
+        // Show CardInfo
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", id);
+
+        Fragment cardInfoFrag = new CardInfo();
+        cardInfoFrag.setArguments(bundle);
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.FLHistorikOpenCards, cardInfoFrag)
+                .addToBackStack(null)
+                .commit();
+    }
+
 
 }

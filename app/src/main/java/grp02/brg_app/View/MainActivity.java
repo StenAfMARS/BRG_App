@@ -3,6 +3,7 @@ package grp02.brg_app.View;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,6 +23,7 @@ import grp02.brg_app.Control.DatabaseController;
 import grp02.brg_app.Control.IDatabaseConnector;
 import grp02.brg_app.Control.LogicController;
 import grp02.brg_app.Control.RecipeFactoryController;
+import grp02.brg_app.Control.TextController;
 import grp02.brg_app.Model.PreferencesAdapter;
 import grp02.brg_app.Model.RecipesAdapter;
 import grp02.brg_app.R;
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         context = this;
 
+        TextController.getInstance().setResources(getResources());
+
         DatabaseController.getInstance().UseSQL(this);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -44,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = getIntent();
                 if(intent.getBooleanExtra("Frag",false) == true){
                     getSupportFragmentManager().beginTransaction()
-                            .add(R.id.ShowBrewAnimation, new OnPressedBryg(getApplicationContext()))  // tom container i layout
+                            .add(R.id.ShowBrewAnimation, new OnPressedBryg(getApplicationContext()))
                             .commit();
                     TextView headerText = (TextView) findViewById(R.id.TVPreferencesTitle3);
                     headerText.setVisibility(View.GONE);
@@ -94,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 //InitRecipesList(DatabaseController.getInstance().getDB());
             }
 
-        }, 10);   //5 seconds
+        }, 100);   //5 seconds
 
 
     }

@@ -48,6 +48,11 @@ public class JsonDBController implements IDatabaseConnector {
     }
 
     @Override
+    public DTO_recipe getFavorite(int id) {
+        return null;
+    }
+
+    @Override
     public List<DTO_recipe> getAllFavorites() {
         return null;
     }
@@ -64,6 +69,11 @@ public class JsonDBController implements IDatabaseConnector {
     @Override
     public void addRow(String tableName, int recipeID, boolean fromNewRecipe, String time) {
 
+    }
+
+    @Override
+    public boolean checkPreferencesForItem(int id) {
+        return false;
     }
 
     @Override
