@@ -3,11 +3,9 @@
     <string name="rens">RENS</string>
     <string name="indstillinger">INDSTILLINGER</string>
     <string name="historik">HISTORIK</string>
-    <string name="broeg">BRØG</string>
-    <string name="home">HOME</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="frag1QuestionText">HVOR MANGE GRAM KAFFE VIL DU BRUGE?</string>
+    <string name="broeg">BRYG</string>
+    <string name="home">HJEM</string>
+    <string name="frag1QuestionText">Indtast mængde af kaffe (g):</string>
     <string name="editAmountOfCoffeeValue">0 g</string>
     <string name="n_ste">NÆSTE</string>
     <string name="tilbage">TILBAGE</string>
@@ -28,4 +26,12 @@
     <string name="brewTemp">%d grader Celcius</string>
     <string name="bloomWater">%d ml. vand til bloom</string>
     <string name="bloomTime">%d sekunder til bloom vand distribuering</string>
+    <string name="brewName">Label:</string>
+    <string name="groundCoffeeTV">Indtast mængde af kaffe i (g):</string>
+    <string name="GrindSizeTV">Formalingsgrad:</string>
+    <string name="waterCoffeeRatioTV">Indtast ratio for vand pr. (g) kaffe:</string>
+    <string name="brewTempTV">Vælg en temperatur:</string>
+    <string name="bloomWaterTV">Mængde af vand til blooming:</string>
+    <string name="bloomDistTV">Indtast en bloom distribueringstid:</string>
+    <string name="brewNameET">Navngivning af bryg</string>
 </resources>

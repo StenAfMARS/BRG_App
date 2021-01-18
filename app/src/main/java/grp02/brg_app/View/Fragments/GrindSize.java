@@ -37,15 +37,15 @@ public class GrindSize extends Fragment implements View.OnClickListener {
         progressBar.setProgress(progressBarStatus);
 
         buttonNext = rod.findViewById(R.id.buttonNextGrind);
-        buttonNext.setText("NÆSTE");
+        buttonNext.setText(R.string.n_ste);
         buttonNext.setOnClickListener(this);
 
         buttonTilbage = rod.findViewById(R.id.buttonTilbageGrind);
-        buttonTilbage.setText("TILBAGE");
+        buttonTilbage.setText(R.string.tilbage);
         buttonTilbage.setOnClickListener(this);
 
         hvorMangeKramKaffe = rod.findViewById(R.id.textViewGrind);
-        hvorMangeKramKaffe.setText("HVORDAN ER DIN COFFEE GRIND SIZE?");
+        hvorMangeKramKaffe.setText(R.string.GrindSizeTV);
 
         scrollChoice = rod.findViewById(R.id.scroll_choice_grind);
         fillGrindSizeScroll();
@@ -61,14 +61,13 @@ public class GrindSize extends Fragment implements View.OnClickListener {
         return rod;
     }
     private void fillGrindSizeScroll(){
-            grindSizeScroll.add("Fine");
+            grindSizeScroll.add("Fin");
             grindSizeScroll.add("Medium");
-            grindSizeScroll.add("Coarse");
+            grindSizeScroll.add("Rug");
     }
 
     @Override
     public void onClick(View v) {
-        System.out.println("Grind Size " + grindSize );
         if (v == buttonNext){
             progressBarStatus +=16;
             progressBar.setProgress(progressBarStatus);

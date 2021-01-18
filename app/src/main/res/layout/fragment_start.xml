@@ -7,10 +7,11 @@
 
     <EditText
         android:id="@+id/navnPaaBroeggen"
-        android:layout_width="wrap_content"
+        android:layout_width="276dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
+        android:hint="@string/brewNameET"
         android:inputType="textPersonName"
         android:text=""
         android:textColor="@color/colorPrimary"
@@ -23,10 +24,9 @@
     <TextView
         android:id="@+id/textViewStart"
         android:layout_width="276dp"
-        android:layout_height="77dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
         android:background="@color/colorAccent"
-        android:gravity="center"
         android:textColor="@color/colorPrimary"
         android:textColorLink="@color/colorPrimary"
         android:textSize="20sp"
