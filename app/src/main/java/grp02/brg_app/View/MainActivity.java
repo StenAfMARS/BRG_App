@@ -3,14 +3,10 @@ package grp02.brg_app.View;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.HorizontalScrollView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,8 +20,7 @@ import grp02.brg_app.Control.IDatabaseConnector;
 import grp02.brg_app.Control.LogicController;
 import grp02.brg_app.Control.RecipeFactoryController;
 import grp02.brg_app.Control.TextController;
-import grp02.brg_app.Model.PreferencesAdapter;
-import grp02.brg_app.Model.RecipesAdapter;
+import grp02.brg_app.Model.HistoryAdapter;
 import grp02.brg_app.R;
 import grp02.brg_app.View.Fragments.OnPressedBryg;
 
@@ -120,8 +115,7 @@ public class MainActivity extends AppCompatActivity {
     public void InitPreferencesList(IDatabaseConnector db){
         ListView listView = findViewById(R.id.PreferencesCardList);
 
-        PreferencesAdapter adapter = new PreferencesAdapter(this, db.getAllFavorites());
+        HistoryAdapter adapter = new HistoryAdapter(this, db.getAllFavorites());
         listView.setAdapter(adapter);
-
     }
 }
