@@ -29,6 +29,7 @@ import java.util.UUID;
 import grp02.brg_app.Control.BLE.Blessed.BluetoothCentral;
 import grp02.brg_app.Control.BLE.Blessed.BluetoothCentralCallback;
 import grp02.brg_app.Control.BLE.Blessed.BluetoothPeripheral;
+import grp02.brg_app.Control.BLE.Blessed.WriteType;
 import grp02.brg_app.Control.BLE.BluetoothHandler;
 import grp02.brg_app.R;
 import grp02.brg_app.View.IndstillingerActivity1;
@@ -82,12 +83,13 @@ public class Indstillinger extends Fragment implements View.OnClickListener {
 
                 BLEhandler.connect();
 
+
                 bt_BTN.setBackgroundResource(R.drawable.ic_baseline_bluetooth_audio_24);
                 bt_BTN.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
             } else {
 
                 // State Bluetooth NOT Connected!
-
+              //  BLEhandler.writeToCharacteristik("brew", UUID.fromString("4fafc201-1fb5-459e-8fcc-c5c9c331914b"), UUID.fromString("beb5483e-36e1-4688-b7f5-ea07361b26a8"), WriteType.WITH_RESPONSE);
                 bt_BTN.setBackgroundResource(R.drawable.ic_baseline_bluetooth_24);
                 bt_BTN.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(139, 90, 57)));
 

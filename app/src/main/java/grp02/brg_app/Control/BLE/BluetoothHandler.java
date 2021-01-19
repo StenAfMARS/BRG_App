@@ -1,6 +1,7 @@
 package grp02.brg_app.Control.BLE;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothGattCharacteristic;
@@ -19,6 +20,7 @@ import grp02.brg_app.Control.BLE.Blessed.BluetoothPeripheral;
 import grp02.brg_app.Control.BLE.Blessed.BluetoothPeripheralCallback;
 import grp02.brg_app.Control.BLE.Blessed.GattStatus;
 import grp02.brg_app.Control.BLE.Blessed.HciStatus;
+import grp02.brg_app.Control.BLE.Blessed.WriteType;
 import grp02.brg_app.Timber.Timber;
 
 import static android.bluetooth.BluetoothGatt.CONNECTION_PRIORITY_HIGH;
@@ -30,6 +32,7 @@ public class BluetoothHandler {
     private static volatile BluetoothHandler single_instance = null;
     private final Context context;
     public BluetoothCentral central;
+    private BluetoothBytesParser parser = new BluetoothBytesParser();
     private final Handler handler = new Handler();
 
     // Intent constants
@@ -107,8 +110,8 @@ public class BluetoothHandler {
             peripheral.requestConnectionPriority(CONNECTION_PRIORITY_HIGH);
 
             // Read manufacturer and model number from the Device Information Service
-            // peripheral.readCharacteristic(DIS_SERVICE_UUID, MANUFACTURER_NAME_CHARACTERISTIC_UUID);
-            // peripheral.readCharacteristic(DIS_SERVICE_UUID, MODEL_NUMBER_CHARACTERISTIC_UUID);
+            //peripheral.readCharacteristic(DIS_SERVICE_UUID, MANUFACTURER_NAME_CHARACTERISTIC_UUID);
+            //peripheral.readCharacteristic(DIS_SERVICE_UUID, MODEL_NUMBER_CHARACTERISTIC_UUID);
 
             // Try to turn on notifications characteristics
             peripheral.setNotify(ESP32_SERVICE_UUID, ESP32_CHARACTERISTIC_UUID, true);
@@ -173,6 +176,13 @@ public class BluetoothHandler {
         }
 
         return single_instance;
+    }
+
+    public void writeToCharacteristik(String value, UUID Service, UUID Characteristic, WriteType type){
+        byte[] bValue = value.getBytes();
+        List<BluetoothPeripheral> pList = central.getConnectedPeripherals();
+        pList.get(0).writeCharacteristic(ESP32_SERVICE_UUID, ESP32_CHARACTERISTIC_UUID, bValue , WriteType.WITH_RESPONSE);
+
     }
 
     public final void connect(){
