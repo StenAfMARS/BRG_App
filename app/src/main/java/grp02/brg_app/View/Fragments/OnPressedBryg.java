@@ -45,9 +45,9 @@ public class OnPressedBryg extends Fragment {
         LottieAnimationView OPAV = onPressedBryg.findViewById(R.id.OP_coffeebeansAV);
         OPAV.setVisibility(View.GONE);
 
-        BLEhandler.writeToCharacteristik("brew", UUID.fromString("4fafc201-1fb5-459e-8fcc-c5c9c331914b"), UUID.fromString("beb5483e-36e1-4688-b7f5-ea07361b26a8"), WriteType.WITH_RESPONSE);
+        if(BLEhandler.writeToCharacteristik("brew", UUID.fromString("4fafc201-1fb5-459e-8fcc-c5c9c331914b"), UUID.fromString("beb5483e-36e1-4688-b7f5-ea07361b26a8"), WriteType.WITH_RESPONSE))
+            showAnimation(OPAV);
 
-        showAnimation(OPAV);
         // Inflate the layout for this fragment
         return onPressedBryg;
     }

@@ -34,6 +34,7 @@ public class BluetoothHandler {
     public BluetoothCentral central;
     private BluetoothBytesParser parser = new BluetoothBytesParser();
     private final Handler handler = new Handler();
+    private boolean killConnection = false;
 
     // Intent constants
     public static final String ESP32_EXTRA = "ESP32.EXTRA";
@@ -63,14 +64,19 @@ public class BluetoothHandler {
         @Override
         public void onDisconnectedPeripheral(@NotNull BluetoothPeripheral peripheral, @NotNull HciStatus status) {
             Timber.i("disconnected '%s' with status %s", peripheral.getName(), status);
+            if(!killConnection){
+                // Reconnect to this device when it becomes available again
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        central.autoConnectPeripheral(peripheral, peripheralCallback);
+                    }
+                }, 5000);
+            } else {
+                killConnection = false;
+            }
 
-            // Reconnect to this device when it becomes available again
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    central.autoConnectPeripheral(peripheral, peripheralCallback);
-                }
-            }, 5000);
+
         }
 
         @Override
@@ -178,11 +184,21 @@ public class BluetoothHandler {
         return single_instance;
     }
 
-    public void writeToCharacteristik(String value, UUID Service, UUID Characteristic, WriteType type){
+    public boolean writeToCharacteristik(String value, UUID Service, UUID Characteristic, WriteType type){
         byte[] bValue = value.getBytes();
         List<BluetoothPeripheral> pList = central.getConnectedPeripherals();
-        pList.get(0).writeCharacteristic(ESP32_SERVICE_UUID, ESP32_CHARACTERISTIC_UUID, bValue , WriteType.WITH_RESPONSE);
+        if(!pList.isEmpty()){
+            if (pList.get(0).getService(Service).getUuid().equals(Service)){
+                pList.get(0).writeCharacteristic(ESP32_SERVICE_UUID, ESP32_CHARACTERISTIC_UUID, bValue , WriteType.WITH_RESPONSE);
+                pList.clear();
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public boolean isConnected(){
+        return false;
     }
 
     public final void connect(){
@@ -191,6 +207,8 @@ public class BluetoothHandler {
     }
 
     public final void disconnect(){
-        central.cancelConnection(central.getConnectedPeripherals().get(0));
+        //central.cancelConnection(central.getConnectedPeripherals().get(0));
+        killConnection = true;
+        central.getConnectedPeripherals().get(0).cancelConnection();
     }
 }
