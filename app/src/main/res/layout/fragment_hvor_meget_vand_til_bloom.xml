@@ -15,7 +15,6 @@
         android:background="@drawable/default_btn"
         android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
