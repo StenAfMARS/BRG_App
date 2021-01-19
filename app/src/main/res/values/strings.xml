@@ -29,9 +29,9 @@
     <string name="brewName">Indtast navn:</string>
     <string name="groundCoffeeTV">Indtast mængde af kaffe i (g):</string>
     <string name="GrindSizeTV">Formalingsgrad:</string>
-    <string name="waterCoffeeRatioTV">Indtast ratio for vand pr. (g) kaffe:</string>
+    <string name="waterCoffeeRatioTV">Indtast mængde af vand pr. (g) kaffe:</string>
     <string name="brewTempTV">Vælg en temperatur:</string>
-    <string name="bloomWaterTV">Mængde af vand til blooming:</string>
+    <string name="bloomWaterTV">Mængde af vand til bloom:</string>
     <string name="bloomDistTV">Indtast en bloom distribueringstid:</string>
     <string name="brewNameET"></string>
     <string name="slet">Slet</string>

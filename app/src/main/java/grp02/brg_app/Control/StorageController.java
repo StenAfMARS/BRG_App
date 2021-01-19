@@ -24,7 +24,7 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE Recipes (RecipeID INTEGER PRIMARY KEY AUTOINCREMENT, RecipeName TEXT NOT NULL, GroundCoffee INTEGER NOT NULL, GrindSize TEXT NOT NULL, WaterToCoffee INTEGER NOT NULL, BrewingTemperature INTEGER NOT NULL, BloomWater INTEGER NOT NULL, BloomTime INTEGER NOT NULL)");
+        db.execSQL("CREATE TABLE Recipes (RecipeID INTEGER PRIMARY KEY AUTOINCREMENT, RecipeName TEXT NOT NULL, GroundCoffee DOUBLE NOT NULL, GrindSize TEXT NOT NULL, WaterToCoffee INTEGER NOT NULL, BrewingTemperature INTEGER NOT NULL, BloomWater INTEGER NOT NULL, BloomTime INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE History (historyID INTEGER PRIMARY KEY AUTOINCREMENT, fk_RecipeID INTEGER, timeOfBrew TEXT NOT NULL)");
         db.execSQL("CREATE TABLE Preferences ( fk_RecipeID INTEGER PRIMARY KEY)");
     }
@@ -96,7 +96,7 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
                 recipeFactoryController.setBrewingTemperature(cursor.getInt(5));
                 recipeFactoryController.setBloomWater(cursor.getInt(6));
                 recipeFactoryController.setBloomTime(cursor.getInt(7));
-                recipeFactoryController.setGroundCoffee(cursor.getInt(2));
+                recipeFactoryController.setGroundCoffee(cursor.getFloat(2));
                 recipeFactoryController.setDateTime(cursor.getString(10));
                 // Adding contact to list
                 recipeList.add(recipeFactoryController.getDTO_recipe());
@@ -126,7 +126,7 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
                 recipeFactoryController.setBrewingTemperature(cursor.getInt(5));
                 recipeFactoryController.setBloomWater(cursor.getInt(6));
                 recipeFactoryController.setBloomTime(cursor.getInt(7));
-                recipeFactoryController.setGroundCoffee(cursor.getInt(2));
+                recipeFactoryController.setGroundCoffee(cursor.getFloat(2));
                 recipeList.add(recipeFactoryController.getDTO_recipe());
             } while (cursor.moveToNext());
         }
@@ -185,7 +185,7 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
                 recipeFactoryController.setBrewingTemperature(cursor.getInt(5));
                 recipeFactoryController.setBloomWater(cursor.getInt(6));
                 recipeFactoryController.setBloomTime(cursor.getInt(7));
-                recipeFactoryController.setGroundCoffee(cursor.getInt(2));
+                recipeFactoryController.setGroundCoffee(cursor.getFloat(2));
                 recipe = RecipeFactoryController.getInstance().getDTO_recipe();
             } while (cursor.moveToNext());
         }
@@ -211,7 +211,7 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
                 recipeFactoryController.setBrewingTemperature(cursor.getInt(5));
                 recipeFactoryController.setBloomWater(cursor.getInt(6));
                 recipeFactoryController.setBloomTime(cursor.getInt(7));
-                recipeFactoryController.setGroundCoffee(cursor.getInt(2));
+                recipeFactoryController.setGroundCoffee(cursor.getFloat(2));
                 recipe = RecipeFactoryController.getInstance().getDTO_recipe();
             } while (cursor.moveToNext());
         }
@@ -253,7 +253,7 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
                 recipeFactoryController.setBrewingTemperature(cursor.getInt(5));
                 recipeFactoryController.setBloomWater(cursor.getInt(6));
                 recipeFactoryController.setBloomTime(cursor.getInt(7));
-                recipeFactoryController.setGroundCoffee(cursor.getInt(2));
+                recipeFactoryController.setGroundCoffee(cursor.getFloat(2));
                 recipeList.add(RecipeFactoryController.getInstance().getDTO_recipe());
             } while (cursor.moveToNext());
         }
