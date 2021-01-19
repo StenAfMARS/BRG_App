@@ -1,6 +1,5 @@
 package grp02.brg_app.View.HistorikFragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,8 +14,6 @@ import grp02.brg_app.Control.TextController;
 import grp02.brg_app.Model.DTO_recipe;
 import grp02.brg_app.R;
 import grp02.brg_app.View.Fragments.OnPressedBryg;
-import grp02.brg_app.View.HistorikActivity1;
-import grp02.brg_app.View.MainActivity;
 
 import static grp02.brg_app.View.MainActivity.context;
 
