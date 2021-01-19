@@ -36,7 +36,6 @@ import grp02.brg_app.View.IndstillingerActivity1;
 
 public class Indstillinger extends Fragment implements View.OnClickListener {
 
-    TextView textView;
     Button bt_BTN, blueetoothConnect, info;
     BluetoothPeripheral peripheral = null;
     BluetoothCentralCallback callback;
@@ -67,6 +66,7 @@ public class Indstillinger extends Fragment implements View.OnClickListener {
         blueetoothConnect.setText("Enheder");
 
         info = (Button) rod.findViewById(R.id.info);
+        info.setText("App info");
         info.setOnClickListener(this);
 
         return rod;
