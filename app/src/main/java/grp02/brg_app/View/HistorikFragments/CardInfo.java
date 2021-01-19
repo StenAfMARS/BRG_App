@@ -79,20 +79,9 @@ public class CardInfo extends Fragment implements View.OnClickListener {
             }
 
         if(view == beginBrewBtn) {
-            if(prefEntry) {
-                // Show new Fragment and Start Brew
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.ShowBrewAnimation, new OnPressedBryg(MainActivity.context))
-                        .addToBackStack(null)
+                        .replace(R.id.FLHistorikOpenCards, new OnPressedBryg(getActivity()))
                         .commit();
-            } else {
-                // Show new Fragment and Start Brew
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.FLHistorikOpenCards, new OnPressedBryg(HistorikActivity1.context))
-                        .addToBackStack(null)
-                        .commit();
-            }
-
         }
 
         if(view == deleteBrewBtn) {
@@ -100,17 +89,9 @@ public class CardInfo extends Fragment implements View.OnClickListener {
             DatabaseController.getInstance().getDB().deleteRecipe("History", "fk_RecipeID", recipeId);
             DatabaseController.getInstance().getDB().deleteRecipe("Preferences","fk_RecipeID", recipeId);
 
-            if(prefEntry) {
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.ShowBrewAnimation, new OnItemDelete())
-                        .addToBackStack(null)
-                        .commit();
-            } else {
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.FLHistorikOpenCards, new OnItemDelete())
-                        .addToBackStack(null)
-                        .commit();
-            }
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.FLHistorikOpenCards, new OnItemDelete())
+                    .commit();
 
         }
     }
