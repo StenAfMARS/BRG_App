@@ -101,6 +101,7 @@ public class Indstillinger extends Fragment implements View.OnClickListener {
             } else {
 
                 // State Bluetooth NOT Connected!
+                BLEhandler.disconnect();
               //  BLEhandler.writeToCharacteristik("brew", UUID.fromString("4fafc201-1fb5-459e-8fcc-c5c9c331914b"), UUID.fromString("beb5483e-36e1-4688-b7f5-ea07361b26a8"), WriteType.WITH_RESPONSE);
                 bt_BTN.setBackgroundResource(R.drawable.ic_baseline_bluetooth_24);
                 bt_BTN.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(139, 90, 57)));

@@ -15,13 +15,15 @@ import com.airbnb.lottie.LottieAnimationView;
 
 
 import android.os.Looper;
-import android.os.Handler;
+
+import java.util.UUID;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import grp02.brg_app.Control.BLE.Blessed.WriteType;
+import grp02.brg_app.Control.BLE.BluetoothHandler;
 import grp02.brg_app.R;
-import grp02.brg_app.View.BroegActivity1;
 import grp02.brg_app.View.MainActivity;
 
 public class OnPressedBryg extends Fragment {
@@ -30,6 +32,7 @@ public class OnPressedBryg extends Fragment {
     private Handler ui;
     private Context context;
     public OnPressedBryg(Context context){this.context = context;}
+    private BluetoothHandler BLEhandler = BluetoothHandler.getInstance(MainActivity.context);
 
 
     @Override
@@ -42,7 +45,9 @@ public class OnPressedBryg extends Fragment {
         LottieAnimationView OPAV = onPressedBryg.findViewById(R.id.OP_coffeebeansAV);
         OPAV.setVisibility(View.GONE);
 
-        showAnimation(OPAV);
+        if(BLEhandler.writeToCharacteristik("brew", UUID.fromString("4fafc201-1fb5-459e-8fcc-c5c9c331914b"), UUID.fromString("beb5483e-36e1-4688-b7f5-ea07361b26a8"), WriteType.WITH_RESPONSE))
+            showAnimation(OPAV);
+
         // Inflate the layout for this fragment
         return onPressedBryg;
     }
