@@ -66,10 +66,12 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
     public List<DTO_recipe> getHistory() {
         RecipeFactoryController recipeFactoryController = RecipeFactoryController.getInstance();
         List<DTO_recipe> recipeList = new ArrayList<DTO_recipe>();
+        // Select All Query
         String selectQuery = "SELECT  *, History.timeOfBrew FROM Recipes INNER JOIN History ON History.fk_RecipeID = Recipes.RecipeID;";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
         String[] columns = cursor.getColumnNames();
+        // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
                 recipeFactoryController.clearRecipe();
@@ -82,10 +84,12 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
                 recipeFactoryController.setBloomTime(cursor.getInt(7));
                 recipeFactoryController.setGroundCoffee(cursor.getInt(2));
                 recipeFactoryController.setDateTime(cursor.getString(10));
+                // Adding contact to list
                 recipeList.add(recipeFactoryController.getDTO_recipe());
             } while (cursor.moveToNext());
         }
 
+        // return contact list
         return recipeList;
     }
 
@@ -93,9 +97,11 @@ public class StorageController extends SQLiteOpenHelper implements IDatabaseConn
     public List<DTO_recipe> getAllFavorites() {
         RecipeFactoryController recipeFactoryController = RecipeFactoryController.getInstance();
         List<DTO_recipe> recipeList = new ArrayList<DTO_recipe>();
+        // Select All Query
         String selectQuery = "SELECT  * FROM Recipes INNER JOIN Preferences ON Preferences.fk_RecipeID = Recipes.RecipeID;";
         Cursor cursor = db.rawQuery(selectQuery, null);
 
+        // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
                 recipeFactoryController.clearRecipe();
