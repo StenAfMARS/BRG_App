@@ -15,6 +15,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -36,9 +40,18 @@ public class IndstillingerActivity1 extends AppCompatActivity {
 
     private static final int REQUEST_ENABLE_BT = 1;
     private static final int ACCESS_LOCATION_REQUEST = 2;
+    public static Context context;
+    public static IndstillingerActivity1 Instance;
+
+    public static IndstillingerActivity1 getInstance() {
+        if (Instance == null) {
+            Instance = new IndstillingerActivity1();
+        }
+
+        return Instance;
+    }
 
     @SuppressLint("StaticFieldLeak")
-    public static Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -252,7 +265,15 @@ public class IndstillingerActivity1 extends AppCompatActivity {
         else return new String[] {Manifest.permission.ACCESS_COARSE_LOCATION};
     }
 
-
+    public String getWifiSSID(Context mContext) {
+        WifiManager wifiManager = (WifiManager) mContext.getSystemService(WIFI_SERVICE);
+        WifiInfo info = wifiManager.getConnectionInfo();
+        if(info.getSupplicantState().toString().equals("COMPLETED")) {
+            return info.getSSID();
+        } else {
+            return "not_connected";
+        }
+    }
 
 
 }

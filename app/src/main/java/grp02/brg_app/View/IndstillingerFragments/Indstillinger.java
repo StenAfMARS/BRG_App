@@ -62,6 +62,18 @@ public class Indstillinger extends Fragment implements View.OnClickListener {
         bt_BTN = (Button) rod.findViewById(R.id.BTN_Bluetooth);
         bt_BTN.setOnClickListener(this);
         blueetoothConnect.setOnClickListener(this);
+        TextView wificonnectionTV = rod.findViewById(R.id.Tv_wificonnection);
+        TextView wifiTV = rod.findViewById(R.id.TV_wifi);
+        IndstillingerActivity1 indstillingerActivity1 = IndstillingerActivity1.getInstance();
+
+        if(!indstillingerActivity1.getWifiSSID(IndstillingerActivity1.context).equals("not_connected")) {
+            String output = indstillingerActivity1.getWifiSSID(IndstillingerActivity1.context);
+            output.replace("\"", "");
+            wificonnectionTV.setText(output);
+        } else {
+            wificonnectionTV.setVisibility(View.GONE);
+            wifiTV.setVisibility(View.GONE);
+        }
 
         blueetoothConnect.setText("Enheder");
 
@@ -101,7 +113,7 @@ public class Indstillinger extends Fragment implements View.OnClickListener {
                     .commit();
         } else if (v==info){
             AlertDialog.Builder build= new AlertDialog.Builder(getActivity());
-            build.setMessage(Html.fromHtml("<b>Applikationen er skabt af:</b><br>Adrian Roed Schøning<br>Mathias Sejrup Bærentzen<br>Peter Martin Skaarup<br>Simon Søborg<br>Jacob Chua Ziska", 1));
+            build.setMessage(Html.fromHtml("<b>Applikationen er skabt af:</b><br><br>Adrian Roed Schøning<br>Mathias Sejrup Bærentzen<br>Peter Martin Skaarup<br>Simon Søborg<br>Jacob Chua Ziska<br><br>Softwareteknologi studerende ved <b>Danmarks Teknikske Universitet</b>", 1));
             build.setPositiveButton("OK", (dialog, which) -> Toast.makeText(getContext(), "Enjoy", Toast.LENGTH_LONG).show());
             build.show();
         }

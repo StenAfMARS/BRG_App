@@ -10,6 +10,7 @@
         android:layout_width="276dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_shape2"
         android:ems="10"
         android:hint="@string/brewNameET"
         android:inputType="textPersonName"
