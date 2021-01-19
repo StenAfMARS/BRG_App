@@ -1,5 +1,6 @@
 package grp02.brg_app.View.RensFragments;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -46,6 +47,8 @@ public class RensIActivity extends Fragment implements View.OnClickListener {
                     .replace(R.id.rensFragment, new Rens())
                     .addToBackStack(null)
                     .commit());
+            build.setNegativeButton("EXIT", (dialog, which) -> {
+            });
             build.show();
             }
         }
