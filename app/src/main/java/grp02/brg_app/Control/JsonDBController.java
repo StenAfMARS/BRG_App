@@ -1,11 +1,9 @@
 package grp02.brg_app.Control;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -48,11 +46,6 @@ public class JsonDBController implements IDatabaseConnector {
     }
 
     @Override
-    public DTO_recipe getFavorite(int id) {
-        return null;
-    }
-
-    @Override
     public List<DTO_recipe> getAllFavorites() {
         return null;
     }
@@ -74,11 +67,6 @@ public class JsonDBController implements IDatabaseConnector {
     @Override
     public boolean checkPreferencesForItem(int id) {
         return false;
-    }
-
-    @Override
-    public void addPrecreatedRecipes() {
-
     }
 
     @Override

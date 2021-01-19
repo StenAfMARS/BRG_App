@@ -3,16 +3,11 @@ package grp02.brg_app.Control;
 import grp02.brg_app.Model.DTO_recipe;
 
 public class RecipeFactoryController {
-    // Singleton class
     private static RecipeFactoryController Instance;
     private DTO_recipe dto_recipe;
 
     public DTO_recipe getDTO_recipe() {
         return dto_recipe;
-    }
-
-    public int getRecipeID() {
-        return dto_recipe.getRecipeID();
     }
 
     public void setRecipeID(int recipeID) {

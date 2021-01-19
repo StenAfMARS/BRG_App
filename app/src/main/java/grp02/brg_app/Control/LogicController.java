@@ -24,7 +24,6 @@ import grp02.brg_app.View.MainActivity;
 
 public class LogicController {
 
-    // Singleton class
     private static LogicController Instance;
 
     private LogicController() {}
