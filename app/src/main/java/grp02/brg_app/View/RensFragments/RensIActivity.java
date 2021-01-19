@@ -2,13 +2,17 @@ package grp02.brg_app.View.RensFragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import grp02.brg_app.R;
 
 
@@ -35,12 +39,14 @@ public class RensIActivity extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == clean) {
-                getFragmentManager().beginTransaction()
-                        //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-                        .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                        .replace(R.id.rensFragment, new Rens())
-                        .addToBackStack(null)
-                        .commit();
+            AlertDialog.Builder build= new AlertDialog.Builder(getActivity());
+            build.setMessage(Html.fromHtml("<b>For at udføre rens af enhed:</b><br>- Fyld enheden med 1 del eddike, 1 del vand<br>Eller<br>- Fyld enheden med en given kafferens og følg instruktioner herom<br><br>Klik 'OK' når enheden er fyldt", 1));
+            build.setPositiveButton("OK", (dialog, which) -> getFragmentManager().beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
+                    .replace(R.id.rensFragment, new Rens())
+                    .addToBackStack(null)
+                    .commit());
+            build.show();
             }
         }
     }
