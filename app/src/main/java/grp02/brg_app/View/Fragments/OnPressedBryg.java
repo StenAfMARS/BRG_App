@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,8 @@ import com.airbnb.lottie.LottieAnimationView;
 
 
 import android.os.Looper;
+import android.os.Handler;
+import android.widget.Toast;
 
 import java.util.UUID;
 import java.util.concurrent.Executor;
@@ -45,8 +49,15 @@ public class OnPressedBryg extends Fragment {
         LottieAnimationView OPAV = onPressedBryg.findViewById(R.id.OP_coffeebeansAV);
         OPAV.setVisibility(View.GONE);
 
-        if(BLEhandler.writeToCharacteristik("brew", UUID.fromString("4fafc201-1fb5-459e-8fcc-c5c9c331914b"), UUID.fromString("beb5483e-36e1-4688-b7f5-ea07361b26a8"), WriteType.WITH_RESPONSE))
+        if(BLEhandler.writeToCharacteristik("brew", UUID.fromString("4fafc201-1fb5-459e-8fcc-c5c9c331914b"), UUID.fromString("beb5483e-36e1-4688-b7f5-ea07361b26a8"), WriteType.WITH_RESPONSE)){
             showAnimation(OPAV);
+        } else{
+            AlertDialog.Builder build= new AlertDialog.Builder(getActivity());
+            build.setMessage(Html.fromHtml("<b>Bluetooth er ikke slået til.</>", 1));
+            build.setPositiveButton("OK", (dialog, which) -> Toast.makeText(getContext(), "Enjoy", Toast.LENGTH_LONG).show());
+            build.show();
+        }
+
 
         // Inflate the layout for this fragment
         return onPressedBryg;
