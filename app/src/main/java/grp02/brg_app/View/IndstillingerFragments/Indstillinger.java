@@ -75,6 +75,13 @@ public class Indstillinger extends Fragment implements View.OnClickListener {
             wificonnectionTV.setVisibility(View.GONE);
             wifiTV.setVisibility(View.GONE);
         }
+        if(BLEhandler.isConnected()){
+            bt_BTN.setBackgroundResource(R.drawable.ic_baseline_bluetooth_audio_24);
+            bt_BTN.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+        } else {
+            bt_BTN.setBackgroundResource(R.drawable.ic_baseline_bluetooth_24);
+            bt_BTN.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(139, 90, 57)));
+        }
 
         blueetoothConnect.setText("Enheder");
 
@@ -85,6 +92,18 @@ public class Indstillinger extends Fragment implements View.OnClickListener {
         return rod;
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        if(BLEhandler.isConnected()){
+            bt_BTN.setBackgroundResource(R.drawable.ic_baseline_bluetooth_audio_24);
+            bt_BTN.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+        } else {
+            bt_BTN.setBackgroundResource(R.drawable.ic_baseline_bluetooth_24);
+            bt_BTN.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(139, 90, 57)));
+        }
+    }
 
     @Override
     public void onClick(View v) {
