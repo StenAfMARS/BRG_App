@@ -34,6 +34,7 @@ import grp02.brg_app.Control.BLE.BluetoothHandler;
 import grp02.brg_app.R;
 import grp02.brg_app.Timber.Timber;
 import grp02.brg_app.View.IndstillingerFragments.Indstillinger;
+import io.sentry.Sentry;
 
 
 public class IndstillingerActivity1 extends AppCompatActivity {
@@ -55,6 +56,12 @@ public class IndstillingerActivity1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        boolean EMULATOR = Build.PRODUCT.contains("sdk") || Build.MODEL.contains("Emulator");
+        if (!EMULATOR) {
+            Sentry.init("https://2b721af1989240019fc391d294c62728@o508036.ingest.sentry.io/5599971");
+        }
+
         setContentView(R.layout.activity_indstillinger1);
 
         context = this;

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -13,6 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import grp02.brg_app.R;
 import grp02.brg_app.View.Fragments.NameStart;
+import io.sentry.Sentry;
 
 
 public class BroegActivity1 extends AppCompatActivity{
@@ -23,6 +25,12 @@ public class BroegActivity1 extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        boolean EMULATOR = Build.PRODUCT.contains("sdk") || Build.MODEL.contains("Emulator");
+        if (!EMULATOR) {
+            Sentry.init("https://2b721af1989240019fc391d294c62728@o508036.ingest.sentry.io/5599971");
+        }
+
         setContentView(R.layout.activity_broeg1);
 
         context = this;

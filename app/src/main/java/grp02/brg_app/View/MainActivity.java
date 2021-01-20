@@ -3,6 +3,7 @@ package grp02.brg_app.View;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
@@ -15,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.security.Security;
+
 import grp02.brg_app.Control.DatabaseController;
 import grp02.brg_app.Control.IDatabaseConnector;
 import grp02.brg_app.Control.LogicController;
@@ -24,6 +27,7 @@ import grp02.brg_app.Model.RecipeAdapter;
 import grp02.brg_app.R;
 import grp02.brg_app.View.Fragments.OnPressedBryg;
 import grp02.brg_app.View.HistorikFragments.RecipeList;
+import io.sentry.Sentry;
 
 public class MainActivity extends AppCompatActivity {
     public static Context context;
@@ -41,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        boolean EMULATOR = Build.PRODUCT.contains("sdk") || Build.MODEL.contains("Emulator");
+        if (!EMULATOR) {
+            Sentry.init("https://2b721af1989240019fc391d294c62728@o508036.ingest.sentry.io/5599971");
+        }
+
         setContentView(R.layout.activity_main);
         context = this;
 
@@ -103,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
 
-        }, 100);   //5 seconds
+        }, 100);
 
 
     }

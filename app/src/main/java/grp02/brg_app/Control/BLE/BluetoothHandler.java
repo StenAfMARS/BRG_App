@@ -10,6 +10,7 @@ import android.bluetooth.BluetoothGattService;
 import android.bluetooth.le.ScanResult;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 
 import org.jetbrains.annotations.NotNull;
@@ -23,6 +24,7 @@ import grp02.brg_app.Control.BLE.Blessed.GattStatus;
 import grp02.brg_app.Control.BLE.Blessed.HciStatus;
 import grp02.brg_app.Control.BLE.Blessed.WriteType;
 import grp02.brg_app.Timber.Timber;
+import io.sentry.Sentry;
 
 import static android.bluetooth.BluetoothGatt.CONNECTION_PRIORITY_HIGH;
 import static grp02.brg_app.Control.BLE.Blessed.BluetoothBytesParser.bytes2String;
@@ -167,6 +169,11 @@ public class BluetoothHandler {
         this.context = context;
 
         Timber.plant(new Timber.DebugTree());
+
+        boolean EMULATOR = Build.PRODUCT.contains("sdk") || Build.MODEL.contains("Emulator");
+        if (!EMULATOR) {
+            Sentry.init("https://2b721af1989240019fc391d294c62728@o508036.ingest.sentry.io/5599971");
+        }
 
         central = new BluetoothCentral(context, BluetoothCentralCallback, new Handler());
 

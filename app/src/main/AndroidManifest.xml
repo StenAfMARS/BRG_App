@@ -18,6 +18,7 @@
         android:roundIcon="@drawable/ic_launcher_round_old"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data android:name="io.sentry.dsn" android:value="https://2b721af1989240019fc391d294c62728@o508036.ingest.sentry.io/5599971" />
         <activity android:name=".View.BroegActivity1" android:windowSoftInputMode="adjustNothing" />
         <activity android:name=".View.IndstillingerActivity1" />
         <activity android:name=".View.RensActivity1" />
