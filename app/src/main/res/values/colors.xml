@@ -2,4 +2,6 @@
 <resources>
     <color name="colorPrimary">#8B5A39</color>
     <color name="colorAccent">#E6E6E6</color>
+    <color name="colorPrimaryLight">#C5957C</color>
+    <color name="dangerRed">#DDFB3F3F</color>
 </resources>

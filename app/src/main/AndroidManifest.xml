@@ -2,18 +2,28 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="grp02.brg_app">
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_launcher_round"
+        android:roundIcon="@drawable/ic_launcher_round_old"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".IndstillingerActivity1"></activity>
-        <activity android:name=".RensActivity1" />
-        <activity android:name=".HistorikActivity1" />
-        <activity android:name=".BroegActivity1" />
-        <activity android:name=".MainActivity">
+        <meta-data android:name="io.sentry.dsn" android:value="https://2b721af1989240019fc391d294c62728@o508036.ingest.sentry.io/5599971" />
+        <activity android:name=".View.BroegActivity1" android:windowSoftInputMode="adjustNothing" />
+        <activity android:name=".View.IndstillingerActivity1" />
+        <activity android:name=".View.RensActivity1" />
+        <activity android:name=".View.HistorikActivity1" />
+        <activity android:name=".View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

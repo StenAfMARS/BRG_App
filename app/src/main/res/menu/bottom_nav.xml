@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/nav_HomeBtn"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:iconTint="@color/colorPrimary"
+        android:title="@string/home" />
+    <item
         android:id="@+id/nav_BroegBtn"
         android:icon="@drawable/broeg_logo_1"
         android:iconTint="@color/colorPrimary"
-        android:title="BRØG" />
+        android:title="@string/broeg" />
     <item
         android:id="@+id/nav_HistorikBtn"
         android:iconTint="@color/colorPrimary"
         android:icon="@drawable/icon_action_cached_24px"
-        android:title="HISTORIK" />
+        android:title="@string/historik" />
     <item
         android:id="@+id/nav_RensBtn"
         android:iconTint="@color/colorPrimary"
         android:icon="@drawable/cleaning_services_24px"
-        android:title="RENS" />
+        android:title="@string/rens" />
     <item
         android:id="@+id/nav_IndstillingerBtn"
         android:iconTint="@color/colorPrimary"
         android:icon="@drawable/icon_action_build_24px"
-        android:title="INDSTILLINGER" />
+        android:title="@string/indstillinger" />
 </menu>
