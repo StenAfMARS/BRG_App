@@ -201,9 +201,12 @@ public class BluetoothHandler {
         return false;
     }
 
-    public final void connect(){
+    public final void scanAndConnect(){
 
-        central.connectPeripheral(central.getPeripheral("40:F5:20:70:63:8E"),peripheralCallback);
+        central.scanForPeripheralsWithServices(uuids);
+
+        //central.connectPeripheral(central.getPeripheral("40:F5:20:70:63:8E"),peripheralCallback);
+
     }
 
     public final void disconnect(){
