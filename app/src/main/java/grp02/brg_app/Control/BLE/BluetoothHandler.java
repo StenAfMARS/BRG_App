@@ -6,6 +6,7 @@ import java.util.UUID;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
+import android.bluetooth.BluetoothGattService;
 import android.bluetooth.le.ScanResult;
 import android.content.Context;
 import android.content.Intent;
@@ -198,6 +199,17 @@ public class BluetoothHandler {
     }
 
     public boolean isConnected(){
+        List<BluetoothPeripheral> peripheralList = central.getConnectedPeripherals();
+        if(!peripheralList.isEmpty()){
+            for (int i = 0; i < peripheralList.size() ; i++) {
+                List<BluetoothGattService> serviceList = peripheralList.get(i).getServices();
+                for (int j = 0; j < serviceList.size() ; j++) {
+                    serviceList.get(j).getUuid().equals(ESP32_SERVICE_UUID);
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 
